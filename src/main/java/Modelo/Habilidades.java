@@ -7,11 +7,14 @@ public class Habilidades {
 
     private int id;
     private String nombre, descripcion;
+    private int potencia;
 
-    public Habilidades(int id, String nombre, String descripcion) {
+
+    public Habilidades(int id, String nombre, String descripcion, int potencia) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.potencia = potencia;
     }
 
     public Habilidades(){}
@@ -39,5 +42,14 @@ public class Habilidades {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public int getPotencia() {
+        return potencia;
+    }
+
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
+    }
 }
+
 

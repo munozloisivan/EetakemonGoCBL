@@ -7,15 +7,19 @@ import java.sql.Date;
  */
 public class Captura {
 
-    private int id, idusuario, ideetakemon, nivel, experiencia, vida, ataque, defensa, estado;
+    private int id;
+    private int idusuario;
+    private int idetakemon;
+    private int vida;
+    private int ataque;
+    private int defensa;
+    private int estado;
     private Date fecha;
 
-    public Captura(int id, int idusuario, int ideetakemon, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, Date fecha) {
+    public Captura(int id, int idusuario, int idetakemon, int vida, int ataque, int defensa, int estado, Date fecha) {
         this.id = id;
         this.idusuario = idusuario;
-        this.ideetakemon = ideetakemon;
-        this.nivel = nivel;
-        this.experiencia = experiencia;
+        this.idetakemon = idetakemon;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
@@ -41,28 +45,12 @@ public class Captura {
         this.idusuario = idusuario;
     }
 
-    public int getIdeetakemon() {
-        return ideetakemon;
+    public int getIdetakemon() {
+        return idetakemon;
     }
 
-    public void setIdeetakemon(int ideetakemon) {
-        this.ideetakemon = ideetakemon;
-    }
-
-    public int getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
-
-    public int getExperiencia() {
-        return experiencia;
-    }
-
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
+    public void setIdetakemon(int idetakemon) {
+        this.idetakemon = idetakemon;
     }
 
     public int getVida() {

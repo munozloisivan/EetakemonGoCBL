@@ -6,15 +6,15 @@ package Modelo;
 public class Usuario {
 
     private int id;
-    private String nombre, nick, email, password;
+    private String nombre, nick, email, contrasena;
     private int nivel, experiencia, modified;
 
-    public Usuario(int id, String nombre, String nick, String email, String password, int nivel, int experiencia, int modified) {
+    public Usuario(int id, String nombre, String nick, String email, String contrasena, int nivel, int experiencia, int modified) {
         this.id = id;
         this.nombre = nombre;
         this.nick = nick;
         this.email = email;
-        this.password = password;
+        this.contrasena = contrasena;
         this.nivel = nivel;
         this.experiencia = experiencia;
         this.modified = modified;
@@ -54,12 +54,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public int getNivel() {

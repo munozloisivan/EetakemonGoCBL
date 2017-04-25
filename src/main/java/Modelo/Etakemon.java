@@ -3,13 +3,13 @@ package Modelo;
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Eetakemon {
+public class Etakemon {
 
     private int id;
     private String nombre;
     private int experiencia, habilidad, tipo;
 
-    public Eetakemon(int id, String nombre, int experiencia, int habilidad, int tipo) {
+    public Etakemon(int id, String nombre, int experiencia, int habilidad, int tipo) {
         this.id = id;
         this.nombre = nombre;
         this.experiencia = experiencia;
@@ -17,7 +17,7 @@ public class Eetakemon {
         this.tipo = tipo;
     }
 
-    public Eetakemon(){};
+    public Etakemon(){};
 
     public int getId() {
         return id;

@@ -5,12 +5,13 @@ package Modelo;
  */
 public class Localizacion {
 
-    private int id, idcaptura;
+    private int id;
+    private String nombre;
     private double latitud, longitud;
 
-    public Localizacion(int id, int idcaptura, double latitud, double longitud) {
+    public Localizacion(int id, String nombre, double latitud, double longitud) {
         this.id = id;
-        this.idcaptura = idcaptura;
+        this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
     }
@@ -25,12 +26,12 @@ public class Localizacion {
         this.id = id;
     }
 
-    public int getIdcaptura() {
-        return idcaptura;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setIdcaptura(int idcaptura) {
-        this.idcaptura = idcaptura;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getLatitud() {
