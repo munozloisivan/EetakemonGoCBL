@@ -7,9 +7,11 @@ public class Etakemon {
 
     private int id;
     private String nombre;
-    private int experiencia, habilidad, tipo;
+    private int experiencia;
+    private String habilidad;
+    private int tipo;
 
-    public Etakemon(int id, String nombre, int experiencia, int habilidad, int tipo) {
+    public Etakemon(int id, String nombre, int experiencia, String habilidad, int tipo) {
         this.id = id;
         this.nombre = nombre;
         this.experiencia = experiencia;
@@ -17,7 +19,7 @@ public class Etakemon {
         this.tipo = tipo;
     }
 
-    public Etakemon(){};
+    public Etakemon(){}
 
     public int getId() {
         return id;
@@ -43,11 +45,11 @@ public class Etakemon {
         this.experiencia = experiencia;
     }
 
-    public int getHabilidad() {
+    public String getHabilidad() {
         return habilidad;
     }
 
-    public void setHabilidad(int habilidad) {
+    public void setHabilidad(String habilidad) {
         this.habilidad = habilidad;
     }
 

@@ -7,10 +7,7 @@ import java.sql.Date;
  */
 public class Batalla {
 
-    private int id;
-    private int idcaptura;
-    private int resultado;
-    private int experiencia;
+    private int id, idcaptura, resultado, experiencia;
     private Date fecha;
 
     public int getId() {

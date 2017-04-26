@@ -7,19 +7,16 @@ import java.sql.Date;
  */
 public class Captura {
 
-    private int id;
-    private int idusuario;
-    private int idetakemon;
-    private int vida;
-    private int ataque;
-    private int defensa;
-    private int estado;
+    private int id, idusuariosss, idetakemon, idlocalizacion, nivel, experiencia, vida, ataque, defensa, estado;
     private Date fecha;
 
-    public Captura(int id, int idusuario, int idetakemon, int vida, int ataque, int defensa, int estado, Date fecha) {
+    public Captura(int id, int idusuariosss, int idetakemon, int idlocalizacion, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, Date fecha) {
         this.id = id;
-        this.idusuario = idusuario;
+        this.idusuariosss = idusuariosss;
         this.idetakemon = idetakemon;
+        this.idlocalizacion = idlocalizacion;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
@@ -37,12 +34,12 @@ public class Captura {
         this.id = id;
     }
 
-    public int getIdusuario() {
-        return idusuario;
+    public int getIdusuariosss() {
+        return idusuariosss;
     }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setIdusuariosss(int idusuariosss) {
+        this.idusuariosss = idusuariosss;
     }
 
     public int getIdetakemon() {
@@ -51,6 +48,30 @@ public class Captura {
 
     public void setIdetakemon(int idetakemon) {
         this.idetakemon = idetakemon;
+    }
+
+    public int getIdlocalizacion() {
+        return idlocalizacion;
+    }
+
+    public void setIdlocalizacion(int idlocalizacion) {
+        this.idlocalizacion = idlocalizacion;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
     }
 
     public int getVida() {
