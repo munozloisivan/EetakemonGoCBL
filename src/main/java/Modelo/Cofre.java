@@ -5,6 +5,7 @@ import java.sql.Date;
 /**
  * Created by ivanm on 24/04/2017.
  */
+
 public class Cofre {
 
     private int id;

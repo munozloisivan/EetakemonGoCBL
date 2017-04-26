@@ -10,6 +10,16 @@ public class Batalla {
     private int id, idcaptura, resultado, experiencia;
     private Date fecha;
 
+    public Batalla(int id, int idcaptura, int resultado, int experiencia, Date fecha) {
+        this.id = id;
+        this.idcaptura = idcaptura;
+        this.resultado = resultado;
+        this.experiencia = experiencia;
+        this.fecha = fecha;
+    }
+
+    public Batalla(){}
+
     public int getId() {
         return id;
     }
