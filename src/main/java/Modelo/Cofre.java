@@ -1,12 +1,14 @@
 package Modelo;
 
+import DAO.DAO;
+
 import java.sql.Date;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
 
-public class Cofre {
+public class Cofre extends DAO{
 
     private int id;
     private String nombre, descripcion;

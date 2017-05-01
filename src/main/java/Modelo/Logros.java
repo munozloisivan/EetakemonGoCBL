@@ -1,9 +1,11 @@
 package Modelo;
 
+import DAO.DAO;
+
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Logros {
+public class Logros extends DAO {
 
     private int id;
     private String nombre, descripcion;

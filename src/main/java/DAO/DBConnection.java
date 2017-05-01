@@ -1,14 +1,20 @@
 package DAO;
 
+import org.apache.log4j.Logger;
+
 import javax.inject.Singleton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import static org.apache.log4j.Logger.getLogger;
+
 /**
  * Created by ivanm on 26/04/2017.
  */
 public class DBConnection {
+    final Logger logger = getLogger("DBConnection");
+
     private Connection con;
 
     @Singleton
@@ -25,10 +31,11 @@ public class DBConnection {
             info.setProperty("useSSL", "false");
             info.setProperty("serverTimezone", "UTC");
             con = DriverManager.getConnection(url, info);
-            System.out.println("Conexión BBDD creada \n");
+            logger.info("Conexión BBDD creada \n");
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
+            e.printStackTrace();
         }
         setCon(con);
     }

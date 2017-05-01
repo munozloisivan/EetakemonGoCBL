@@ -1,9 +1,11 @@
 package Modelo;
 
+import DAO.DAO;
+
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Usuario {
+public class Usuario extends DAO {
 
     private int id;
     private String nombre, nick, email, contrasena;

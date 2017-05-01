@@ -32,11 +32,11 @@ public abstract class DAO {
             Method method = this.getClass().getDeclaredMethod(getUpper(field.getName()), null);
             val = method.invoke(this, null).toString();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return val;
     }
@@ -75,6 +75,7 @@ public abstract class DAO {
                 sb.append(",");
         }
         sb.append(")");
+        logger.info("Insert query: "+sb.toString());
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -82,11 +83,10 @@ public abstract class DAO {
             preparedStatement.execute();
         }
         catch (SQLException e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
+           logger.error(e.getMessage());
         }
 
-        System.out.println(sb);
+        logger.info("Insert query: "+sb.toString());
     }
 
     public void select(int id){
@@ -98,6 +98,8 @@ public abstract class DAO {
         sb.append(this.getClass().getSimpleName());
 
         sb.append(" WHERE id = "+id);
+
+        logger.info("SELECT query: "+sb.toString());
 
         try {
             Statement stat = con.createStatement();
@@ -125,7 +127,7 @@ public abstract class DAO {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -133,7 +135,7 @@ public abstract class DAO {
         StringBuffer sb = new StringBuffer("DELETE FROM ");
         sb.append(this.getClass().getSimpleName());
         sb.append(" WHERE id = " + id);
-        System.out.println(sb);
+        logger.info("DELETE query: "+sb.toString());
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -141,15 +143,36 @@ public abstract class DAO {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
 
     }
 
     //update
+    public void update(int id) {
+        StringBuffer sb = new StringBuffer("UPDATE ").append(this.getClass().getSimpleName()).append(" SET ");
+        Field[] fields = this.getClass().getDeclaredFields();
+        int i = 0;
+        for (Field f : fields) {
+            sb.append(f.getName());
+            i++;
+            if (i != fields.length)
+                sb.append(", ");
+        }
 
+        sb.append(") VALUES (");
 
+        int j = 0;
+        for (Field f : fields) {
+            sb.append("?");
+            j++;
+            if (j != fields.length)
+                sb.append(",");
+        }
+        sb.append(")");
+        logger.info("Update query: " + sb.toString());
 
+    }
     //Listas
 
     public static List<Usuario> getAllUsers() throws SQLException {
@@ -275,5 +298,63 @@ public abstract class DAO {
         }
         return listaLocalizaciones;
     }
+
+    public static List<Captura> getCapturasUsuario(int id) throws SQLException{
+        List<Captura> listaCapturaUsuario = new ArrayList<Captura>();
+        Statement stmt = null;
+        stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Captura WHERE captura.idusuariosss = "+id);
+        while(rs.next()){
+            Captura capturaUsuario = new Captura();
+            capturaUsuario.setId(rs.getInt("id"));
+            capturaUsuario.setIdusuariosss(rs.getInt("idusuariosss"));
+            capturaUsuario.setIdetakemon(rs.getInt("idetakemon"));
+            capturaUsuario.setNivel(rs.getInt("nivel"));
+            capturaUsuario.setExperiencia(rs.getInt("experiencia"));
+            capturaUsuario.setVida(rs.getInt("vida"));
+            capturaUsuario.setAtaque(rs.getInt("ataque"));
+            capturaUsuario.setDefensa(rs.getInt("defensa"));
+            capturaUsuario.setEstado(rs.getInt("estado"));
+            capturaUsuario.setFecha(rs.getDate("fecha"));
+            listaCapturaUsuario.add(capturaUsuario);
+        }
+        return listaCapturaUsuario;
+    }
+
+    public static List<Captura> getCapturasUsuarioToRevive(int id) throws SQLException {
+        List<Captura>  listaCapturaUsuarioToRevive = new ArrayList<Captura>();
+        Statement stmt = null;
+        stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM Captura WHERE captura.idusuariosss = "+id+" and estado = 0");
+        while (resultSet.next()){
+            Captura capturaToRevive = new Captura();
+            capturaToRevive.setId(resultSet.getInt("id"));
+            capturaToRevive.setIdetakemon(resultSet.getInt("idetakemon"));
+            listaCapturaUsuarioToRevive.add(capturaToRevive);
+        }
+        return listaCapturaUsuarioToRevive;
+    }
+
+
+    //Se le mostrara al usuario las batallas ganadas de ESE ETAKEMON(CAPTURA)
+    public static List<Batalla> getBatallasGanadasUsuario(int idcaptura) throws SQLException{
+        List<Batalla>  listaBatallasGanadas = new ArrayList<Batalla>();
+        Statement stmt = null;
+        stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * from Batalla WHERE batalla.idcaptura = "+idcaptura+" and batalla.resultado = 1");
+        while (resultSet.next()){
+            Batalla batallaGanada = new Batalla();
+            batallaGanada.setId(resultSet.getInt("id"));
+            batallaGanada.setIdcaptura(resultSet.getInt("idcaptura"));
+            batallaGanada.setResultado(resultSet.getInt("resultado"));
+            batallaGanada.setExperiencia(resultSet.getInt("experiencia"));
+            batallaGanada.setFecha(resultSet.getDate("fecha"));
+            listaBatallasGanadas.add(batallaGanada);
+        }
+        return listaBatallasGanadas;
+    }
+
+
+
 
 }
