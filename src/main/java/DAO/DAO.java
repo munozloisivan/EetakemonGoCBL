@@ -21,6 +21,11 @@ public abstract class DAO {
 
     final Logger logger = getLogger("DAO");
 
+
+
+    // **********************************************************************************************
+    //                              Funciones COMPLEMENTARIAS a las prinicpales
+
     private String getUpper(String m){
         String res = Character.toUpperCase(m.charAt(0)) + m.substring(1);
         return "get".concat(res);
@@ -50,6 +55,42 @@ public abstract class DAO {
             i++;
         }
     }
+
+    //aplica solo a nick y password que se podran cambiar solo una vez
+    public int selectModified(int id){
+        StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = "+id);
+        int res = 2;
+        int comparador = 2;
+        try {
+            Statement stat = con.createStatement();
+            ResultSet resultSet = stat.executeQuery(sb.toString());
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+
+            while (resultSet.next()){
+                comparador = resultSet.getInt("modified");
+                logger.info("El campo 'modified' tiene el valor: "+comparador);
+
+            }
+            if (comparador == 0) {
+                res = 0;
+            }
+            else if (comparador == 1){
+                res = 1;
+            }
+            else {
+                res = 2;            //pensar que pasa ( no existira ese usuario)
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+        return res;
+    }
+
+    //*****************************************************************************************************
+
+    //                                       funciones GENERICAS
 
     public void insert(){
 
@@ -89,6 +130,7 @@ public abstract class DAO {
         logger.info("Insert query: "+sb.toString());
     }
 
+    //SELECT
     public void select(int id){
 
         StringBuffer sb = new StringBuffer("SELECT *");
@@ -131,37 +173,8 @@ public abstract class DAO {
         }
     }
 
-    public int selectModified(int id){
-        StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = "+id);
-        int res = 2;
-        int comparador = 2;
-        try {
-            Statement stat = con.createStatement();
-            ResultSet resultSet = stat.executeQuery(sb.toString());
-            ResultSetMetaData rsmd = resultSet.getMetaData();
 
-            while (resultSet.next()){
-                comparador = resultSet.getInt("modified");
-                logger.info("El campo 'modified' tiene el valor: "+comparador);
-
-            }
-            if (comparador == 0) {
-                res = 0;
-            }
-            else if (comparador == 1){
-                res = 1;
-            }
-            else {
-                res = 2;            //pensar que pasa ( no existira ese usuario)
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
-        return res;
-    }
-
+    //DELETE
     public void delete(int id){
         StringBuffer sb = new StringBuffer("DELETE FROM ");
         sb.append(this.getClass().getSimpleName());
@@ -179,7 +192,7 @@ public abstract class DAO {
 
     }
 
-    //update
+    //UPDATE
    public void update(int id) {
         StringBuffer sb = new StringBuffer("UPDATE ").append(this.getClass().getSimpleName()).append(" SET ");
         Field[] fields = this.getClass().getDeclaredFields();
@@ -210,6 +223,10 @@ public abstract class DAO {
     }
 
 
+    //*****************************************************************************************************************
+    //                                  funciones   ESPECIFICAS
+
+
     //modificar nick y password
     public void updateUsuarioData(int id, String nick, String password){
 
@@ -225,9 +242,21 @@ public abstract class DAO {
     }
 
 
+    public void updateUsuarioAtributes(int id, int experiencia){
+
+        //pendiente de pensar algoritmos sobre como aumenta cada nivel y la experiencia asociada a cada cosa
+
+    }
 
 
-    //Listas
+
+
+
+
+
+    //***************************************************************************************************************
+
+    //                                      LISTAS
 
     public static List<Usuario> getAllUsers() throws SQLException {
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();

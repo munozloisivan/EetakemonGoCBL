@@ -14,7 +14,7 @@ public class App {
 
     public static void main(String[] args) throws SQLException {
 
-                                //NO BORRAR
+                                //      NO BORRAR
         //****************************************************************************************************
         BasicConfigurator.configure();    //es para el logger
 
@@ -25,17 +25,25 @@ public class App {
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         // java.sql.Date date2 = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
-                                //NO BORRAR
+                                //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
 
 
 
-       Usuario u = new Usuario(5,"Daniel","Sobmod2","dani@gmail.com","password",3,200,0);
-       u.update(5);
-
 
 
         // ------------------- PRUEBAS ---------------
+
+
+        //  Usuario us = new Usuario();
+        //      us.updateUsuarioData(0,"marionn3","password");
+
+
+        //  Usuario u = new Usuario(5,"Daniel","Sobmod2","dani@gmail.com","password",3,200,0);
+        //  u.update(5);
+
+
+
 
    /*     Logros logros1 = new Logros();
         logros1.delete(3);
