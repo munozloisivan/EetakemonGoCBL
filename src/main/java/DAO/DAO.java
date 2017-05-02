@@ -9,6 +9,10 @@ import java.util.List;
 
 import Modelo.*;
 import org.apache.log4j.Logger;
+
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+
 import static org.apache.log4j.Logger.getLogger;
 
 /**
@@ -131,7 +135,10 @@ public abstract class DAO {
     }
 
     //SELECT
-    public void select(int id){
+    public Object select(int id)  {
+
+        Object object = this.getClass().getSimpleName();
+        System.out.println("OBJECT:  "+object);
 
         StringBuffer sb = new StringBuffer("SELECT *");
 
@@ -139,7 +146,7 @@ public abstract class DAO {
 
         sb.append(this.getClass().getSimpleName());
 
-        sb.append(" WHERE id = "+id);
+        sb.append(" WHERE id = "+id+";");
 
         logger.info("SELECT query: "+sb.toString());
 
@@ -149,28 +156,105 @@ public abstract class DAO {
             ResultSetMetaData rsmd = rs.getMetaData();
             rs.next();
 
-            for (int i=1; i<rsmd.getColumnCount() +1; i++){
+            if (object.equals("Usuario")){
+                Usuario usuario = new Usuario();
+                    usuario.setId(rs.getInt("id"));
+                    logger.info(usuario.getId());
+                    usuario.setNombre(rs.getString("nombre"));
+                    logger.info(usuario.getNombre());
+                    usuario.setNick(rs.getString("nick"));
+                    logger.info(usuario.getNick());
+                    usuario.setEmail(rs.getString("email"));
+                    logger.info(usuario.getEmail());
+                    usuario.setContrasena(rs.getString("contrasena"));
+                    logger.info(usuario.getContrasena());
+                    usuario.setNivel(rs.getInt("nivel"));
+                    logger.info(usuario.getNivel());
+                    usuario.setExperiencia(rs.getInt("experiencia"));
+                    logger.info(usuario.getExperiencia());
+                    usuario.setModified(rs.getInt("modified"));
+                    logger.info(usuario.getModified());
 
+              return usuario;
             }
+            else if (object.equals("Captura")){
+                Captura captura = new Captura();
+                captura.setId(rs.getInt("id"));
+                captura.setIdusuariosss(rs.getInt("idusuariosss"));
+                captura.setIdetakemon(rs.getInt("idetakemon"));
+                captura.setIdlocalizacion(rs.getInt("idlocalizacion"));
+                captura.setNivel(rs.getInt("nivel"));
+                captura.setExperiencia(rs.getInt("experiencia"));
+                captura.setVida(rs.getInt("vida"));
+                captura.setAtaque(rs.getInt("ataque"));
+                captura.setDefensa(rs.getInt("defensa"));
+                captura.setEstado(rs.getInt("estado"));
+                captura.setFecha(rs.getDate("fecha"));
 
-            for (int i=1; i<rsmd.getColumnCount() + 1; i++){
+                return captura;
+            }
+            else if (object == "Cofre"){
+                Cofre cofre = new Cofre();
+                cofre.setId(rs.getInt("id"));
+                cofre.setNombre(rs.getString("nombre"));
+                cofre.setDescripcion(rs.getString("descripcion"));
+                cofre.setTemporizador(rs.getDate("temporizador"));
 
-                if (rsmd.getColumnTypeName(i).equals("INT")){
-                    System.out.println(rsmd.getColumnLabel(i)+ ": "+rs.getInt(i));
-                }
-                if (rsmd.getColumnTypeName(i).equals("VARCHAR")){
-                    System.out.println(rsmd.getColumnLabel(i)+ ": " +rs.getString(i));
-                }
-                if (i==rsmd.getColumnCount()){
-                    rs.next();
-                    i = 0;
-                }
+                return cofre;
+            }
+            else if (object == "Etakemon"){
+                Etakemon etakemon = new Etakemon();
+                etakemon.setId(rs.getInt("id"));
+                etakemon.setNombre(rs.getString("nombre"));
+                etakemon.setExperiencia(rs.getInt("experiencia"));
+                etakemon.setHabilidad(rs.getString("habilidad"));
+                etakemon.setTipo(rs.getInt("tipo"));
+
+                return etakemon;
+            }
+            else if (object == "Localizacion"){
+                Localizacion localizacion = new Localizacion();
+                localizacion.setId(rs.getInt("id"));
+                localizacion.setNombre(rs.getString("nombre"));
+                localizacion.setLatitud(rs.getDouble("latitud"));
+                localizacion.setLongitud(rs.getDouble("longitud"));
+
+                return localizacion;
+            }
+            else if(object == "Logros"){
+                Logros logros = new Logros();
+                logros.setId(rs.getInt("id"));
+                logros.setNombre(rs.getString("nombre"));
+                logros.setDescripcion(rs.getString("descripcion"));
+                logros.setExperiencia(rs.getInt("experiencia"));
+
+                return logros;
+            }
+            else if (object == "Objetos"){
+                Objetos objetos = new Objetos();
+                objetos.setId(rs.getInt("id"));
+                objetos.setNombre(rs.getString("nombre"));
+                objetos.setDescripcion(rs.getString("descripcion"));
+
+                return objetos;
+            }
+            else if (object == "Batalla"){
+                Batalla batalla = new Batalla();
+                batalla.setId(rs.getInt("id"));
+                batalla.setIdcaptura(rs.getInt("idcaptura"));
+                batalla.setResultado(rs.getInt("resultado"));
+                batalla.setExperiencia(rs.getInt("experiencia"));
+                batalla.setFecha(rs.getDate("fecha"));
+
+                return batalla;
             }
         }
+
         catch (SQLException e){
             e.printStackTrace();
             logger.error(e.getMessage());
         }
+        return object;
     }
 
 
