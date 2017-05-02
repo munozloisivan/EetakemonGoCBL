@@ -131,6 +131,37 @@ public abstract class DAO {
         }
     }
 
+    public int selectModified(int id){
+        StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = "+id);
+        int res = 2;
+        int comparador = 2;
+        try {
+            Statement stat = con.createStatement();
+            ResultSet resultSet = stat.executeQuery(sb.toString());
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+
+            while (resultSet.next()){
+                comparador = resultSet.getInt("modified");
+                logger.info("El campo 'modified' tiene el valor: "+comparador);
+
+            }
+            if (comparador == 0) {
+                res = 0;
+            }
+            else if (comparador == 1){
+                res = 1;
+            }
+            else {
+                res = 2;            //pensar que pasa ( no existira ese usuario)
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+        return res;
+    }
+
     public void delete(int id){
         StringBuffer sb = new StringBuffer("DELETE FROM ");
         sb.append(this.getClass().getSimpleName());
@@ -149,30 +180,53 @@ public abstract class DAO {
     }
 
     //update
-    public void update(int id) {
+   public void update(int id) {
         StringBuffer sb = new StringBuffer("UPDATE ").append(this.getClass().getSimpleName()).append(" SET ");
         Field[] fields = this.getClass().getDeclaredFields();
         int i = 0;
         for (Field f : fields) {
             sb.append(f.getName());
+            sb.append("=?");
+            //sb.append("'");
             i++;
             if (i != fields.length)
                 sb.append(", ");
         }
-
-        sb.append(") VALUES (");
-
-        int j = 0;
-        for (Field f : fields) {
-            sb.append("?");
-            j++;
-            if (j != fields.length)
-                sb.append(",");
+       sb.append(" where id=").append(id+";");
+        logger.info("antes del preparedstatement:    "+sb.toString());
+        try{
+            PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
+            insertElements(preparedStatement);
+            preparedStatement.execute();
         }
-        sb.append(")");
+        catch (SQLException e){
+            e.printStackTrace();
+            logger.error(e.getMessage());
+
+        }
+        //sb.append(" where id=").append(id+";");
         logger.info("Update query: " + sb.toString());
 
     }
+
+
+    //modificar nick y password
+    public void updateUsuarioData(int id, String nick, String password){
+
+        selectModified(id);
+        if (selectModified(id) == 0){           //si es 0 no se ha modificado previamente y se puede actualizar
+            StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+            sb.append("nick='"+nick+"', contrasena='"+password+"' where usuario.id = "+id+";");
+            logger.info("update query: "+sb.toString());
+        }
+        else{
+            logger.info("Ya se ha modificado previamente. NO se puede modificar");
+        }
+    }
+
+
+
+
     //Listas
 
     public static List<Usuario> getAllUsers() throws SQLException {

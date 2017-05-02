@@ -22,6 +22,16 @@ public class Usuario extends DAO {
         this.modified = modified;
     }
 
+    public Usuario(String nombre, String nick, String email, String contrasena, int nivel, int experiencia, int modified){
+        this.nombre = nombre;
+        this.nick = nick;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+        this.modified = modified;
+    }
+
     public Usuario(){}
 
     public int getId() {

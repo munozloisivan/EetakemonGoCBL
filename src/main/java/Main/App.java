@@ -30,6 +30,8 @@ public class App {
 
 
 
+       Usuario u = new Usuario(5,"Daniel","Sobmod2","dani@gmail.com","password",3,200,0);
+       u.update(5);
 
 
 
@@ -111,16 +113,16 @@ public class App {
 
 
 
-     /*   Usuario us1 = new Usuario();
-        us1.setNombre("Dani");
-        us1.setNick("Sob");
-        us1.setEmail("dani@gmail.com");
+   /*   Usuario us1 = new Usuario();
+        us1.setNombre("Marc");
+        us1.setNick("mark33");
+        us1.setEmail("mark@gmail.com");
         us1.setContrasena("password");
         us1.setNivel(3);
         us1.setExperiencia(300);
         us1.setModified(0);
-        us1.insert(); */
-
+        us1.insert();
+*/
       /*  Etakemon et1 = new Etakemon(0,"Alakasals",300,"hipnosis",1);
         et1.insert();
         Etakemon et2 = new Etakemon(1,"Rinchorn",500,"dobleCreditoPaTi",2);
