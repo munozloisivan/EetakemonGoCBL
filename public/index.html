@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="jquery-3.2.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            //Formularios ocultos por defecto
+            document.getElementById("registro_form_cont").style.display="none";
+            document.getElementById("recover_form_cont").style.display="none";
+            document.getElementById("login_form_cont").style.display="none";
+            document.getElementById("eetakedex_cont").style.display="none";
+
+            $.getJSON("http://localhost:8080/myapp/json/usuario/get_all",
+                function (json) {
+                    var tr;
+                    for (var i = 0; i < json.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + json[i].name + "</td>");
+                        tr.append("<td>" + json[i].email + "</td>");
+                        tr.append("<td>" + json[i].password + "</td>");
+                        tr.append("<td>" + json[i].idusuario+ "</td>");
+                        tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
+                        $('table').append(tr);
+                    }
+                });
+
+            $("#registrar").click(function () {
+                var datos = { "nombre":"name", "nick":"nick", "email":"email", "contrasena":"password"};
+                datos.nombre = $("#nombre").val();
+                datos.email = $("#email").val();
+                datos.nick = $("#usuario").val();
+                datos.contrasena = $("#password").val();
+                //var datosResgistro = {nombre: $('input:text[id=nombre]').val(), email: $('input:text[id=email]').val(), password: $('input:text[id=password]').val()};
+                $.ajax({
+                    url: "http://localhost:8080/myapp/json/usuario/new",
+                    type: "POST",
+                    data: JSON.stringify(datos),
+                    contentType: "application/json",
+                    success: showinicio()
+                });
+            });
+
+            $("#recover").click(function () {
+                var emailRecover = $("#passwordRecover").val();
+                $.get("http://localhost:8080/myapp/json/usuario/got_email/" + emailRecover, function (data, status) {
+                    alert("Contraseña: "+data.password+ "\nStatus: "+status)
+                }   );
+            });
+
+            $("#login").click(function () {
+                var datos = {"email":"email", "password":"password"};
+                datos.email = $("#email_login").val();
+                datos.password = $("#password_login").val();
+                $.ajax({
+                    url: "http://localhost:8080/myapp/json/usuario/login",
+                    type: "POST",
+                    data: JSON.stringify(datos),
+                    contentType: "application/json",
+                    success: alert(datos.email+ "ha iniciado sesión!")
+                });
+            });
+
+        });
+        function showinicio(){
+            //hide all
+            document.getElementById("usuarios_registrados_cont").style.display="none";
+            document.getElementById("registro_form_cont").style.display="none";
+            document.getElementById("recover_form_cont").style.display="none";
+            document.getElementById("login_form_cont").style.display="none";
+            document.getElementById("descripcion_cont").style.display="none";
+            document.getElementById("eetakedex_cont").style.display="none";
+            //display iniciales
+            document.getElementById("usuarios_registrados_cont").style.display="block";
+            document.getElementById("descripcion_cont").style.display="block";
+        }
+
+        function show(elementId) {
+            //hide all
+            document.getElementById("usuarios_registrados_cont").style.display="none";
+            document.getElementById("registro_form_cont").style.display="none";
+            document.getElementById("recover_form_cont").style.display="none";
+            document.getElementById("login_form_cont").style.display="none";
+            document.getElementById("descripcion_cont").style.display="none";
+            document.getElementById("eetakedex_cont").style.display="none";
+            //display selected
+            document.getElementById(elementId).style.display="block";
+        }
+
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("nameFilter");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tableUsuarios");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body{
+            background:url("fondo-pokemon.png") fixed no-repeat center;
+        }
+        div.container-fluid {
+            border-radius: 25px;
+            background-color: rgba(29, 108, 50, 0.6);
+        }
+        div.modal{
+            background: url("eetakedex_back2.jpg") fixed no-repeat center;
+        }
+        h4{
+            color: #0b1b19
+        }
+        p{
+            color: #0b1b19
+        }
+        tr{
+            color: #0b1b19;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified">
+    <li><a href="#" onclick="showinicio()"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+    <li><a href="#" onclick="show('eetakedex_cont'); ocultarRegistrados()"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
+    <li><a href="#" onclick="show('registro_form_cont')"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
+    <li><a href="#" onclick="show('login_form_cont')"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-8 col-md-offset-2" id="descripcion_cont">
+    <img class="img-responsive" src="pikachu.png" alt="Pikachu">
+    <h4><strong>¡Únete a la aventura!</strong></h4>
+    <p><strong>Recientemente han aparecido unas criaturas con fragmentos de ADN humano de las personas que frecuentan la zona de la EETAC.
+        Según los expertos, que los han denominado "Eetakemon", son seres hostiles con altas capacidades de combate que aparecen en
+        los lugares más emblemáticos del campus, como la biblioteca y los despachos de los profesores. Pero también aseguran que un
+        entrenador experimentado puede ser capaz de someter a cualquier Eetakemon.
+        ¡Así que capturalos, coleccionalos y entrenalos para hacerte el entrenador más fuerte del campus.!</strong></p>
+</div>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
+    <form id="registerForm">
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Nombre:</h4>
+                <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre " required>
+                <i class="glyphicon glyphicon-user form-control-feedback"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Correo electrónico:</h4>
+                <input type="email" class="form-control" id="email" placeholder="Introduce una dirección de correo electrónico" required>
+                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Usuario:</h4>
+                <input type="text" class="form-control" id="usuario" placeholder="Introduce un nombre de usuario " required>
+                <i class="glyphicon glyphicon-user form-control-feedback"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Contraseña:</h4>
+                <input type="password" class="form-control" id="password" placeholder="Introduce una contraseña" required>
+                <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            </div>
+        </div>
+        <button type="submit" id="registrar" class="btn btn-primary btn-block btn-md" onclick="showinicio()">Registrar</button>
+        <br>
+    </form>
+</div>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="login_form_cont">
+    <form id="loginForm">
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Correo electrónico:</h4>
+                <input type="email" class="form-control" id="email_login" placeholder="Introduce tu dirección de correo electrónico" required>
+                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Contraseña:</h4>
+                <input type="password" class="form-control" id="password_login" placeholder="Introduce tu contraseña" required>
+                <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            </div>
+        </div>
+        <button type="submit" id="login" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
+        <br>
+    </form>
+</div>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="recover_form_cont">
+    <form>
+        <div class="form-group">
+            <h4>Recuperar contraseña:</h4>
+            <input type="email" class="form-control" id="passwordRecover" placeholder="Introduce tu email" required>
+        </div>
+            <button type="submit" id="recover" class="btn btn-warning btn-block btn-md">Recuperar</button>
+    </form>
+</div>
+
+
+<div class="container-fluid col-md-10 col-md-offset-1" id="eetakedex_cont">
+    <br>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="thumbnail" style="align-content: center">
+                    <img src="Eetakemon_images/Alakasals.png" alt="Alakasals" style="width:100%">
+                    <p>1.Alakasals <a><span type="button" class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#demo_Alakasals"></span></a></p>
+                    <div id="demo_Alakasals" class="collapse">
+                        Es un humanoide tranquilo y sosegado, dicen que cuando entra en cólera es capaz de doblar cucharas con la mente.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="Eetakemon_images/Danisloth.png" alt="Danisloth" style="width:100%">
+                    <p>2.Danisloth <a><span type="button" class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#demo_Danisloth"></span></a></p>
+                    <div id="demo_Danisloth" class="collapse">
+                        Se pasa el día comiendo y durmiendo, muchas veces no entiende las cosas, hay que repetirselas. Paciencia entrenadores.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="Eetakemon_images/Davidos.png" alt="Davidos" style="width:100%">
+                    <p>3.Davidos <a><span type="button" class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#demo_Davidos"></span></a></p>
+                    <div id="demo_Davidos" class="collapse">
+                        Sus capacidades de combate no se ven mermadas a pesar de sus cortas extremidades superiores. Le gusta fanfarronear.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <a type="button" data-toggle="modal" data-target="#livanny_modal">
+                        <img src="Eetakemon_images/Livanny.png" alt="Livanny" style="width:100%">
+                        <div class="caption">
+                            <p>4.Livanny</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <a>
+                        <img src="Eetakemon_images/Tonix.png" alt="Tonix" style="width:100%">
+                        <div class="caption">
+                            <p>5.Tonix</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <a>
+                        <img src="Eetakemon_images/Wooperal.png" alt="Wooperal" style="width:100%">
+                        <div class="caption">
+                            <p>6.Wooperal</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div id="livanny_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Livanny</h4>
+            </div>
+            <div class="modal-body">
+                <div align="center">
+                <img src="Eetakemon_images/Livanny.png" width="50%" align="center"/>
+                </div>
+                <p><strong>Naturaleza:</strong> Ataque</p>
+                <p><strong>Parece frágil a simple vista, pero su fuerza interior es incomparable. Le gusta ir elegante.</strong></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid col-md-8 col-md-offset-2" id="usuarios_registrados_cont">
+    <h4><strong>Usuarios registrados:</strong></h4>
+    <form>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre...">
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+            <table class="table", id="tableUsuarios">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>E-mail</th>
+                    <th>Password</th>
+                    <th>ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
