@@ -9,14 +9,12 @@ public class Etakemon extends DAO{
 
     private int id;
     private String nombre;
-    private int experiencia;
     private String habilidad;
     private int tipo;
 
-    public Etakemon(int id, String nombre, int experiencia, String habilidad, int tipo) {
+    public Etakemon(int id, String nombre, String habilidad, int tipo) {
         this.id = id;
         this.nombre = nombre;
-        this.experiencia = experiencia;
         this.habilidad = habilidad;
         this.tipo = tipo;
     }
@@ -37,14 +35,6 @@ public class Etakemon extends DAO{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getExperiencia() {
-        return experiencia;
-    }
-
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
     }
 
     public String getHabilidad() {

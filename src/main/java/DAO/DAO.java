@@ -206,7 +206,6 @@ public abstract class DAO {
                 Etakemon etakemon = new Etakemon();
                 etakemon.setId(rs.getInt("id"));
                 etakemon.setNombre(rs.getString("nombre"));
-                etakemon.setExperiencia(rs.getInt("experiencia"));
                 etakemon.setHabilidad(rs.getString("habilidad"));
                 etakemon.setTipo(rs.getInt("tipo"));
 
@@ -387,7 +386,6 @@ public abstract class DAO {
             Etakemon etakemon = new Etakemon();
             etakemon.setId(rs.getInt("id"));
             etakemon.setNombre(rs.getString("nombre"));
-            etakemon.setExperiencia(rs.getInt("experiencia"));
             etakemon.setHabilidad(rs.getString("habilidad"));
             etakemon.setTipo(rs.getInt("tipo"));
             listaEtakemon.add(etakemon);
