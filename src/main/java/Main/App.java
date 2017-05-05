@@ -56,9 +56,8 @@ public class App {
         // **********************************************************************************************
 
 
-    /*    Usuario us = new Usuario();
-        us.select(4);
-      */
+//Usuario us = new Usuario();
+//us.select(7);
 
      /*   Usuario pruebas = (Usuario) us.select(4);
         System.out.println("id seleccionad: "+pruebas.getId());

@@ -1,0 +1,151 @@
+Descripcion de cada una de las tablas para que veais como esta definido cada uno
+de los atributos que tiene cada tabla.
+
+asi podeis saber exactamente como esta definido 
+
+mysql> use juego;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_juego |
++-----------------+
+| batalla         |
+| captura         |
+| cofre           |
+| cofreusuario    |
+| etakemon        |
+| localizacion    |
+| logros          |
+| logrosusuario   |
+| objetos         |
+| objetosusuario  |
+| usuario         |
++-----------------+
+11 rows in set (0.00 sec)
+
+mysql> describe batalla;
++-------------+----------+------+-----+---------+----------------+
+| Field       | Type     | Null | Key | Default | Extra          |
++-------------+----------+------+-----+---------+----------------+
+| id          | int(11)  | NO   | PRI | NULL    | auto_increment |
+| idcaptura   | int(11)  | NO   | MUL | NULL    |                |
+| resultado   | int(11)  | YES  |     | NULL    |                |
+| experiencia | int(11)  | YES  |     | NULL    |                |
+| fecha       | datetime | YES  |     | NULL    |                |
++-------------+----------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe captura;
++----------------+----------+------+-----+---------+----------------+
+| Field          | Type     | Null | Key | Default | Extra          |
++----------------+----------+------+-----+---------+----------------+
+| id             | int(11)  | NO   | PRI | NULL    | auto_increment |
+| idusuariosss   | int(11)  | YES  | MUL | NULL    |                |
+| idetakemon     | int(11)  | YES  | MUL | NULL    |                |
+| idlocalizacion | int(11)  | NO   | MUL | NULL    |                |
+| nivel          | int(11)  | YES  |     | NULL    |                |
+| experiencia    | int(11)  | YES  |     | NULL    |                |
+| vida           | int(11)  | YES  |     | NULL    |                |
+| ataque         | int(11)  | YES  |     | NULL    |                |
+| defensa        | int(11)  | YES  |     | NULL    |                |
+| estado         | int(11)  | YES  |     | NULL    |                |
+| fecha          | datetime | YES  |     | NULL    |                |
++----------------+----------+------+-----+---------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> describe cofre;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| id           | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre       | varchar(45) | YES  |     | NULL    |                |
+| descripcion  | varchar(45) | YES  |     | NULL    |                |
+| temporizador | datetime    | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe cofreusuario;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| idusuarioss | int(11) | NO   | PRI | NULL    |       |
+| idcofre     | int(11) | YES  | MUL | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe etakemon;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre    | varchar(45) | NO   |     | NULL    |                |
+| habilidad | varchar(45) | YES  |     | NULL    |                |
+| tipo      | int(11)     | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe localizacion;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre   | varchar(45) | YES  |     | NULL    |                |
+| longitud | double      | NO   |     | NULL    |                |
+| latitud  | double      | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe logros;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre      | varchar(45) | YES  |     | NULL    |                |
+| descripcion | varchar(45) | YES  |     | NULL    |                |
+| experiencia | int(11)     | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe logrosusuario;
++------------+---------+------+-----+---------+-------+
+| Field      | Type    | Null | Key | Default | Extra |
++------------+---------+------+-----+---------+-------+
+| idlogros   | int(11) | YES  | MUL | NULL    |       |
+| idusuarios | int(11) | YES  | MUL | NULL    |       |
++------------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe objetos;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre      | varchar(45) | NO   |     | NULL    |                |
+| descripcion | varchar(70) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> describe objetosusuario;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| idobjeto  | int(11) | NO   | MUL | NULL    |       |
+| idusuario | int(11) | NO   | MUL | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe usuario;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre      | varchar(45) | NO   |     | NULL    |                |
+| nick        | varchar(45) | NO   |     | NULL    |                |
+| email       | varchar(45) | NO   | UNI | NULL    |                |
+| contrasena  | varchar(45) | NO   |     | NULL    |                |
+| nivel       | int(11)     | YES  |     | NULL    |                |
+| experiencia | int(11)     | YES  |     | NULL    |                |
+| modified    | int(11)     | NO   |     | NULL    |                |
+| admin       | int(11)     | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
