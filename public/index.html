@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
     <script src="jquery-3.2.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -21,6 +21,49 @@
             document.getElementById("recover_form_cont").style.display="none";
             document.getElementById("login_form_cont").style.display="none";
             document.getElementById("eetakedex_cont").style.display="none";
+
+            function submitform(elementId) {
+                var f = document.getElementsByTagName(elementId)[0];
+                if(f.checkValidity()) {
+                    f.submit();
+                    return true;
+                } else {
+                    alert(document.getElementById('example').validationMessage);
+                }
+            }
+
+            function registrar() {
+                if (submitform()) {
+                    var datos = {"nombre": "name", "nick": "nick", "email": "email", "contrasena": "password"};
+                    datos.nombre = $("#nombre").val();
+                    datos.email = $("#email").val();
+                    datos.nick = $("#usuario").val();
+                    datos.contrasena = $("#password").val();
+                    //var datosResgistro = {nombre: $('input:text[id=nombre]').val(), email: $('input:text[id=email]').val(), password: $('input:text[id=password]').val()};
+                    $.ajax({
+                        url: "http://localhost:8080/myapp/json/usuario/new",
+                        type: "POST",
+                        data: JSON.stringify(datos),
+                        contentType: "application/json",
+                        success: alert("Registrado!")
+                    });
+                }
+            }
+
+            function login() {
+                if (submitform()) {
+                    var datos = {"email": "email", "password": "password"};
+                    datos.email = $("#email_login").val();
+                    datos.password = $("#password_login").val();
+                    $.ajax({
+                        url: "http://localhost:8080/myapp/json/usuario/login",
+                        type: "POST",
+                        data: JSON.stringify(datos),
+                        contentType: "application/json",
+                        success: alert(datos.email + "ha iniciado sesión!")
+                    });
+                }
+            }
 
             $.getJSON("http://localhost:8080/myapp/json/usuario/get_all",
                 function (json) {
@@ -36,43 +79,8 @@
                     }
                 });
 
-            $("#registrar").click(function () {
-                var datos = { "nombre":"name", "nick":"nick", "email":"email", "contrasena":"password"};
-                datos.nombre = $("#nombre").val();
-                datos.email = $("#email").val();
-                datos.nick = $("#usuario").val();
-                datos.contrasena = $("#password").val();
-                //var datosResgistro = {nombre: $('input:text[id=nombre]').val(), email: $('input:text[id=email]').val(), password: $('input:text[id=password]').val()};
-                $.ajax({
-                    url: "http://localhost:8080/myapp/json/usuario/new",
-                    type: "POST",
-                    data: JSON.stringify(datos),
-                    contentType: "application/json",
-                    success: showinicio()
-                });
-            });
-
-            $("#recover").click(function () {
-                var emailRecover = $("#passwordRecover").val();
-                $.get("http://localhost:8080/myapp/json/usuario/got_email/" + emailRecover, function (data, status) {
-                    alert("Contraseña: "+data.password+ "\nStatus: "+status)
-                }   );
-            });
-
-            $("#login").click(function () {
-                var datos = {"email":"email", "password":"password"};
-                datos.email = $("#email_login").val();
-                datos.password = $("#password_login").val();
-                $.ajax({
-                    url: "http://localhost:8080/myapp/json/usuario/login",
-                    type: "POST",
-                    data: JSON.stringify(datos),
-                    contentType: "application/json",
-                    success: alert(datos.email+ "ha iniciado sesión!")
-                });
-            });
-
         });
+
         function showinicio(){
             //hide all
             document.getElementById("usuarios_registrados_cont").style.display="none";
@@ -154,8 +162,10 @@
 </ul>
 <br>
 
-<div class="container-fluid col-md-8 col-md-offset-2" id="descripcion_cont">
-    <img class="img-responsive" src="pikachu.png" alt="Pikachu">
+<div class="container-fluid col-md-10 col-md-offset-1" id="descripcion_cont">
+    <br>
+    <img src="cbladventure.jpg" alt="CBL" style="width:100%;height:400px;background:transparent;border-radius:10px;">
+    <!--<div id="map" style="width:100%;height:400px;background:transparent;border-radius:10px;"></div>-->
     <h4><strong>¡Únete a la aventura!</strong></h4>
     <p><strong>Recientemente han aparecido unas criaturas con fragmentos de ADN humano de las personas que frecuentan la zona de la EETAC.
         Según los expertos, que los han denominado "Eetakemon", son seres hostiles con altas capacidades de combate que aparecen en
@@ -176,7 +186,14 @@
         <div class="form-group">
             <div class="form-group has-feedback">
                 <h4>Correo electrónico:</h4>
-                <input type="email" class="form-control" id="email" placeholder="Introduce una dirección de correo electrónico" required>
+                <input type="email" class="form-control" id="email" placeholder="Introduce tu dirección de correo electrónico" required>
+                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <h4>Confirmación del correo electrónico:</h4>
+                <input type="email" class="form-control" id="email_confirm" placeholder="Repite tu dirección de correo electrónico" required>
                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
             </div>
         </div>
@@ -194,7 +211,7 @@
                 <i class="glyphicon glyphicon-lock form-control-feedback"></i>
             </div>
         </div>
-        <button type="submit" id="registrar" class="btn btn-primary btn-block btn-md" onclick="showinicio()">Registrar</button>
+        <button type="submit" id="registrar" onclick="registrar" class="btn btn-primary btn-block btn-md">Registrar</button>
         <br>
     </form>
 </div>
@@ -318,7 +335,7 @@
     </div>
 </div>
 
-<div class="container-fluid col-md-8 col-md-offset-2" id="usuarios_registrados_cont">
+<div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
     <h4><strong>Usuarios registrados:</strong></h4>
     <form>
         <div class="form-group">
