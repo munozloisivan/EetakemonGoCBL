@@ -70,10 +70,10 @@
                     var tr;
                     for (var i = 0; i < json.length; i++) {
                         tr = $('<tr/>');
-                        tr.append("<td>" + json[i].name + "</td>");
+                        tr.append("<td>" + json[i].nick + "</td>");
                         tr.append("<td>" + json[i].email + "</td>");
-                        tr.append("<td>" + json[i].password + "</td>");
-                        tr.append("<td>" + json[i].idusuario+ "</td>");
+                        tr.append("<td>" + json[i].nombre + "</td>");
+                        tr.append("<td>" + json[i].id+ "</td>");
                         tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
                         $('table').append(tr);
                     }
@@ -171,7 +171,7 @@
         Según los expertos, que los han denominado "Eetakemon", son seres hostiles con altas capacidades de combate que aparecen en
         los lugares más emblemáticos del campus, como la biblioteca y los despachos de los profesores. Pero también aseguran que un
         entrenador experimentado puede ser capaz de someter a cualquier Eetakemon.
-        ¡Así que capturalos, coleccionalos y entrenalos para hacerte el entrenador más fuerte del campus.!</strong></p>
+        ¡Así que capturalos, coleccionalos y entrenalos para hacerte el entrenador más fuerte del campus!</strong></p>
 </div>
 
 <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
@@ -340,15 +340,15 @@
     <form>
         <div class="form-group">
             <div class="form-group has-feedback">
-                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre...">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre de usuario...">
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
             </div>
             <table class="table", id="tableUsuarios">
                 <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Usuario</th>
                     <th>E-mail</th>
-                    <th>Password</th>
+                    <th>Nombre</th>
                     <th>ID</th>
                 </tr>
                 </thead>

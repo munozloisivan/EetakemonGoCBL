@@ -22,7 +22,7 @@ public class App {
 
     public static HttpServer startServer() {
         //Crea un recurso que escanea peticiones
-        final ResourceConfig rc = new ResourceConfig().packages("DAO", "Main", "Modelo", "JSONController");
+        final ResourceConfig rc = new ResourceConfig().packages("DAO", "Main", "Modelo", "Controller");
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
