@@ -32,11 +32,12 @@ public class JSONController {
 
         Usuario finded = new Usuario();
 
-        for (int i = 0; i<usuarios.size(); i++){
+        finded.select(id);
+        /*for (int i = 0; i<usuarios.size(); i++){
             if (usuarios.get(i).getId() == id){
                 finded = usuarios.get(i);
             }
-        }
+        }*/
         return finded;
     }
 
