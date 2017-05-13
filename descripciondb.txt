@@ -1,7 +1,7 @@
 Descripcion de cada una de las tablas para que veais como esta definido cada uno
 de los atributos que tiene cada tabla.
 
-asi podeis saber exactamente como esta definido 
+asi podeis saber exactamente como esta definido
 
 mysql> use juego;
 Database changed
