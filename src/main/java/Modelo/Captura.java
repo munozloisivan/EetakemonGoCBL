@@ -1,13 +1,13 @@
 package Modelo;
 
-import DAO.DAO;
+import DAO.CapturaDAO;
 
 import java.sql.Date;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Captura extends DAO{
+public class Captura extends CapturaDAO{
 
     private int id, idusuariosss, idetakemon, idlocalizacion, nivel, experiencia, vida, ataque, defensa, estado;
     private Date fecha;

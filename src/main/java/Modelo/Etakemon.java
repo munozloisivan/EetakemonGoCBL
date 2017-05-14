@@ -1,11 +1,11 @@
 package Modelo;
 
-import DAO.DAO;
+import DAO.EtakemonDAO;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Etakemon extends DAO{
+public class Etakemon extends EtakemonDAO {
 
     private int id;
     private String nombre;

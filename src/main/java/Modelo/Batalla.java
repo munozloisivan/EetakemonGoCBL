@@ -1,13 +1,13 @@
 package Modelo;
 
-import DAO.DAO;
+import DAO.BatallaDAO;
 
 import java.sql.Date;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Batalla extends DAO {
+public class Batalla extends BatallaDAO {
 
     private int id, idcaptura, resultado, experiencia;
     private Date fecha;

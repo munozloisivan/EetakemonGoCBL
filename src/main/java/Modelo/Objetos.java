@@ -1,11 +1,11 @@
 package Modelo;
 
-import DAO.DAO;
+import DAO.ObjetosDAO;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Objetos extends DAO {
+public class Objetos extends ObjetosDAO {
 
     private int id;
     private String nombre, descripcion;

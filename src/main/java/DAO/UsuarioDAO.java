@@ -17,9 +17,6 @@ public class UsuarioDAO extends DAO {
 
     final Logger logger = getLogger("UsuarioDAO");
 
-    static DBConnection connection = new DBConnection();
-    static Connection con = connection.getCon();
-
     public boolean login(String email, String contrasena) throws SQLException {         //logeado devuelve true     no logeado devuelve false
         boolean loged = Boolean.parseBoolean(null);
         StringBuffer sb = new StringBuffer("SELECT nombre,contrasena FROM Usuario WHERE email='");
