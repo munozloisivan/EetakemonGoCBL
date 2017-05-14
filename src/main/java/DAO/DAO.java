@@ -60,37 +60,7 @@ public abstract class DAO {
         }
     }
 
-    //aplica solo a nick y password que se podran cambiar solo una vez
-    public int selectModified(int id){
-        StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = "+id);
-        int res = 2;
-        int comparador = 2;
-        try {
-            Statement stat = con.createStatement();
-            ResultSet resultSet = stat.executeQuery(sb.toString());
-            ResultSetMetaData rsmd = resultSet.getMetaData();
 
-            while (resultSet.next()){
-                comparador = resultSet.getInt("modified");
-                logger.info("El campo 'modified' tiene el valor: "+comparador);
-
-            }
-            if (comparador == 0) {
-                res = 0;
-            }
-            else if (comparador == 1){
-                res = 1;
-            }
-            else {
-                res = 2;            //pensar que pasa ( no existira ese usuario)
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
-        return res;
-    }
 
     //*****************************************************************************************************
 
@@ -306,62 +276,11 @@ public abstract class DAO {
     }
 
 
-    //*****************************************************************************************************************
-    //                                  funciones   ESPECIFICAS
-
-
-    //modificar nick y password
-    public void updateUsuarioData(int id, String nick, String password){
-
-        selectModified(id);
-        if (selectModified(id) == 0){           //si es 0 no se ha modificado previamente y se puede actualizar
-            StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
-            sb.append("nick='"+nick+"', contrasena='"+password+"' where usuario.id = "+id+";");
-            logger.info("update query: "+sb.toString());
-        }
-        else{
-            logger.info("Ya se ha modificado previamente. NO se puede modificar");
-        }
-    }
-
-
-    public void updateUsuarioAtributes(int id, int experiencia){
-
-        //pendiente de pensar algoritmos sobre como aumenta cada nivel y la experiencia asociada a cada cosa
-
-    }
-
-
-
-
-
-
-
-    //***************************************************************************************************************
-
     //                                      LISTAS
 
-    public static List<Usuario> getAllUsers() throws SQLException {
-        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Usuario");
-        while (rs.next()) {
-            Usuario us = new Usuario();
-            us.setId(rs.getInt("id"));
-            us.setNombre(rs.getString("nombre"));
-            us.setNick(rs.getString("nick"));
-            us.setEmail(rs.getString("email"));
-            us.setContrasena(rs.getString("contrasena"));
-            us.setNivel(rs.getInt("nivel"));
-            us.setExperiencia(rs.getInt("experiencia"));
-            us.setModified(rs.getInt("modified"));
-            listaUsuarios.add(us);
-        }
-        return listaUsuarios;
-    }
 
-    public static List<Objetos> getAllObjects() throws SQLException {
+
+     public static List<Objetos> getAllObjects() throws SQLException {
         List<Objetos> listaObjetos = new ArrayList<Objetos>();
         Statement stmt = null;
         stmt = con.createStatement();
@@ -464,60 +383,9 @@ public abstract class DAO {
         return listaLocalizaciones;
     }
 
-    public static List<Captura> getCapturasUsuario(int id) throws SQLException{
-        List<Captura> listaCapturaUsuario = new ArrayList<Captura>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Captura WHERE captura.idusuariosss = "+id);
-        while(rs.next()){
-            Captura capturaUsuario = new Captura();
-            capturaUsuario.setId(rs.getInt("id"));
-            capturaUsuario.setIdusuariosss(rs.getInt("idusuariosss"));
-            capturaUsuario.setIdetakemon(rs.getInt("idetakemon"));
-            capturaUsuario.setNivel(rs.getInt("nivel"));
-            capturaUsuario.setExperiencia(rs.getInt("experiencia"));
-            capturaUsuario.setVida(rs.getInt("vida"));
-            capturaUsuario.setAtaque(rs.getInt("ataque"));
-            capturaUsuario.setDefensa(rs.getInt("defensa"));
-            capturaUsuario.setEstado(rs.getInt("estado"));
-            capturaUsuario.setFecha(rs.getDate("fecha"));
-            listaCapturaUsuario.add(capturaUsuario);
-        }
-        return listaCapturaUsuario;
-    }
-
-    public static List<Captura> getCapturasUsuarioToRevive(int id) throws SQLException {
-        List<Captura>  listaCapturaUsuarioToRevive = new ArrayList<Captura>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM Captura WHERE captura.idusuariosss = "+id+" and estado = 0");
-        while (resultSet.next()){
-            Captura capturaToRevive = new Captura();
-            capturaToRevive.setId(resultSet.getInt("id"));
-            capturaToRevive.setIdetakemon(resultSet.getInt("idetakemon"));
-            listaCapturaUsuarioToRevive.add(capturaToRevive);
-        }
-        return listaCapturaUsuarioToRevive;
-    }
 
 
-    //Se le mostrara al usuario las batallas ganadas de ESE ETAKEMON(CAPTURA)
-    public static List<Batalla> getBatallasGanadasUsuario(int idcaptura) throws SQLException{
-        List<Batalla>  listaBatallasGanadas = new ArrayList<Batalla>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet resultSet = stmt.executeQuery("SELECT * from Batalla WHERE batalla.idcaptura = "+idcaptura+" and batalla.resultado = 1");
-        while (resultSet.next()){
-            Batalla batallaGanada = new Batalla();
-            batallaGanada.setId(resultSet.getInt("id"));
-            batallaGanada.setIdcaptura(resultSet.getInt("idcaptura"));
-            batallaGanada.setResultado(resultSet.getInt("resultado"));
-            batallaGanada.setExperiencia(resultSet.getInt("experiencia"));
-            batallaGanada.setFecha(resultSet.getDate("fecha"));
-            listaBatallasGanadas.add(batallaGanada);
-        }
-        return listaBatallasGanadas;
-    }
+
 
 
 

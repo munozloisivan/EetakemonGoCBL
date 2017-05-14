@@ -1,5 +1,6 @@
 package Main;
 import DAO.DAO;
+import DAO.UsuarioDAO;
 import Modelo.*;
 import org.apache.log4j.BasicConfigurator;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -55,6 +56,14 @@ public class App {
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
 
+     //   Usuario usuario = new Usuario();
+       // System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEPA"+usuario.getCapturasUsuarioToRevive(7));
+      //  usuario.select("munozloisivan@gmail.com");
+    //    usuario.updateUsuarioData(10, "marionn3","password");
+
+       // UsuarioDAO us = new UsuarioDAO();
+    //    Boolean res = (us.login("munozloisivan@gmail.com","password"));
+     //   System.out.println("LOGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGIN"+res);
 
 //Usuario us = new Usuario();
 //us.select(7);
