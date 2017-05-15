@@ -57,9 +57,9 @@ public class App {
         // **********************************************************************************************
 
 
-       Usuario usuario = new Usuario("Marc","markitus","mark@gmail.com","password",3,100,0);
-       usuario.insert();
-       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEPA"+UsuarioDAO.getAllUsers());
+       // Usuario usuario = new Usuario();
+      //  System.out.println(usuario.select("munozloisivan@gmail.com"));
+     //   System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEPA"+UsuarioDAO.getAllUsers());
       //  usuario.select("munozloisivan@gmail.com");
     //    usuario.updateUsuarioData(10, "marionn3","password");
 

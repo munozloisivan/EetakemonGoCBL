@@ -4,6 +4,7 @@ package DAO;
 import Modelo.*;
 import org.apache.log4j.Logger;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,52 @@ import static org.apache.log4j.Logger.getLogger;
 public abstract class UsuarioDAO extends DAO {
 
     final Logger logger = getLogger("UsuarioDAO");
+
+    //registro
+    public boolean insert(Usuario usuario){
+        boolean registrado = false;
+        StringBuffer stringBuffer = new StringBuffer("INSERT into Usuario (");
+        Field[] atributes = this.getClass().getDeclaredFields();
+        int i =0;
+        for (Field f : atributes){
+            stringBuffer.append(f.getName());
+            i++;
+            if (i!= atributes.length)
+                stringBuffer.append(", ");
+        }
+
+        stringBuffer.append(") VALUES (");
+
+        int j = 0;
+        for (Field f: atributes){
+            stringBuffer.append("?");
+            j++;
+            if (j!=atributes.length)
+                stringBuffer.append(",");
+        }
+        stringBuffer.append(")");
+        logger.info("Insert query: "+stringBuffer.toString());
+
+        try {
+            if (emailDisponible(usuario.getEmail())) {
+                PreparedStatement preparedStatement = con.prepareStatement(stringBuffer.toString());
+                insertElements(preparedStatement);
+                preparedStatement.execute();
+                registrado = true;
+            }
+            else {
+                logger.error("INSERT:        El email ya esta en uso");
+                registrado = false;
+            }
+
+        }
+        catch (SQLException e){
+            logger.error(e.getMessage());
+        }
+        
+        return registrado;
+    }
+
 
     public boolean login(String email, String contrasena){         //logeado devuelve true     no logeado devuelve false
         boolean loged = Boolean.parseBoolean(null);
