@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="ico_pokeball.png" type="image/png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
     <script src="jquery-3.2.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 
     <script>
 
@@ -20,6 +22,7 @@
             $("#recover_form_cont").hide();
             $("#login_form_cont").hide();
             $("#eetakedex_cont").hide();
+            $("#navlogged").hide();
 
             $.getJSON("http://localhost:8080/myapp/json/usuario/get_all", function (json) {
                     var tr;
@@ -32,19 +35,20 @@
                         tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
                         $('table').append(tr);
                     }
-            });
+            })
 
             $("#registrar_button").click(function () {
-                var datosRegistro = {"nombre": $("#nombre").val(), "nick": $("#usuario").val(),
-                "email": $("#email").val(), "contrasena": $("#contrasena").val()};
+                var datosRegistro = {
+                    "nombre": $("#nombre").val(), "nick": $("#usuario").val(),
+                    "email": $("#email").val(), "contrasena": $("#contrasena").val()
+                };
 
                 $.ajax({
                     url: "http://localhost:8080/myapp/json/usuario/new",
                     type: "POST",
                     data: JSON.stringify(datosRegistro),
-                    contentType: "application/json",
-                    success: alert(JSON.stringify(datosRegistro.nick))
-                });
+                    contentType: "application/json"
+                })
             })
 
             $("#login_button").click(function () {
@@ -55,23 +59,12 @@
                     type: "POST",
                     data: JSON.stringify(datosLogin),
                     contentType: "application/json",
-                    success: alert("Bienvenido "+ datosLogin.nick + " !")
-                });
+                    success: function (json) {
+                        alert("Bienvenido "+ json.nick + " !");
+                    }
+                })
             })
         })
-
-        function showinicio(){
-            //hide all
-            document.getElementById("usuarios_registrados_cont").style.display="none";
-            document.getElementById("registro_form_cont").style.display="none";
-            document.getElementById("recover_form_cont").style.display="none";
-            document.getElementById("login_form_cont").style.display="none";
-            document.getElementById("descripcion_cont").style.display="none";
-            document.getElementById("eetakedex_cont").style.display="none";
-            //display iniciales
-            document.getElementById("usuarios_registrados_cont").style.display="block";
-            document.getElementById("descripcion_cont").style.display="block";
-        }
 
         function show(elementId) {
             //hide all
@@ -103,29 +96,6 @@
             }
         }
     </script>
-
-    <style>
-        body{
-            background:url("fondo-pokemon.png") fixed no-repeat center;
-        }
-        div.container-fluid {
-            border-radius: 25px;
-            background-color: rgba(29, 108, 50, 0.6);
-        }
-        div.modal{
-            background: url("eetakedex_back2.jpg") fixed no-repeat center;
-        }
-        h4{
-            color: #0b1b19
-        }
-        p{
-            color: #0b1b19
-        }
-        tr{
-            color: #0b1b19;
-        }
-    </style>
-
 </head>
 <body>
 
@@ -133,8 +103,8 @@
     <img class="img-responsive" src="Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
 </div>
 
-<ul class="nav nav-tabs nav-justified">
-    <li><a href="#" onclick="showinicio()"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
     <li><a href="#" onclick="show('eetakedex_cont'); ocultarRegistrados()"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
     <li><a href="#" onclick="show('registro_form_cont')"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
     <li><a href="#" onclick="show('login_form_cont')"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
@@ -154,64 +124,67 @@
 </div>
 
 <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
-    <form id="registerForm">
+    <br>
+    <form id="registerForm" data-toggle="validator" role="form">
         <div class="form-group">
-            <div class="form-group has-feedback">
-                <h4>Nombre:</h4>
-                <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre " required>
-                <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            </div>
+            <label for="nombre" class="control-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Introduce tú nombre" required>
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <div class="form-group has-feedback">
-                <h4>Correo electrónico:</h4>
-                <input type="email" class="form-control" id="email" placeholder="Introduce tu dirección de correo electrónico" required>
-                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
-            </div>
+            <label for="email" class="control-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico"
+                   data-error="Dirección de correo no válida" required>
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <div class="form-group has-feedback">
-                <h4>Confirmación del correo electrónico:</h4>
-                <input type="email" class="form-control" id="email_confirm" placeholder="Repite tu dirección de correo electrónico" required>
-                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
-            </div>
+            <label for="email" class="control-label">Confirmar correo electrónico:</label>
+            <input type="email" class="form-control" id="emailConfirm" data-error="Dirección de correo no válida"
+                   data-match="#email" data-match-error="Las direcciones de correo no coinciden" placeholder="Confirma tu correo electrónico" required>
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <div class="form-group has-feedback">
-                <h4>Usuario:</h4>
-                <input type="text" class="form-control" id="usuario" placeholder="Introduce un nombre de usuario " required>
-                <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            </div>
+            <label for="usuario" class="control-label">Usuario:</label>
+            <input type="text" class="form-control" id="usuario" placeholder="Introduce un nombre de usuario" required>
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <div class="form-group has-feedback">
-                <h4>Contraseña:</h4>
-                <input type="password" class="form-control" id="contrasena" placeholder="Introduce una contraseña" required>
-                <i class="glyphicon glyphicon-lock form-control-feedback"></i>
-            </div>
+            <label for="contrasena" class="control-label">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena" placeholder="Introduce una contraseña" required>
+            <div class="help-block with-errors"></div>
         </div>
-        <button type="submit" id="registrar_button" class="btn btn-primary btn-block btn-md">Registrar</button>
+        <div class="form-group">
+            <label for="contrasenaConfirm" class="control-label">Confirmar contraseña:</label>
+            <input type="password" class="form-control" id="contrasenaConfirm" data-match="#contrasena"
+                   data-match-error="Las contraseñas no coinciden" placeholder="Confirma tu contraseña" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" id="registrar_button" class="btn btn-primary btn-block btn-md">Registrar</button>
+        </div>
         <br>
     </form>
 </div>
+
 
 <div class="container-fluid col-md-6 col-md-offset-3" id="login_form_cont">
     <form id="loginForm">
         <div class="form-group">
             <div class="form-group has-feedback">
                 <h4>Correo electrónico:</h4>
-                <input type="email" class="form-control" id="email_login" placeholder="Introduce tu dirección de correo electrónico" required>
+                <input type="email" class="form-control" id="email_login" placeholder="Introduce tu dirección de correo electrónico" required/>
                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
             </div>
         </div>
         <div class="form-group">
             <div class="form-group has-feedback">
                 <h4>Contraseña:</h4>
-                <input type="password" class="form-control" id="password_login" placeholder="Introduce tu contraseña" required>
+                <input type="password" class="form-control" id="password_login" placeholder="Introduce tu contraseña" required/>
                 <i class="glyphicon glyphicon-lock form-control-feedback"></i>
             </div>
         </div>
-        <button type="submit" id="login_button" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
+        <button type="button" id="login_button" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
         <br>
     </form>
 </div>
@@ -220,12 +193,11 @@
     <form>
         <div class="form-group">
             <h4>Recuperar contraseña:</h4>
-            <input type="email" class="form-control" id="passwordRecover" placeholder="Introduce tu email" required>
+            <input type="email" class="form-control" id="passwordRecover" placeholder="Introduce tu email" required/>
         </div>
-            <button type="submit" id="recover" class="btn btn-warning btn-block btn-md">Recuperar</button>
+            <button type="button" id="recover" class="btn btn-warning btn-block btn-md">Recuperar</button>
     </form>
 </div>
-
 
 <div class="container-fluid col-md-10 col-md-offset-1" id="eetakedex_cont">
     <br>
