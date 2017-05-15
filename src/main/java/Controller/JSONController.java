@@ -31,13 +31,7 @@ public class JSONController {
     public Usuario getUsuariobyId(@PathParam("id") int id){
 
         Usuario finded = new Usuario();
-
         finded.select(id);
-        /*for (int i = 0; i<usuarios.size(); i++){
-            if (usuarios.get(i).getId() == id){
-                finded = usuarios.get(i);
-            }
-        }*/
         return finded;
     }
 
@@ -59,17 +53,17 @@ public class JSONController {
     @POST
     @Path("/usuario/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getLogin(Usuario usuario){
+    public Usuario getLogin(Usuario usuario) throws SQLException {
 
-        Usuario finded = new Usuario();
-
-        for (int i = 0; i<usuarios.size(); i++){
-            if ((usuarios.get(i).getEmail().equalsIgnoreCase(usuario.getEmail())&&(usuarios.get(i).getContrasena()).equals(usuario.getContrasena()))){
-                finded = usuarios.get(i);
-                return null;
-            }
+        if (usuario.login(usuario.getEmail(),usuario.getContrasena())){
+            Usuario loged = new Usuario();
+            loged = loged.select(usuario.getEmail());
+            return loged;
         }
-        return finded;
+        else
+        {
+            return null;
+        }
     }
 
     @GET
