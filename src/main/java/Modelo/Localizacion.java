@@ -1,11 +1,11 @@
 package Modelo;
 
-import DAO.DAO;
+import DAO.LocalizacionDAO;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Localizacion extends DAO{
+public class Localizacion extends LocalizacionDAO {
 
     private int id;
     private String nombre;

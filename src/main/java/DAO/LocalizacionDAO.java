@@ -14,7 +14,7 @@ import static org.apache.log4j.Logger.getLogger;
 /**
  * Created by ivanm on 14/05/2017.
  */
-public class LocalizacionDAO extends DAO {
+public abstract class LocalizacionDAO extends DAO {
 
     final Logger logger = getLogger("LocalizacionDAO");
 

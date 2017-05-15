@@ -14,7 +14,7 @@ import static org.apache.log4j.Logger.getLogger;
 /**
  * Created by ivanm on 14/05/2017.
  */
-public class CapturaDAO extends DAO {
+public abstract class CapturaDAO extends DAO {
 
     final Logger logger = getLogger("CapturaDAO");
 

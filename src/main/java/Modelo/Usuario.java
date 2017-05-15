@@ -9,9 +9,9 @@ public class Usuario extends UsuarioDAO {
 
     private int id;
     private String nombre, nick, email, contrasena;
-    private int nivel, experiencia, modified;
+    private int nivel, experiencia, modified, admin;
 
-    public Usuario(int id, String nombre, String nick, String email, String contrasena, int nivel, int experiencia, int modified) {
+    public Usuario(int id, String nombre, String nick, String email, String contrasena, int nivel, int experiencia, int modified, int admin) {
         this.id = id;
         this.nombre = nombre;
         this.nick = nick;
@@ -20,6 +20,7 @@ public class Usuario extends UsuarioDAO {
         this.nivel = nivel;
         this.experiencia = experiencia;
         this.modified = modified;
+        this.admin = admin;
     }
 
     public Usuario(String nombre, String nick, String email, String contrasena, int nivel, int experiencia, int modified){
@@ -96,5 +97,13 @@ public class Usuario extends UsuarioDAO {
 
     public void setModified(int modified) {
         this.modified = modified;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
     }
 }
