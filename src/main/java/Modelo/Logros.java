@@ -1,11 +1,12 @@
 package Modelo;
 
 import DAO.LogrosDAO;
+import com.mysql.cj.jdbc.PreparedStatement;
 
 /**
  * Created by ivanm on 24/04/2017.
  */
-public class Logros extends LogrosDAO {
+public class Logros extends LogrosDAO{
 
     private int id;
     private String nombre, descripcion;
@@ -51,4 +52,5 @@ public class Logros extends LogrosDAO {
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
+
 }

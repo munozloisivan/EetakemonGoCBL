@@ -2,6 +2,7 @@ package Controller;
 
 
 
+import DAO.UsuarioDAO;
 import Modelo.Usuario;
 
 import javax.inject.Singleton;

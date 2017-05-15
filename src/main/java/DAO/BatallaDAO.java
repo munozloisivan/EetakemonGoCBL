@@ -16,7 +16,7 @@ import static org.apache.log4j.Logger.getLogger;
 /**
  * Created by ivanm on 14/05/2017.
  */
-public class BatallaDAO extends DAO{
+public abstract class BatallaDAO extends DAO{
 
     public static List<Batalla> getAllBatalla() throws SQLException {
         List<Batalla> listaBatalla = new ArrayList<Batalla>();

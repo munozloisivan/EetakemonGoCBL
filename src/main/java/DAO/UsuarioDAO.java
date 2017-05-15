@@ -8,16 +8,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static DAO.DAO.con;
 import static org.apache.log4j.Logger.getLogger;
 
 /**
  * Created by ivanm on 14/05/2017.
  */
-public class UsuarioDAO extends DAO {
+public abstract class UsuarioDAO extends DAO {
 
     final Logger logger = getLogger("UsuarioDAO");
 
-    public boolean login(String email, String contrasena) throws SQLException {         //logeado devuelve true     no logeado devuelve false
+    public boolean login(String email, String contrasena){         //logeado devuelve true     no logeado devuelve false
         boolean loged = Boolean.parseBoolean(null);
         StringBuffer sb = new StringBuffer("SELECT nombre,contrasena FROM Usuario WHERE email='");
         sb.append(email + "'" + " AND contrasena ='" + contrasena + "';");
@@ -164,7 +165,7 @@ public class UsuarioDAO extends DAO {
     }
 
 
-    public List<Captura> getCapturasUsuario(int id) throws SQLException {
+    public static List<Captura> getCapturasUsuario(int id) throws SQLException {
         List<Captura> listaCapturaUsuario = new ArrayList<Captura>();
         Statement stmt = null;
         stmt = con.createStatement();
@@ -187,7 +188,7 @@ public class UsuarioDAO extends DAO {
     }
 
 
-    public List<Captura> getCapturasUsuarioToRevive(int id) throws SQLException {
+    public static List<Captura> getCapturasUsuarioToRevive(int id) throws SQLException {
         List<Captura> listaCapturaUsuarioToRevive = new ArrayList<Captura>();
         Statement stmt = null;
         stmt = con.createStatement();
@@ -201,7 +202,7 @@ public class UsuarioDAO extends DAO {
         return listaCapturaUsuarioToRevive;
     }
 
-    public List<Objetos> getObjetosUsuario(int id) {
+    public static List<Objetos> getObjetosUsuario(int id) {
         List<Objetos> objetosList = new ArrayList<Objetos>();
         try {
             Statement stmt = con.createStatement();
@@ -214,12 +215,11 @@ public class UsuarioDAO extends DAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("getObjetosusuario: " + e.getMessage());
         }
         return objetosList;
     }
 
-    public List<Logros> getLogrosUsuario(int id) {
+    public static List<Logros> getLogrosUsuario(int id) {
         List<Logros> logrosList = new ArrayList<Logros>();
         try {
             Statement stmt = con.createStatement();
@@ -231,7 +231,7 @@ public class UsuarioDAO extends DAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("getLogrosUsuario:" + e.getMessage());
+           // logger.error("getLogrosUsuario:" + e.getMessage());
         }
         return logrosList;
     }

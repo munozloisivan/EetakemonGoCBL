@@ -4,21 +4,16 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import Modelo.*;
 import org.apache.log4j.Logger;
-
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
 
 import static org.apache.log4j.Logger.getLogger;
 
 /**
  * Created by ivanm on 26/04/2017.
  */
-public abstract class DAO {
+public abstract class DAO{
 
     static DBConnection connection = new DBConnection();
     static Connection con = connection.getCon();
@@ -30,7 +25,7 @@ public abstract class DAO {
     // **********************************************************************************************
     //                              Funciones COMPLEMENTARIAS a las prinicpales
 
-    private String getUpper(String m){
+    public String getUpper(String m){
         String res = Character.toUpperCase(m.charAt(0)) + m.substring(1);
         return "get".concat(res);
     }
@@ -66,8 +61,8 @@ public abstract class DAO {
 
     //                                       funciones GENERICAS
 
-    public void insert(){
-
+    public boolean insert(){
+        boolean insertado = false;
         StringBuffer sb = new StringBuffer("INSERT INTO ");
         sb.append(this.getClass().getSimpleName()+ " ("); //Usuario
         Field[] atributes = this.getClass().getDeclaredFields();
@@ -96,12 +91,15 @@ public abstract class DAO {
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
             insertElements(preparedStatement);
             preparedStatement.execute();
+            insertado = true;
         }
         catch (SQLException e){
+            insertado = false;
            logger.error(e.getMessage());
         }
-
         logger.info("Insert query: "+sb.toString());
+        return insertado;
+
     }
 
     //SELECT
@@ -228,7 +226,8 @@ public abstract class DAO {
 
 
     //DELETE
-    public void delete(int id){
+    public boolean delete(int id){
+        boolean del = false;
         StringBuffer sb = new StringBuffer("DELETE FROM ");
         sb.append(this.getClass().getSimpleName());
         sb.append(" WHERE id = " + id);
@@ -237,16 +236,19 @@ public abstract class DAO {
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
             preparedStatement.execute();
+            del = true;
         }
         catch (SQLException e){
+            del = false;
             e.printStackTrace();
             logger.error(e.getMessage());
         }
-
+        return del;
     }
 
     //UPDATE
-   public void update(int id) {
+   public boolean update(int id) {
+        boolean actualizado = false;
         StringBuffer sb = new StringBuffer("UPDATE ").append(this.getClass().getSimpleName()).append(" SET ");
         Field[] fields = this.getClass().getDeclaredFields();
         int i = 0;
@@ -264,14 +266,16 @@ public abstract class DAO {
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
             insertElements(preparedStatement);
             preparedStatement.execute();
+            actualizado = true;
         }
         catch (SQLException e){
+            actualizado = false;
             e.printStackTrace();
             logger.error(e.getMessage());
-
         }
         //sb.append(" where id=").append(id+";");
         logger.info("Update query: " + sb.toString());
-
+        return actualizado;
     }
+
 }

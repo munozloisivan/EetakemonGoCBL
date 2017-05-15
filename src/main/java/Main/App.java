@@ -56,8 +56,10 @@ public class App {
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
 
-       Usuario usuario = new Usuario();
-       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEPA"+usuario.getCapturasUsuarioToRevive(7));
+
+       Usuario usuario = new Usuario("Marc","markitus","mark@gmail.com","password",3,100,0);
+       usuario.insert();
+       System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEPA"+UsuarioDAO.getAllUsers());
       //  usuario.select("munozloisivan@gmail.com");
     //    usuario.updateUsuarioData(10, "marionn3","password");
 
