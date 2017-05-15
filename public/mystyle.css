@@ -3,7 +3,7 @@ body{
 }
 div.container-fluid {
     border-radius: 25px;
-    background-color: rgba(29, 108, 50, 0.6);
+    background-color: rgba(29, 108, 50, 0.85);
 }
 div.modal{
     background: url("eetakedex_back2.jpg") fixed no-repeat center;
@@ -16,4 +16,12 @@ p{
 }
 tr{
     color: black;
+}
+label{
+    color: black;
+}
+.has-error .control-label,
+.has-error .help-block,
+.has-error .form-control-feedback {
+    color: #f39c12;
 }
