@@ -4,6 +4,7 @@ package DAO;
 import Modelo.*;
 import org.apache.log4j.Logger;
 
+import javax.swing.plaf.nimbus.State;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import static org.apache.log4j.Logger.getLogger;
  */
 public abstract class UsuarioDAO extends DAO {
 
-    final Logger logger = getLogger("UsuarioDAO");
+    static final Logger logger = getLogger("UsuarioDAO");
 
     //registro
     public boolean insert(Usuario usuario){
@@ -52,7 +53,7 @@ public abstract class UsuarioDAO extends DAO {
                 registrado = true;
             }
             else {
-                logger.error("INSERT:        El email ya esta en uso");
+                logger.error("INSERT: El email ya esta en uso");
                 registrado = false;
             }
 
@@ -60,7 +61,7 @@ public abstract class UsuarioDAO extends DAO {
         catch (SQLException e){
             logger.error(e.getMessage());
         }
-        
+
         return registrado;
     }
 
@@ -151,7 +152,7 @@ public abstract class UsuarioDAO extends DAO {
         if (selectModified(id) == 0) {           //si es 0 no se ha modificado previamente y se puede actualizar
             try {
                 StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
-                sb.append("nick='" + nick + "', contrasena='" + password + "' where id = " + id + ";");
+                sb.append("nick='" + nick + "', contrasena='" + password + "', modified=1 where id = " + id + ";");
 
                 PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
                 preparedStatement.execute();
@@ -191,65 +192,82 @@ public abstract class UsuarioDAO extends DAO {
         return disponible;
     }
 
-    public static List<Usuario> getAllUsers() throws SQLException {
+    public List<Usuario> getAllUsers()  {
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Usuario");
-        while (rs.next()) {
-            Usuario us = new Usuario();
-            us.setId(rs.getInt("id"));
-            us.setNombre(rs.getString("nombre"));
-            us.setNick(rs.getString("nick"));
-            us.setEmail(rs.getString("email"));
-            us.setContrasena(rs.getString("contrasena"));
-            us.setNivel(rs.getInt("nivel"));
-            us.setExperiencia(rs.getInt("experiencia"));
-            us.setModified(rs.getInt("modified"));
-            listaUsuarios.add(us);
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Usuario");
+            while (rs.next()) {
+                Usuario us = new Usuario();
+                us.setId(rs.getInt("id"));
+                us.setNombre(rs.getString("nombre"));
+                us.setNick(rs.getString("nick"));
+                us.setEmail(rs.getString("email"));
+                us.setContrasena(rs.getString("contrasena"));
+                us.setNivel(rs.getInt("nivel"));
+                us.setExperiencia(rs.getInt("experiencia"));
+                us.setModified(rs.getInt("modified"));
+                listaUsuarios.add(us);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("getAllUsers: "+e.getMessage());
         }
+
         return listaUsuarios;
     }
 
 
-    public static List<Captura> getCapturasUsuario(int id) throws SQLException {
+    public List<Captura> getCapturasUsuario(int id) {
         List<Captura> listaCapturaUsuario = new ArrayList<Captura>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Captura WHERE captura.idusuariosss = " + id);
-        while (rs.next()) {
-            Captura capturaUsuario = new Captura();
-            capturaUsuario.setId(rs.getInt("id"));
-            capturaUsuario.setIdusuariosss(rs.getInt("idusuariosss"));
-            capturaUsuario.setIdetakemon(rs.getInt("idetakemon"));
-            capturaUsuario.setNivel(rs.getInt("nivel"));
-            capturaUsuario.setExperiencia(rs.getInt("experiencia"));
-            capturaUsuario.setVida(rs.getInt("vida"));
-            capturaUsuario.setAtaque(rs.getInt("ataque"));
-            capturaUsuario.setDefensa(rs.getInt("defensa"));
-            capturaUsuario.setEstado(rs.getInt("estado"));
-            capturaUsuario.setFecha(rs.getDate("fecha"));
-            listaCapturaUsuario.add(capturaUsuario);
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Captura WHERE captura.idusuariosss = " + id);
+            while (rs.next()) {
+                Captura capturaUsuario = new Captura();
+                capturaUsuario.setId(rs.getInt("id"));
+                capturaUsuario.setIdusuariosss(rs.getInt("idusuariosss"));
+                capturaUsuario.setIdetakemon(rs.getInt("idetakemon"));
+                capturaUsuario.setNivel(rs.getInt("nivel"));
+                capturaUsuario.setExperiencia(rs.getInt("experiencia"));
+                capturaUsuario.setVida(rs.getInt("vida"));
+                capturaUsuario.setAtaque(rs.getInt("ataque"));
+                capturaUsuario.setDefensa(rs.getInt("defensa"));
+                capturaUsuario.setEstado(rs.getInt("estado"));
+                capturaUsuario.setFecha(rs.getDate("fecha"));
+                listaCapturaUsuario.add(capturaUsuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("getCapturasUsuario: "+e.getMessage());
         }
+
         return listaCapturaUsuario;
     }
 
 
-    public static List<Captura> getCapturasUsuarioToRevive(int id) throws SQLException {
+    public List<Captura> getCapturasUsuarioToRevive(int id) {
         List<Captura> listaCapturaUsuarioToRevive = new ArrayList<Captura>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM Captura WHERE captura.idusuariosss = " + id + " and estado = 0");
-        while (resultSet.next()) {
-            Captura capturaToRevive = new Captura();
-            capturaToRevive.setId(resultSet.getInt("id"));
-            capturaToRevive.setIdetakemon(resultSet.getInt("idetakemon"));
-            listaCapturaUsuarioToRevive.add(capturaToRevive);
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM Captura WHERE captura.idusuariosss = " + id + " and estado = 0");
+            while (resultSet.next()) {
+                Captura capturaToRevive = new Captura();
+                capturaToRevive.setId(resultSet.getInt("id"));
+                capturaToRevive.setIdetakemon(resultSet.getInt("idetakemon"));
+                listaCapturaUsuarioToRevive.add(capturaToRevive);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("getCapturasUsuarioToRevive: "+e.getMessage());
+
         }
+
         return listaCapturaUsuarioToRevive;
     }
 
-    public static List<Objetos> getObjetosUsuario(int id) {
+    public List<Objetos> getObjetosUsuario(int id) {
         List<Objetos> objetosList = new ArrayList<Objetos>();
         try {
             Statement stmt = con.createStatement();
@@ -262,11 +280,12 @@ public abstract class UsuarioDAO extends DAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.error("getObjetosUsuario: "+e.getMessage());
         }
         return objetosList;
     }
 
-    public static List<Logros> getLogrosUsuario(int id) {
+    public List<Logros> getLogrosUsuario(int id) {
         List<Logros> logrosList = new ArrayList<Logros>();
         try {
             Statement stmt = con.createStatement();
@@ -278,29 +297,60 @@ public abstract class UsuarioDAO extends DAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-           // logger.error("getLogrosUsuario:" + e.getMessage());
+           logger.error("getLogrosUsuario:" + e.getMessage());
         }
         return logrosList;
     }
 
     //Se le mostrara al usuario las batallas ganadas de ESE ETAKEMON(CAPTURA)
-    public static List<Batalla> getBatallasGanadasUsuario(int idcaptura) throws SQLException {
+    public List<Batalla> getBatallasGanadasUsuario(int idcaptura)  {
         List<Batalla> listaBatallasGanadas = new ArrayList<Batalla>();
-        Statement stmt = null;
-        stmt = con.createStatement();
-        ResultSet resultSet = stmt.executeQuery("SELECT * from Batalla WHERE batalla.idcaptura = " + idcaptura + " and batalla.resultado = 1");
-        while (resultSet.next()) {
-            Batalla batallaGanada = new Batalla();
-            batallaGanada.setId(resultSet.getInt("id"));
-            batallaGanada.setIdcaptura(resultSet.getInt("idcaptura"));
-            batallaGanada.setResultado(resultSet.getInt("resultado"));
-            batallaGanada.setExperiencia(resultSet.getInt("experiencia"));
-            batallaGanada.setFecha(resultSet.getDate("fecha"));
-            listaBatallasGanadas.add(batallaGanada);
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * from Batalla WHERE batalla.idcaptura = " + idcaptura + " and batalla.resultado = 1");
+            while (resultSet.next()) {
+                Batalla batallaGanada = new Batalla();
+                batallaGanada.setId(resultSet.getInt("id"));
+                batallaGanada.setIdcaptura(resultSet.getInt("idcaptura"));
+                batallaGanada.setResultado(resultSet.getInt("resultado"));
+                batallaGanada.setExperiencia(resultSet.getInt("experiencia"));
+                batallaGanada.setFecha(resultSet.getDate("fecha"));
+                listaBatallasGanadas.add(batallaGanada);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error(("getBatallasGanadasUsuario: "+e.getMessage()));
         }
+
         return listaBatallasGanadas;
     }
 
+    public List<Usuario> getUsersByNameAprroach(String aprox){
+        List<Usuario>  usuarioList = new ArrayList<Usuario>();
+
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM usuario where nombre LIKE '%"+aprox+"%';");
+            Usuario usuario = new Usuario();
+
+            while (resultSet.next()) {
+                usuario.setId(resultSet.getInt("id"));
+                usuario.setNombre(resultSet.getString("nombre"));
+                usuario.setNick(resultSet.getString("nick"));
+                usuario.setEmail(resultSet.getString("email"));
+                usuario.setContrasena(resultSet.getString("contrasena"));
+                usuario.setNivel(resultSet.getInt("nivel"));
+                usuario.setExperiencia(resultSet.getInt("experiencia"));
+                usuario.setModified(resultSet.getInt("modified"));
+                usuarioList.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("getUsersByNameApproach: "+e.getMessage());
+        }
+        return usuarioList;
+    }
 
  /*   public void updateUsuarioAtributes(int id, int experiencia){
 

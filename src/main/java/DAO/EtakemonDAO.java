@@ -39,6 +39,33 @@ public abstract class EtakemonDAO extends DAO{
             e.printStackTrace();
             logger.error("getAllEtakemon: "+e.getMessage());
         }
+
         return listaEtakemon;
     }
+
+    public List<Etakemon> getEtakemonTipo(int tipo){
+        List<Etakemon> etakemonList = new ArrayList<Etakemon>();
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Etakemon WHERE tipo ="+tipo+";");
+            while(resultSet.next()){
+                Etakemon etakemon = new Etakemon();
+                etakemon.setId(resultSet.getInt("id"));
+                etakemon.setNombre(resultSet.getString("nombre"));
+                etakemon.setHabilidad(resultSet.getString("habilidad"));
+                etakemon.setTipo(resultSet.getInt("tipo"));
+                etakemonList.add(etakemon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("getEtakemonTipo: "+e.getMessage());
+        }
+
+        return etakemonList;
+    }
+
+
+
+
 }

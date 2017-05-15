@@ -21,10 +21,11 @@ public class JSONController {
 
     protected List<Usuario> usuarios;
 
-    @Singleton
+  /*  @Singleton
     public JSONController() throws SQLException {
         usuarios = Usuario.getAllUsers();
     }
+*/
 
     @GET
     @Path("/usuario/got_id/{id}")

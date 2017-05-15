@@ -26,6 +26,20 @@ public class Captura extends CapturaDAO{
         this.fecha = fecha;
     }
 
+    //para los SPAWNS de las capturas
+    public Captura(int idetakemon, int idlocalizacion){
+        this.idetakemon = idetakemon;
+        this.idlocalizacion = idlocalizacion;
+    }
+
+    public Captura(int idusuariosss, int idetakemon, int idlocalizacion, int estado, Date fecha){
+        this.idusuariosss = idusuariosss;
+        this.idetakemon = idetakemon;
+        this.idlocalizacion = idlocalizacion;
+        this.estado = estado;
+        this.fecha = fecha;
+    }
+
     public Captura(){}
 
     public int getId() {
