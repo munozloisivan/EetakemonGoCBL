@@ -41,4 +41,11 @@ public abstract class LocalizacionDAO extends DAO {
         }
         return listaLocalizaciones;
     }
+
+
+    //generador aleatorio de Localizaciones para generar capturas
+    public int getRandomLocalizacion(){
+        int whichLocalizacion = (int) Math.floor(Math.random()*((getAllLocalizaciones().size())-1+1)+1);
+        return whichLocalizacion;
+    }
 }

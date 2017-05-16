@@ -39,7 +39,7 @@ public class Usuario extends UsuarioDAO {
         this.email = email;
         this.contrasena = contrasena;
     }
-    
+
 
     public Usuario(){}
 

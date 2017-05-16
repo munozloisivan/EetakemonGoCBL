@@ -66,6 +66,11 @@ public abstract class EtakemonDAO extends DAO{
     }
 
 
+    //generador aleatorio de Etakemons para generar capturas
+    public int getRandomEtakemon(){
+        int numEtakemon = (int) Math.floor(Math.random()*((getAllEtakemon().size())-1+1)+1);
+        return  numEtakemon;
+    }
 
 
 }

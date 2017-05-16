@@ -56,9 +56,5 @@ public class App {
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
 
-
-        Captura captura = new Captura();
-        captura.createCapturaSpawns();
-
     }
 }
