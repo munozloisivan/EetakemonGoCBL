@@ -26,7 +26,13 @@ import static org.apache.log4j.Logger.getLogger;
 
 public abstract class CapturaDAO extends DAO {
 
+
+
   /*  final Logger logger = getLogger("CapturaDAO");
+
+
+
+
 
     // crear capturas para mostrar (cogiendo localizaciones y etakemons)
     public List<Captura> createCapturaSpawns(){

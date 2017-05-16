@@ -33,6 +33,14 @@ public class Usuario extends UsuarioDAO {
         this.modified = modified;
     }
 
+    public Usuario(String nombre, String nick, String email, String contrasena){
+        this.nombre = nombre;
+        this.nick = nick;
+        this.email = email;
+        this.contrasena = contrasena;
+    }
+    
+
     public Usuario(){}
 
     public int getId() {
