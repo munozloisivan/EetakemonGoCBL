@@ -55,24 +55,5 @@ public class App {
 
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
-
-
-        System.out.println("PRUEBA GITANAAAAAA");
-        Captura captura = new Captura();
-        captura.createCapturaSpawns();
-        Captura captura1 = captura.createCapturaSpawns().get(1);
-        captura.insertarCaptura(captura1,7);
-
-      /*  Usuario usuario = new Usuario();
-        System.out.println(usuario.getAtributosParaCaptura(7));
-
-
-        int nivelX = usuario.getAtributosParaCaptura(7).get(0);
-        int experienciaX = usuario.getAtributosParaCaptura(7).get(1);
-
-
-        System.out.println("nivel:"+nivelX+" experiencia:"+experienciaX);
-
-        */
     }
 }

@@ -255,8 +255,11 @@ public abstract class UsuarioDAO extends DAO {
             if (resultSet.getInt("count(email)") == 0) {
                 disponible = true;
                 logger.info("se puede usar este email para registrarse");
-            } else
+            }
+            else {
+                logger.error("no se puede usar este email para el registro");
                 disponible = false;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

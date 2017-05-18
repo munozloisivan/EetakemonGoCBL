@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#loginForm').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                }
+                else {
+                    // everything looks good!
+                    var datosLogin = {"email": $("#email").val(), "contrasena": $("#contrasena").val()};
+
+                    $.ajax({
+                        url: "http://localhost:8080/myapp/json/usuario/login",
+                        type: "POST",
+                        data: JSON.stringify(datosLogin),
+                        contentType: "application/json",
+                        success: function(result){
+                            console.log("HOLA");
+                            $("#userLogged").html(result.nick);
+                        }
+                    })
+                }
+            })
+        })
+
+    </script>
+
+</head>
+
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+    <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
+    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
+    <li class="active"><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="login_form_cont">
+    <br>
+    <form id="loginForm" data-toggle="validator" role="form">
+        <div class="form-group">
+            <label for="email" class="control-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico"
+                   data-error="Dirección de correo no válida" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <label for="contrasena" class="control-label">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena" placeholder="Introduce tu contraseña" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" id="login_button" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
+        </div>
+        <div class="form-group">
+            <h4 id="userLogged"></h4>
+        </div>
+        <br>
+    </form>
+</div>
+
+</body>
+</html>

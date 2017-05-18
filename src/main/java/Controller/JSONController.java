@@ -19,13 +19,11 @@ import java.util.List;
 @Path("/json")
 public class JSONController {
 
-    protected List<Usuario> usuarios;
-
-  /*  @Singleton
+    @Singleton
     public JSONController() throws SQLException {
-        usuarios = Usuario.getAllUsers();
+
     }
-*/
+
 
     @GET
     @Path("/usuario/got_id/{id}")
@@ -41,15 +39,7 @@ public class JSONController {
     @Path("/usuario/got_email/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario getUsuarioByEmail(@PathParam("email") String email){
-
-        Usuario finded = new Usuario();
-
-        for (int i = 0; i<usuarios.size(); i++){
-            if (usuarios.get(i).getEmail().equalsIgnoreCase(email)){
-                finded = usuarios.get(i);
-            }
-        }
-        return finded;
+        return  null;
     }
 
     @POST
@@ -72,21 +62,22 @@ public class JSONController {
     @Path("/usuario/get_all")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> getUsuarios(){
-        return this.usuarios;
+
+        Usuario lista = new Usuario();
+        return lista.getAllUsers();
     }
 
     @POST
     @Path("/usuario/new")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUsuarioInJSON(Usuario usuario) {
+    public boolean createUsuarioInJSON(Usuario usuario) {
 
-        if (validateRegister(usuario.getEmail())){
-            usuario.insert();
-            String yesResult = "Usuario guardado: " + usuario.getNombre();
-            return Response.status(201).entity(yesResult).build();
+        if (usuario.insert(usuario)) {
+            return true;
         }
-            String noResult = "El email ya esta registrado";
-            return Response.status(418).entity(noResult).build();
+        else{
+            return false;
+        }
     }
 
     /*@POST
@@ -112,15 +103,17 @@ public class JSONController {
     @Path("/usuario/delete/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUsuarioInJSON(@PathParam("id") int id) {
+        Usuario u = new Usuario();
 
-        if (searchIDUsuario(id)){
-            Usuario u = new Usuario();
+        if (u.select(id)!=null){
             u.delete(id);
             String yesResult = "Usuario eliminado.";
             return Response.status(201).entity(yesResult).build();
         }
-        String noResult = "El id no existe.";
-        return Response.status(418).entity(noResult).build();
+        else {
+            String noResult = "El id no existe.";
+            return Response.status(418).entity(noResult).build();
+        }
     }
 
     /*@GET
@@ -155,7 +148,7 @@ public class JSONController {
         return Response.status(201).entity(yesResult).build();
     }*/
 
-    public boolean validateRegister(String email){
+    /*public boolean validateRegister(String email){
 
         for (int i = 0; i<usuarios.size(); i++)
         {
@@ -176,7 +169,7 @@ public class JSONController {
             }
         }
         return false;
-    }
+    }*/
 
     /*public boolean searchIDOficina(int id){
         for (int i = 0; i<oficinas.size(); i++)
