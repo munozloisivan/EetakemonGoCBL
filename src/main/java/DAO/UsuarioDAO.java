@@ -170,6 +170,79 @@ public abstract class UsuarioDAO extends DAO {
         return updated;
     }
 
+    public boolean updateUsuarioExp(int id, int nivelXUsuario, int experienciaXUsuario, int experienciaAdd) {
+        boolean updated = false;
+        int nivelActual = nivelXUsuario;
+        int experienciaToNextLevel;
+        int experienciaActual;
+        if (nivelXUsuario<=5){
+
+            experienciaToNextLevel = 1000;
+            experienciaActual = experienciaXUsuario + experienciaAdd;
+            if (experienciaActual >= experienciaToNextLevel){
+                nivelActual = nivelActual +1;
+                experienciaActual = experienciaActual - experienciaToNextLevel;
+            }
+
+                try {
+                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
+
+                    PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
+                    preparedStatement.execute();
+                    logger.info("updateUsuarioEXP:   Nivel / experiencia modificados");
+                    updated = true;
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+        }
+        else if (nivelXUsuario>5 && nivelXUsuario<=10){
+            experienciaToNextLevel = 1500;
+            experienciaActual = experienciaXUsuario + experienciaAdd;
+            if (experienciaActual >= experienciaToNextLevel){
+                nivelActual = nivelActual +1;
+                experienciaActual = experienciaActual - experienciaToNextLevel;
+            }
+                try {
+                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
+
+                    PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
+                    preparedStatement.execute();
+                    logger.info("updateUsuarioEXP:   Nivel / experiencia modificados");
+                    updated = true;
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+        }
+        else {
+            experienciaToNextLevel = 2000;
+            experienciaActual = experienciaXUsuario + experienciaAdd;
+            if (experienciaActual >= experienciaToNextLevel){
+                nivelActual = nivelActual +1;
+                experienciaActual = experienciaActual - experienciaToNextLevel;
+            }
+                try {
+                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
+
+                    PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
+                    preparedStatement.execute();
+                    logger.info("updateUsuarioEXP:   Nivel / experiencia modificados");
+                    updated = true;
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+        }
+        return updated;
+    }
+
     public boolean emailDisponible(String email) {           //disponible devuelve true          no disponible devuelve false
         boolean disponible = false;
         try {
@@ -350,6 +423,24 @@ public abstract class UsuarioDAO extends DAO {
             logger.error("getUsersByNameApproach: "+e.getMessage());
         }
         return usuarioList;
+    }
+
+    public ArrayList<Integer> getAtributosParaCaptura(int idusuario){
+        ArrayList<Integer> atributos = new ArrayList<Integer>();
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT nivel,experiencia FROM usuario where id ="+idusuario+";");
+            resultSet.next();
+                atributos.add(resultSet.getInt("nivel"));
+                atributos.add(resultSet.getInt("experiencia"));
+        }
+        catch (SQLException e) {
+            atributos.add(null);
+            atributos.add(null);
+            e.printStackTrace();
+            logger.error("getUsersByNameApproach: "+e.getMessage());
+        }
+        return atributos;
     }
 
  /*   public void updateUsuarioAtributes(int id, int experiencia){

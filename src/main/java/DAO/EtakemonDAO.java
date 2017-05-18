@@ -72,5 +72,24 @@ public abstract class EtakemonDAO extends DAO{
         return  numEtakemon;
     }
 
+    public int getTipoParaCaptura(int id){
+        int tipo = 0;
+
+        try {
+            Statement stmt = null;
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT tipo FROM Etakemon WHERE id ="+id+";");
+            while (rs.next()) {
+                tipo = rs.getInt("tipo");
+            }
+        }
+        catch (SQLException e){
+            tipo = 0; //esto sera error
+            e.printStackTrace();
+            logger.error("getTipoParaCaptura: "+e.getMessage());
+        }
+        return tipo;
+    }
+
 
 }
