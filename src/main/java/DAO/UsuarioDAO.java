@@ -65,6 +65,13 @@ public abstract class UsuarioDAO extends DAO {
         return registrado;
     }
 
+    public boolean insertLogroToUser(Logros logros, int idusuario){
+        boolean insertado = false;
+
+
+        return insertado;
+    }
+
 
     public boolean login(String email, String contrasena){         //logeado devuelve true     no logeado devuelve false
         boolean loged = Boolean.parseBoolean(null);

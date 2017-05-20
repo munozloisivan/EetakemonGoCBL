@@ -19,6 +19,12 @@ public class Etakemon extends EtakemonDAO{
         this.tipo = tipo;
     }
 
+    public Etakemon(String nombre, String habilidad, int tipo){
+        this.nombre = nombre;
+        this.habilidad = habilidad;
+        this.tipo = tipo;
+    }
+
     public Etakemon(){}
 
     public int getId() {

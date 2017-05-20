@@ -14,6 +14,7 @@ import java.util.List;
  * Created by Roberto on 20/05/2017.
  */
 @Path("/usuario")
+
 public class UsuarioController {
 
     @Singleton
