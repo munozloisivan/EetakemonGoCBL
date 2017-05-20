@@ -29,17 +29,16 @@
 
 <div class="container-fluid col-md-6 col-md-offset-3" id="login_form_cont">
     <br>
-    <form id="loginForm" data-toggle="validator" role="form">
+    <form id="loginForm">
         <div class="form-group">
-            <label for="email" class="control-label">Correo electrónico:</label>
-            <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico"
-                   data-error="Dirección de correo no válida" required>
-            <div class="help-block with-errors"></div>
+            <label for="email_login" class="control-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="email_login" placeholder="Introduce tu correo electrónico" required>
+            <div id="email_error"></div>
         </div>
         <div class="form-group">
-            <label for="contrasena" class="control-label">Contraseña:</label>
-            <input type="password" class="form-control" id="contrasena" placeholder="Introduce tu contraseña" required>
-            <div class="help-block with-errors"></div>
+            <label for="contrasena_login" class="control-label">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena_login" placeholder="Introduce tu contraseña" required>
+            <div id="contrasena_error"></div>
         </div>
         <br>
         <div class="form-group">

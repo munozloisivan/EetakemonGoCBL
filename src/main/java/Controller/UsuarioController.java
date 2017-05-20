@@ -41,17 +41,17 @@ public class UsuarioController {
     @POST
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getLogin(Usuario usuario) throws SQLException {
+    public Response getLogin(Usuario usuario) throws SQLException {
 
         if (usuario.login(usuario.getEmail(),usuario.getContrasena())){
             Usuario loged = new Usuario();
             loged = loged.select(usuario.getEmail());
-            return loged;
-        }
+            return Response.status(201).entity(loged).build();
 
+        }
         else
         {
-            return null;
+            return Response.status(202).entity("Usuario incorrecto: ").build();
         }
     }
 
