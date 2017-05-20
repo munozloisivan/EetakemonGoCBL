@@ -3,16 +3,15 @@
  */
 $(document).ready(function() {
 
-    $('#registerForm').validator().on('submit', function (e) {
-        if (e.isDefaultPrevented()) {
-            // handle the invalid form...
-        } else {
-            // everything looks good!
-            var datosRegistro = {
-                "nombre": $("#nombre").val(), "nick": $("#usuario").val(),
-                "email": $("#email").val(), "contrasena": $("#contrasena").val()
-            };
+    $("#registrar_button").click(function (e) {
 
+        var datosRegistro = {
+            "nombre": $("#nombre").val(), "nick": $("#usuario").val(),
+            "email": $("#email").val(), "contrasena": $("#contrasena").val()
+        };
+        e.preventDefault();
+
+        if (validateRegister()) {
             $.ajax({
                 url: "http://localhost:8080/myapp/usuario/new",
                 type: "POST",
@@ -65,4 +64,52 @@ function validateLogin() {
         document.getElementById("contrasena_error").innerHTML = " ";
         return true;
     }
+}
+
+function validateRegister() {
+    var inputNombre = document.getElementById("nombre");
+    var inputEmail = document.getElementById("email");
+    var inputUsuario = document.getElementById("usuario");
+    var inputPass = document.getElementById("contrasena");
+    var inputEmailConfirm = document.getElementById("emailConfirm");
+    var inputPassConfirm = document.getElementById("contrasenaConfirm");
+
+    if ((inputNombre.checkValidity()==false)||(inputEmail.checkValidity()==false)||
+        (inputUsuario.checkValidity()==false)|| (inputPass.checkValidity()==false)||
+        (inputEmailConfirm.checkValidity()==false)||(inputPassConfirm.checkValidity()==false)) {
+
+        if (inputNombre.checkValidity() == false)
+            document.getElementById("nombre_error").innerHTML = inputNombre.validationMessage;
+        else document.getElementById("nombre_error").innerHTML = " ";
+
+        if (inputEmail.checkValidity() == false)
+            document.getElementById("email_error").innerHTML = inputEmail.validationMessage;
+        else document.getElementById("email_error").innerHTML = " ";
+
+        if (inputEmailConfirm.checkValidity() == false)
+            document.getElementById("emailConfirm_error").innerHTML = inputEmailConfirm.validationMessage;
+        else document.getElementById("emailConfirm_error").innerHTML = " ";
+
+        if (inputUsuario.checkValidity() == false)
+            document.getElementById("usuario_error").innerHTML = inputUsuario.validationMessage;
+        else document.getElementById("usuario_error").innerHTML = " ";
+
+        if (inputPass.checkValidity() == false)
+            document.getElementById("contrasena_error").innerHTML = inputPass.validationMessage;
+        else document.getElementById("contrasena_error").innerHTML = " ";
+
+        if (inputPassConfirm.checkValidity() == false)
+            document.getElementById("contrasenaConfirm_error").innerHTML = inputPassConfirm.validationMessage;
+        else document.getElementById("contrasenaConfirm_error").innerHTML = " ";
+    }
+    else {
+        document.getElementById("nombre_error").innerHTML = " ";
+        document.getElementById("email_error").innerHTML = " ";
+        document.getElementById("emailConfirm_error").innerHTML = " ";
+        document.getElementById("usuario_error").innerHTML = " ";
+        document.getElementById("contrasena_error").innerHTML = " ";
+        document.getElementById("contrasenaConfirm_error").innerHTML = " ";
+        return true;
+    }
+
 }
