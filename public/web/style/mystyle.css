@@ -1,12 +1,12 @@
 body{
-    background:url("fondo-pokemon.png") fixed no-repeat center;
+    background:url("../images/fondo-pokemon.png") fixed no-repeat center;
 }
 div.container-fluid {
     border-radius: 25px;
     background-color: rgba(29, 108, 50, 0.85);
 }
 div.modal{
-    background: url("eetakedex_back2.jpg") fixed no-repeat center;
+    background: url("../images/eetakedex_back2.jpg") fixed no-repeat center;
 }
 h4{
     color: black;

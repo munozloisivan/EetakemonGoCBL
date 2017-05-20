@@ -4,54 +4,19 @@
     <title>Eetakemon GO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="ico_pokeball.png" type="image/png" />
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
-
-    <script>
-
-        $(document).ready(function() {
-
-            $.getJSON("http://localhost:8080/myapp/json/usuario/get_all", function (json) {
-                    var tr;
-                    for (var i = 0; i < json.length; i++) {
-                        tr = $('<tr/>');
-                        tr.append("<td>" + json[i].nick + "</td>");
-                        tr.append("<td>" + json[i].email + "</td>");
-                        tr.append("<td>" + json[i].nombre + "</td>");
-                        tr.append("<td>" + json[i].id+ "</td>");
-                        tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
-                        $('table').append(tr);
-                    }
-            })
-        })
-
-        function myFunction() {
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("nameFilter");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("tableUsuarios");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="scripts/myscripts.js"></script>
 </head>
+
 <body>
 
 <div class="page-header" align="center" style>
-    <img class="img-responsive" src="Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
 </div>
 
 <ul class="nav nav-tabs nav-justified" id="navdefault">
@@ -64,7 +29,7 @@
 
 <div class="container-fluid col-md-10 col-md-offset-1" id="descripcion_cont">
     <br>
-    <img class="img-responsive" src="cbladventure.jpg" alt="CBL" style="border-radius:10px;">
+    <img class="img-responsive" src="images/cbladventure.jpg" alt="CBL" style="border-radius:10px;">
     <!--<div id="map" style="width:100%;height:400px;background:transparent;border-radius:10px;"></div>-->
     <h4><strong>¡Únete a la aventura!</strong></h4>
     <p><strong>Recientemente han aparecido unas criaturas con fragmentos de ADN humano de las personas que frecuentan la zona de la EETAC.

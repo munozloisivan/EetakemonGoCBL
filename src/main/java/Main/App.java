@@ -44,7 +44,7 @@ public class App {
 
         final HttpServer server = startServer();
 
-        StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
+        StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/web/");
         server.getServerConfiguration().addHttpHandler(staticHttpHandler, "/");
 
         System.out.println(String.format("Jersey app started and available at "

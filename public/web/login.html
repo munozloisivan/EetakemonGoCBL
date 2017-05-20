@@ -4,41 +4,19 @@
     <title>Eetakemon GO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="ico_pokeball.png" type="image/png" />
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-
-            $("#login_button").click(function (e) {
-
-                var datosLogin = {"email": $("#email").val(), "contrasena": $("#contrasena").val()};
-                e.preventDefault();
-
-                $.ajax({
-                    url: "http://localhost:8080/myapp/json/usuario/login",
-                    type: "POST",
-                    data: JSON.stringify(datosLogin),
-                    contentType: "application/json",
-                    success: function(result){
-                        $("#userLogged").html(result.nick);
-                    }
-                })
-            })
-        })
-
-    </script>
-
+    <script src="scripts/myscripts.js"></script>
 </head>
 
 <body>
 
 <div class="page-header" align="center" style>
-    <img class="img-responsive" src="Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
 </div>
 
 <ul class="nav nav-tabs nav-justified" id="navdefault">
