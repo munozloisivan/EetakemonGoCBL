@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/myscripts.js"></script>
+</head>
+<body>
+
+    <div class="page-header" align="center" style>
+        <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+    </div>
+
+    <ul class="nav nav-tabs nav-justified" id="navdefault">
+        <li><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+        <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
+        <li  class="active"><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
+        <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
+    </ul>
+
+    <div align="center" style>
+        <h1>Gestion de Etakemons</h1>
+    </div>
+    <br>
+    <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
+        <div align="center" style>
+            <h3>Añadir Etakemon</h3>
+        </div>
+        <br>
+        <form id="añadirEtakemonForm" data-toggle="validator" role="form">
+            <div class="form-group">
+                <label for="nombre" class="control-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre del etakemon" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="habilidad" class="control-label">Habilidad:</label>
+                <input type="number" class="form-control" id="habilidad" placeholder="Introduce la habilidad del etakemon">
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="tipo" class="control-label">Tipo:</label>
+                <input type="number" class="form-control" id="tipo" placeholder="Introduce el tipo del etakemon">
+                <div class="help-block with-errors"></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit" id="añadir_etakemon_button" class="btn btn-primary btn-block btn-md">Añadir</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</body>
+</html>
