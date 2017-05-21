@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/indexScript.js"></script>
+</head>
+
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li class="active"><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+    <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
+    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
+    <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-10 col-md-offset-1" id="descripcion_cont">
+    <br>
+    <img class="img-responsive" src="images/cbladventure.jpg" alt="CBL" style="border-radius:10px;">
+    <!--<div id="map" style="width:100%;height:400px;background:transparent;border-radius:10px;"></div>-->
+    <h4><strong>¡Únete a la aventura!</strong></h4>
+    <p><strong>Recientemente han aparecido unas criaturas con fragmentos de ADN humano de las personas que frecuentan la zona de la EETAC.
+        Según los expertos, que los han denominado "Eetakemon", son seres hostiles con altas capacidades de combate que aparecen en
+        los lugares más emblemáticos del campus, como la biblioteca y los despachos de los profesores. Pero también aseguran que un
+        entrenador experimentado puede ser capaz de someter a cualquier Eetakemon.
+        ¡Así que capturalos, coleccionalos y entrenalos para hacerte el entrenador más fuerte del campus!</strong></p>
+</div>
+
+<div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
+    <h4><strong>Usuarios registrados:</strong></h4>
+    <form>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre de usuario...">
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+            <table class="table", id="tableUsuarios">
+                <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>E-mail</th>
+                    <th>Nombre</th>
+                    <th>ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

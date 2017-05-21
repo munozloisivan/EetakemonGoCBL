@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/myscripts.js"></script>
+</head>
+
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+    <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
+    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
+    <li class="active"><a href="login.html"><h4 class="naveg" id="userLogged"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="login_form_cont">
+    <br>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="email_login" class="control-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="email_login" placeholder="Introduce tu correo electrónico" required>
+            <div id="email_error"></div>
+        </div>
+        <div class="form-group">
+            <label for="contrasena_login" class="control-label">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena_login" placeholder="Introduce tu contraseña" required>
+            <div id="contrasena_error"></div>
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" id="login_button" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
+        </div>
+        <br>
+    </form>
+</div>
+
+</body>
+</html>
