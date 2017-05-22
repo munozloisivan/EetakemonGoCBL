@@ -9,7 +9,13 @@ div.modal{
     background: url("../images/eetakedex_back2.jpg") fixed no-repeat center;
 }
 h4{
+     color: black;
+}
+h5{
     color: black;
+}
+a{
+    color:black;
 }
 p{
     color: black;

@@ -1,16 +1,14 @@
-var userRegistredID;
+var userRegistred;
 
 $(document).ready(function() {
 
-    userRegistredID = getUrlParameter('id');
-    alert(userRegistredID);
+    userRegistred = getUrlParameter('email');
 
-    $.get( "http://localhost:8080/myapp/usuario/got_id/"+userRegistredID , function( data ) {
-        alert(JSON.stringify(data));
+    $.get( "http://localhost:8080/myapp/usuario/got_email/"+userRegistred , function( data ) {
+        $("#nombreRegistrado").append(data.nombre);
+        $("#usuarioRegistrado").append(data.nick);
+        $("#correoRegistrado").append(data.email);
     });
-
-    $("#usuarioRegistrado").html(userRegistredID);
-
 })
 
 function getUrlParameter(name) {

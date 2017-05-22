@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/logedScripts.js"></script>
+</head>
+
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li><a><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Mis Eetakemon</strong></h4></a></li>
+    <li><a><h4 class="naveg"><span class="glyphicon glyphicon-briefcase"></span><strong> Mis Objetos</strong></h4></a></li>
+    <li class="active"><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span><strong id="userLogedNick"></strong></h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-6 col-md-offset-3" id="loged_cont" align="center">
+    <h4 id="nombreLoged"><strong>Nombre: </strong></h4>
+    <h4 id="usuarioLoged"><strong>Correo electrónico: </strong></h4>
+    <h4 id="nivel"><strong>Nivel: </strong></h4>
+    <h4 id="experiencia"><strong>Experiencia actual: </strong></h4>
+    <h4 id="experienciaNext"><strong>Siguiente nivel: </strong></h4>
+
+    <br>
+    <button type="button" id="ajustes_button" class="btn btn-warning btn-block btn-md">Ajustes</button>
+
+    <br>
+    <button type="button" id="close_button" class="btn btn-danger btn-block btn-md">Cerrar sesión</button>
+
+    <br>
+    <button type="button" id="admin_button" class="btn btn-info btn-block btn-md ">Administración</button>
+    <br>
+</div>
+
+</body>
+</html>

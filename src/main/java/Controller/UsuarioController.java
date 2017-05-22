@@ -45,7 +45,10 @@ public class UsuarioController {
     @Path("/got_email/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario getUsuarioByEmail(@PathParam("email") String email){
-        return  null;
+
+        Usuario finded = new Usuario();
+        finded = finded.select(email);
+        return finded;
     }
 
     @POST

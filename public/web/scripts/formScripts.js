@@ -19,10 +19,10 @@ $(document).ready(function() {
                 contentType: "application/json",
                 statusCode: {
                     201: function (result) {
-
+                        window.location.href="registrado.html?email="+result.email;
                     },
                     400: function () {
-                        alert("Error al iniciar sesión");
+                        alert("Ha ocurrido un error durante el registro, es posible que el email ya esté en uso.");
                     }
                 }
             })
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 contentType: "application/json",
                 statusCode: {
                     201: function (result) {
-
+                        window.location.href="userLoged.html?email="+result.email;
                     },
                     404: function () {
                         alert("Error al iniciar sesión");
