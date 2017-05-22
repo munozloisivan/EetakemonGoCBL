@@ -75,7 +75,7 @@ public abstract class UsuarioDAO extends DAO {
 
     public boolean login(String email, String contrasena){         //logeado devuelve true     no logeado devuelve false
         boolean loged = Boolean.parseBoolean(null);
-        StringBuffer sb = new StringBuffer("SELECT nombre,contrasena FROM Usuario WHERE email='");
+        StringBuffer sb = new StringBuffer("SELECT nombre,contrasena FROM usuario WHERE email='");
         sb.append(email + "'" + " AND contrasena ='" + contrasena + "';");
 
         try {
@@ -280,7 +280,7 @@ public abstract class UsuarioDAO extends DAO {
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Usuario");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario");
             while (rs.next()) {
                 Usuario us = new Usuario();
                 us.setId(rs.getInt("id"));
