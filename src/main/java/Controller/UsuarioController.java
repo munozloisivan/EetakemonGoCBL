@@ -23,6 +23,15 @@ public class UsuarioController {
     }
 
     @GET
+    @Path("/get_all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Usuario> getUsuarios(){
+
+        Usuario lista = new Usuario();
+        return lista.getAllUsers();
+    }
+
+    @GET
     @Path("/got_id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario getUsuariobyId(@PathParam("id") int id){
@@ -52,29 +61,23 @@ public class UsuarioController {
         }
         else
         {
-            return Response.status(202).entity("Usuario incorrecto: ").build();
+            return Response.status(404).entity(usuario).build();
         }
-    }
-
-    @GET
-    @Path("/get_all")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Usuario> getUsuarios(){
-
-        Usuario lista = new Usuario();
-        return lista.getAllUsers();
     }
 
     @POST
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean createUsuarioInJSON(Usuario usuario) {
+    public Response createUsuarioInJSON(Usuario usuario) {
 
+        Usuario registred = new Usuario();
         if (usuario.insert(usuario)) {
-            return true;
+            registred = registred.select(usuario.getEmail());
+            return Response.status(201).entity(registred).build();
         }
         else{
-            return false;
+            registred = registred.select(usuario.getEmail());
+            return Response.status(400).entity(registred).build();
         }
     }
 

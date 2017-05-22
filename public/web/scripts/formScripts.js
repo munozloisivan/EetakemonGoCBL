@@ -16,7 +16,15 @@ $(document).ready(function() {
                 url: "http://localhost:8080/myapp/usuario/new",
                 type: "POST",
                 data: JSON.stringify(datosRegistro),
-                contentType: "application/json"
+                contentType: "application/json",
+                statusCode: {
+                    201: function (result) {
+
+                    },
+                    400: function () {
+                        alert("Error al iniciar sesión");
+                    }
+                }
             })
         }
     })
@@ -35,9 +43,9 @@ $(document).ready(function() {
                 contentType: "application/json",
                 statusCode: {
                     201: function (result) {
-                        $("#userLogged").html(result.nick);
+
                     },
-                    202: function () {
+                    404: function () {
                         alert("Error al iniciar sesión");
                     }
                 }
@@ -90,6 +98,10 @@ function validateRegister() {
             document.getElementById("emailConfirm_error").innerHTML = inputEmailConfirm.validationMessage;
         else document.getElementById("emailConfirm_error").innerHTML = " ";
 
+        if (inputEmail.value!=inputEmailConfirm.value)
+            document.getElementById("emailConfirm_error").innerHTML = "Las direcciones de correo no coinciden";
+        else document.getElementById("emailConfirm_error").innerHTML = " ";
+
         if (inputUsuario.checkValidity() == false)
             document.getElementById("usuario_error").innerHTML = inputUsuario.validationMessage;
         else document.getElementById("usuario_error").innerHTML = " ";
@@ -100,6 +112,10 @@ function validateRegister() {
 
         if (inputPassConfirm.checkValidity() == false)
             document.getElementById("contrasenaConfirm_error").innerHTML = inputPassConfirm.validationMessage;
+        else document.getElementById("contrasenaConfirm_error").innerHTML = " ";
+
+        if (inputPass.value!=inputPassConfirm.value)
+            document.getElementById("contrasenaConfirm_error").innerHTML = "Las contraseñas no coinciden";
         else document.getElementById("contrasenaConfirm_error").innerHTML = " ";
     }
     else {

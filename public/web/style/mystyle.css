@@ -20,8 +20,10 @@ tr{
 label{
     color: black;
 }
-.has-error .control-label,
-.has-error .help-block,
-.has-error .form-control-feedback {
-    color: #f39c12;
+div#email_error div#usuario_error
+div#emailConfirm_error{
+    color: red;
 }
+
+
+

@@ -13,8 +13,7 @@ import java.util.List;
  * Created by ivanm on 20/05/2017.
  */
 
-@Path("/etakemon")
-
+@Path("/etaakemon")
 public class EtakemonController {
 
     @Singleton
