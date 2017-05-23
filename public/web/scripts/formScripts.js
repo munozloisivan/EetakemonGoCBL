@@ -129,3 +129,44 @@ function validateRegister() {
     }
 
 }
+
+
+// ADMINISTRACION
+
+// etakemons
+
+$('#añadir_etakemon_button').click(function (e) {
+
+        var datosAñadirEtakemon = {
+            "nombre": $("#nombre").val(), "habilidad": $("#habilidad").val(),
+            "tipo": $("#tipo").val()
+        };
+
+        e.preventDefault();
+
+        $.ajax({
+            url: "http://localhost:8080/myapp/etakemon/new",
+            type: "POST",
+            data: JSON.stringify(datosAñadirEtakemon),
+            contentType: "application/json"
+        })
+})
+
+// logros
+$('#añadir_logro_button').click(function (e) {
+
+    var datosAñadirLogro = {
+        "nombre": $("#nombrelogro").val(), "descripcion": $("#descripcionlogro").val(),
+        "experiencia": $("#experiencialogro").val()
+    };
+
+    e.preventDefault();
+
+    $.ajax({
+        url: "http://localhost:8080/myapp/logros/new",
+        type: "POST",
+        data: JSON.stringify(datosAñadirLogro),
+        contentType: "application/json"
+    })
+})
+

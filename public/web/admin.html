@@ -19,22 +19,24 @@
     </div>
 
     <ul class="nav nav-tabs nav-justified" id="navdefault">
-        <li><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Inicio</h4></a></li>
+        <li><a href="admin_usuarios.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span> Gestion de Usuarios</h4></a></li>
         <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span> Eetakedex</h4></a></li>
         <li  class="active"><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Registrarse</h4></a></li>
         <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</h4></a></li>
     </ul>
 
+
+    <div class="container-fluid">
     <div align="center" style>
-        <h1>Gestion de Etakemons</h1>
+        <h1>Gestión de Etakemons</h1>
     </div>
-    <br>
-    <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
+    <p>
+    <div class="container-fluid col-md-6 col-md-offset-3" id="añadir_etakemon_form">
         <div align="center" style>
             <h3>Añadir Etakemon</h3>
         </div>
-        <br>
-        <form id="añadirEtakemonForm" data-toggle="validator" role="form">
+
+        <form id="añadirEtakemonForm">
             <div class="form-group">
                 <label for="nombre" class="control-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre del etakemon" required>
@@ -54,8 +56,89 @@
             <div class="form-group">
                 <button type="submit" id="añadir_etakemon_button" class="btn btn-primary btn-block btn-md">Añadir</button>
             </div>
-            <br>
+
         </form>
     </div>
+        <div class="container-fluid col-md-10 col-md-offset-1" id="etakemons_existentes_cont">
+            <h4><strong>Lista de Etakemons existentes para ver / modificar / eliminar:</strong></h4>
+            <form>
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                        <input type="text" id="EtakemomnFilter" class="form-control" onkeyup="etakemonsFunction()"  placeholder="Filtrar etakemons por nombre ...">
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                    <table class="table", id="tableEtakemons">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Habilidad</th>
+                            <th>Tipo</th>
+                            <th>ID</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    </p>
+
+    <div class="container-fluid">
+    <p>
+    <div class="control-label" align="center" style>
+        <h1>Gestión de Logros</h1>
+    </div>
+    <div class="container-fluid col-md-6 col-md-offset-3" id="añadir_usuario_cont">
+        <div align="center" style>
+            <h3>Añadir Logro</h3>
+        </div>
+        <div class="form-group">
+            <label for="nombrelogro" class="control-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombrelogro" placeholder="Introduce el nombre del logro" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <label for="descripcionlogro" class="control-label">Descripcion:</label>
+            <input type="text" class="form-control" id="descripcionlogro" placeholder="Introduce una descripción" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <label for="experiencialogro" class="control-label">Experiencia:</label>
+            <input type="number" class="form-control" id="experiencialogro" placeholder="Introduce la experiencia">
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="añadir_logro_button" class="btn btn-primary btn-block btn-md">Añadir</button>
+        </div>
+    </div>
+        <div class="container-fluid col-md-10 col-md-offset-1" id="logros_existentes_cont">
+            <h4><strong>Lista de Logros existentes para ver / modificar / eliminar:</strong></h4>
+            <form>
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                        <input type="text" id="LogrosFilter" class="form-control" onkeyup="logrosFunction()"  placeholder="Filtrar logros por nombre ...">
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                    <table class="table", id="tableLogros">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Experiencia</th>
+                            <th>Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    </p>
+
 </body>
-</html>

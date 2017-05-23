@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="style/admin_usuarios.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/admin_usuarios.js"></script>
+    <script src="scripts/myscripts.js"></script>
+</head>
+
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li class="active"><a href="#añadir_etakemon_form"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Añadir Usuario</h4></a></li>
+    <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Editar Usuario</h4></a></li>
+    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Borrar Usuario</h4></a></li>
+    <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span> Volver</h4></a></li>
+</ul>
+
+<div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
+    <div align="center" style>
+        <h1>Gestión de Usuarios</h1>
+    </div>
+    <h4><strong>Usuarios registrados:</strong></h4>
+    <form>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre de usuario...">
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+            <table class="table", id="tableUsuarios">
+                <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>E-mail</th>
+                    <th>Nombre</th>
+                    <th>ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+    <div class="container-fluid" id="añadir_usuario_container">
+        <div class="container-fluid col-md-6 col-md-offset-3" id="añadir_etakemon_form">
+            <div align="center" style>
+                <h3>Añadir Usuario</h3>
+            </div>
+            <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
+                <br>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Introduce tú nombre" required>
+                        <div id="nombre_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico" required>
+                        <div id="email_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Confirmar correo electrónico:</label>
+                        <input type="email" class="form-control" id="emailConfirm" placeholder="Confirma tu correo electrónico" required>
+                        <div id="emailConfirm_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuario" class="control-label">Usuario:</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Introduce un nombre de usuario" required>
+                        <div id="usuario_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena" class="control-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="contrasena" placeholder="Introduce una contraseña" required>
+                        <div id="contrasena_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasenaConfirm" class="control-label">Confirmar contraseña:</label>
+                        <input type="password" class="form-control" id="contrasenaConfirm" placeholder="Confirma tu contraseña" required>
+                        <div id="contrasenaConfirm_error"></div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" id="registrar_button" class="btn btn-primary btn-block btn-md">Registrar</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--
+<div class="container-fluid" id="añadir_usuario_container">
+    <div class="container-fluid col-md-6 col-md-offset-3" id="añadir_etakemon_form">
+        <div align="center" style>
+            <h3>Añadir Usuario</h3>
+        </div>
+
+        <div class="container-fluid col-md-6 col-md-offset-3" id="registro_form_cont">
+            <br>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Introduce tú nombre" required>
+                    <div id="nombre_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Correo electrónico:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico" required>
+                    <div id="email_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Confirmar correo electrónico:</label>
+                    <input type="email" class="form-control" id="emailConfirm" placeholder="Confirma tu correo electrónico" required>
+                    <div id="emailConfirm_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="usuario" class="control-label">Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Introduce un nombre de usuario" required>
+                    <div id="usuario_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="contrasena" class="control-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="contrasena" placeholder="Introduce una contraseña" required>
+                    <div id="contrasena_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="contrasenaConfirm" class="control-label">Confirmar contraseña:</label>
+                    <input type="password" class="form-control" id="contrasenaConfirm" placeholder="Confirma tu contraseña" required>
+                    <div id="contrasenaConfirm_error"></div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="submit" id="registrar_button" class="btn btn-primary btn-block btn-md">Registrar</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+-->
+</body>
+</html>
