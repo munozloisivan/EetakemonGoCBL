@@ -1,5 +1,6 @@
 var userLoged;
 var isAdmin;
+var userLogedID;
 
 $(document).ready(function() {
 
@@ -13,6 +14,7 @@ $(document).ready(function() {
         $("#nivel").append(data.nivel);
         $("#experiencia").append(data.experiencia);
         isAdmin = data.admin;
+        userLogedID = data.id;
     });
 
     if (isAdmin==1){
@@ -36,4 +38,8 @@ function getUrlParameter(name) {
 
 function reloadUserLoged(){
     window.location.href="userLoged.html?email="+userLoged;
+}
+
+function loadUserEetakemon() {
+    window.location.href="userEetakemon.html?id="+userLogedID;
 }

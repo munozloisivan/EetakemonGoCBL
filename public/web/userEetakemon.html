@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eetakemon GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="scripts/userEetakemonScripts.js"></script>
+    <script src="scripts/logedScripts.js"></script>
+</head>
+<body>
+
+<div class="page-header" align="center" style>
+    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
+</div>
+
+<ul class="nav nav-tabs nav-justified" id="navdefault">
+    <li class="active"><a onclick="loadUserEetakemon()"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Mis Eetakemon</strong></h4></a></li>
+    <li><a><h4 class="naveg"><span class="glyphicon glyphicon-briefcase"></span><strong> Mis Objetos</strong></h4></a></li>
+    <li><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span><strong id="userLogedNick"></strong></h4></a></li>
+</ul>
+<br>
+
+<div class="container-fluid col-md-10 col-md-offset-1" id="eetakemon_user_cont">
+    <form>
+        <div class="form-group">
+            <div class="form-group has-feedback">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre de usuario...">
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+            <table class="table", id="tableUsuarios">
+                <thead>
+                <tr>
+                    <th>Eetakemon</th>
+                    <th>Usuario</th>
+                    <th>Nivel</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

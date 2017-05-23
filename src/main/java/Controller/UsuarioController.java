@@ -1,6 +1,8 @@
 package Controller;
 
 import javax.ws.rs.Path;
+
+import Modelo.Captura;
 import Modelo.Usuario;
 
 import javax.inject.Singleton;
@@ -29,6 +31,15 @@ public class UsuarioController {
 
         Usuario lista = new Usuario();
         return lista.getAllUsers();
+    }
+
+    @GET
+    @Path("/{id}/get_capturas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Captura> getCapturasUsuario(@PathParam("id") int idUsuario){
+
+        Usuario lista = new Usuario();
+        return lista.getCapturasUsuario(idUsuario);
     }
 
     @GET
