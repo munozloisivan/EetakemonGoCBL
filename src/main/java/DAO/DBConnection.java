@@ -26,7 +26,7 @@ public class DBConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
             Properties info = new Properties();
-            info.setProperty("user", "crackmike");
+            info.setProperty("user", "root");
             info.setProperty("password", "mysql");
             info.setProperty("useSSL", "false");
             info.setProperty("serverTimezone", "UTC");
