@@ -1,10 +1,8 @@
-var userRegistredID;
-
 $(document).ready(function() {
 
-    userRegistredID = getUrlParameter('id');
+    $("#userLogedNick").html(" "+sessionStorage.nickLoged);
 
-    $.getJSON("http://localhost:8080/myapp/usuario/"+userRegistrredID+"/get_capturas", function (json) {
+    $.getJSON("http://localhost:8080/myapp/usuario/"+sessionStorage.idLoged+"/get_capturas", function (json) {
         var tr;
         for (var i = 0; i < json.length; i++) {
             tr = $('<tr/>');
