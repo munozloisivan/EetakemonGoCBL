@@ -7,6 +7,7 @@ import Modelo.Usuario;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
@@ -94,10 +95,9 @@ public class UsuarioController {
             return Response.status(400).entity(registred).build();
         }
     }
-
-    @POST
+    //La he modificado (marc)
+    @GET
     @Path("/delete/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUsuarioInJSON(@PathParam("id") int id) {
         Usuario u = new Usuario();
 
@@ -111,4 +111,25 @@ public class UsuarioController {
             return Response.status(418).entity(noResult).build();
         }
     }
+
+    @POST
+    @Path("/edit/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response editUser(Usuario in) {
+        Usuario u = new Usuario();
+
+        if (u.select(in.getId())!=null){
+            u.updateUsuarioData(in.getId(),in.getEmail(),in.getContrasena());
+            String yesResult = "Usuario editado.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else {
+            String noResult = "El id no existe.";
+            return Response.status(418).entity(noResult).build();
+        }
+    }
+
+
+
+
 }
