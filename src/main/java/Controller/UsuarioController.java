@@ -113,7 +113,7 @@ public class UsuarioController {
     }
 
     @POST
-    @Path("/edit/")
+    @Path("/edit")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editUser(Usuario in) {
         Usuario u = new Usuario();

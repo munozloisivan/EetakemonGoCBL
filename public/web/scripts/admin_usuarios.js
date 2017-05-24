@@ -31,7 +31,7 @@ $(document).ready(function() {
                 data: JSON.stringify(data),
                 success: [
                     function (response) {
-                        if (data.) {
+                        if (data) {
                             sessionStorage.setItem("userIdCurrentlyLoggedIn", data.id);
                             sessionStorage.setItem("isAdmin", data.isadmin);
                             window.location.replace("/forms/menu.html");

@@ -43,8 +43,7 @@ $(document).ready(function() {
                 contentType: "application/json",
                 statusCode: {
                     201: function (result) {
-                        sessionStorage.emailLoged = result.email;
-                        window.location.href="userLoged.html";
+                        window.location.href="userLoged.html?email="+result.email;
                     },
                     404: function () {
                         alert("Error al iniciar sesión");

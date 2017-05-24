@@ -116,6 +116,7 @@ public abstract class UsuarioDAO extends DAO {
             usuario.setNivel(resultSet.getInt("nivel"));
             usuario.setExperiencia(resultSet.getInt("experiencia"));
             usuario.setModified(resultSet.getInt("modified"));
+            usuario.setAdmin(resultSet.getInt("admin"));
         } catch (SQLException e) {
             e.printStackTrace();
             logger.error(e.getMessage());

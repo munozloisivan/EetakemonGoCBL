@@ -15,3 +15,7 @@ $(document).ready(function() {
         }
     })
 })
+
+function reloadUserLoged(){
+    window.location.href="userLoged.html?email="+sessionStorage.emailLoged;
+}
