@@ -26,9 +26,9 @@ tr{
 label{
     color: black;
 }
-div#email_error div#usuario_error
-div#emailConfirm_error{
-    color: red;
+
+#email_error {
+    color: #ff5b00;
 }
 
 

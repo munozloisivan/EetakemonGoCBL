@@ -19,7 +19,7 @@
 
 <ul class="nav nav-tabs nav-justified" id="navdefault">
     <li class="active"><a href="userEetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Mis Eetakemon</strong></h4></a></li>
-    <li><a><h4 class="naveg"><span class="glyphicon glyphicon-briefcase"></span><strong> Mis Objetos</strong></h4></a></li>
+    <li><a href="userObjetos.html"><h4 class="naveg"><span class="glyphicon glyphicon-briefcase"></span><strong> Mis Objetos</strong></h4></a></li>
     <li><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span><strong id="userLogedNick"></strong></h4></a></li>
 </ul>
 <br>
@@ -29,10 +29,10 @@
         <div class="form-group">
             <br>
             <div class="form-group has-feedback">
-                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar Eetakemon...">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="filterEetakemonUsuario()"  placeholder="Filtrar Eetakemon...">
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
             </div>
-            <table class="table", id="tableUsuarios">
+            <table class="table", id="tableEetakemonUsuario">
                 <thead>
                 <tr>
                     <th>Eetakemon</th>

@@ -59,8 +59,11 @@ function validateLogin() {
     var inputPass = document.getElementById("contrasena_login");
     if ((inputEmail.checkValidity() == false)||(inputPass.checkValidity() == false)) {
 
-        if(inputEmail.checkValidity()==false)
+        if(inputEmail.checkValidity()==false) {
             document.getElementById("email_error").innerHTML = inputEmail.validationMessage;
+            $("#email_login").css("border", "1px solid red");
+            $("#email_login").attr("placeholder", "Falta el email");
+        }
         else document.getElementById("email_error").innerHTML = " ";
 
         if(inputPass.checkValidity()==false)

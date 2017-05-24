@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <title>Eetakemon GO</title>
     <meta charset="utf-8">
@@ -9,10 +9,8 @@
     <link rel="stylesheet" type="text/css" href="style/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
-    <script src="scripts/admin_eetakemon.js"></script>
+    <script src="scripts/userObjetoScripts.js"></script>
 </head>
-
 <body>
 
 <div class="page-header" align="center" style>
@@ -20,26 +18,25 @@
 </div>
 
 <ul class="nav nav-tabs nav-justified" id="navdefault">
-    <li><a href="admin_usuarios.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span><strong> Gestión de Usuarios</strong></h4></a></li>
-    <li class="active"><a href="admin_eetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Gestión de Eetakemon</strong></h4></a></li>
-    <li><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span><strong> Atrás</strong></h4></a></li>
+    <li><a href="userEetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Mis Eetakemon</strong></h4></a></li>
+    <li  class="active"><a href="userObjetos.html"><h4 class="naveg"><span class="glyphicon glyphicon-briefcase"></span><strong> Mis Objetos</strong></h4></a></li>
+    <li><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span><strong id="userLogedNick"></strong></h4></a></li>
 </ul>
 <br>
 
-<div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
-    <h4><strong>Eetakemon disponibles:</strong></h4>
+<div class="container-fluid col-md-10 col-md-offset-1" id="objeto_user_cont">
     <form>
         <div class="form-group">
+            <br>
             <div class="form-group has-feedback">
-                <input type="text" id="nameFilter" class="form-control" onkeyup="filterEetakemon()"  placeholder="Filtrar Eetakemon...">
+                <input type="text" id="nameFilter" class="form-control" onkeyup="filterObjetosUsuario()"  placeholder="Filtrar objetos...">
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
             </div>
-            <table class="table", id="tableEetakemon">
+            <table class="table", id="tableObjetosUsuario">
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Habilidad</th>
-                    <th>Tipo</th>
+                    <th>Descripción</th>
                     <th>ID</th>
                 </tr>
                 </thead>

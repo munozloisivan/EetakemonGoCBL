@@ -17,9 +17,11 @@ $(document).ready(function() {
 
         if (data.admin==1){
             $("#admin_button").show();
+            $("#br_admin").show();
         }
         else{
             $("#admin_button").hide();
+            $("#br_admin").hide();
         };
     });
 

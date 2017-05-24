@@ -3,6 +3,7 @@ package Controller;
 import javax.ws.rs.Path;
 
 import Modelo.Captura;
+import Modelo.Objetos;
 import Modelo.Usuario;
 
 import javax.inject.Singleton;
@@ -32,6 +33,15 @@ public class UsuarioController {
 
         Usuario lista = new Usuario();
         return lista.getAllUsers();
+    }
+
+    @GET
+    @Path("/{id}/get_objetos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Objetos> getObjetosUsuario(@PathParam("id") int idUsuario){
+
+        Usuario lista = new Usuario();
+        return lista.getObjetosUsuario(idUsuario);
     }
 
     @GET
@@ -95,7 +105,7 @@ public class UsuarioController {
             return Response.status(400).entity(registred).build();
         }
     }
-    //La he modificado (marc)
+
     @GET
     @Path("/delete/{id}")
     public Response deleteUsuarioInJSON(@PathParam("id") int id) {
