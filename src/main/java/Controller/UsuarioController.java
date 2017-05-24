@@ -108,7 +108,7 @@ public class UsuarioController {
         }
         else {
             String noResult = "El id no existe.";
-            return Response.status(418).entity(noResult).build();
+            return Response.status(404).entity(noResult).build();
         }
     }
 

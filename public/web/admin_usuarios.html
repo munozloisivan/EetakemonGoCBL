@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <title>Eetakemon GO</title>
     <meta charset="utf-8">
@@ -7,92 +7,46 @@
     <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/mystyle.css">
-    <link rel="stylesheet" type="text/css" href="style/admin_usuarios.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
     <script src="scripts/admin_usuarios.js"></script>
 </head>
-
 <body>
 
-<div class="page-header" align="center" style>
-    <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
-</div>
-
-<ul class="nav nav-tabs nav-justified" id="navdefault">
-    <li class="active"><a href="#añadir_etakemon_form"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Añadir Usuario</h4></a></li>
-    <!--<li><a href="#editar_usuario_form"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Editar Usuario</h4></a></li>-->
-    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span> Borrar Usuario</h4></a></li>
-    <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span> Volver</h4></a></li>
-</ul>
-
-<div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
-    <div align="center" style>
-        <h1>Gestión de Usuarios</h1>
+    <div class="page-header" align="center" style>
+        <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
     </div>
-    <h4><strong>Usuarios registrados:</strong></h4>
-    <form>
-        <div class="form-group">
-            <div class="form-group has-feedback">
-                <input type="text" id="nameFilter" class="form-control" onkeyup="myFunction()"  placeholder="Filtrar por nombre de usuario...">
-                <i class="glyphicon glyphicon-search form-control-feedback"></i>
-            </div>
-            <table class="table", id="tableUsuarios">
-                <thead>
-                <tr>
-                    <th>Usuario</th>
-                    <th>E-mail</th>
-                    <th>Nombre</th>
-                    <th>ID</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </form>
-    <div class="container-fluid col-md-6 col-md-offset-3" id="editar_form_cont" style="background-color: transparent">
-        <div align="center">
-            <h1>Editar usuario</h1>
-        </div>
-        <form id="editarForm" class="editUser">
-            <div class="form-group">
-                <label for="nick" class="control-label">Nick:</label>
-                <input type="text" class="form-control" id="nick" placeholder="Introduce tu nick" required>
-            </div>
-            <div class="form-group">
-                <label for="newnick" class="control-label">Nuevo nick:</label>
-                <input type="text" class="form-control" id="newnick" placeholder="Introduce tu nuevo nick" required>
-            </div>
-            <div class="form-group">
-                <label for="newpassword" class="control-label">Nueva password:</label>
-                <input type="password" class="form-control" id="newpassword" placeholder="Introduce tu nueva password" required>
-            </div>
-            <br>
-            <div class="form-group">
-                <button type="submit" id="editar_button" class="btn btn-primary btn-block btn-md">Editar</button>
-            </div>
-            <br>
-        </form>
-    </div>
+
+    <ul class="nav nav-tabs nav-justified" id="navdefault">
+        <li class="active"><a href="admin_usuarios.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span><strong> Gestión de Usuarios</strong></h4></a></li>
+        <li><a href="admin_eetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Gestión de Eetakemon</strong></h4></a></li>
+        <li><a onclick="reloadUserLoged()"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span><strong> Atrás</strong></h4></a></li>
+    </ul>
     <br>
-    <div class="container-fluid col-md-6 col-md-offset-3" id="borrar_form_cont" style="background-color: transparent">
-        <div align="center">
-            <h1>Borrar usuario</h1>
-        </div>
-        <form id="borrarForm">
+
+    <div class="container-fluid col-md-10 col-md-offset-1" id="usuarios_registrados_cont">
+        <h4><strong>Usuarios registrados:</strong></h4>
+        <form>
             <div class="form-group">
-                <label for="deletenick" class="control-label">Nick a borrar:</label>
-                <input type="text" class="form-control" id="deletenick" placeholder="Introduce el nick a borrar" required>
+                <div class="form-group has-feedback">
+                    <input type="text" id="nameFilter" class="form-control" onkeyup="filterUsers()"  placeholder="Filtrar Usuarios...">
+                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                </div>
+                <table class="table", id="tableUsuarios">
+                    <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>E-mail</th>
+                        <th>Nombre</th>
+                        <th>ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-            <br>
-            <div class="form-group">
-                <button type="submit" id="borrar_button" class="btn btn-primary btn-block btn-md">Borrar</button>
-            </div>
-            <br>
         </form>
     </div>
-</div>
+
 </body>
-</html>

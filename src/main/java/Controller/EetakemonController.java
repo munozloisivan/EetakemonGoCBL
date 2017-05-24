@@ -12,11 +12,11 @@ import java.util.List;
  * Created by ivanm on 20/05/2017.
  */
 
-@Path("/etaakemon")
-public class EtakemonController {
+@Path("/eetakemon")
+public class EetakemonController {
 
     @Singleton
-    public EtakemonController(){
+    public EetakemonController(){
 
     }
 

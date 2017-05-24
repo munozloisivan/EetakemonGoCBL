@@ -7,7 +7,7 @@ $(document).ready(function() {
     $.get( "http://localhost:8080/myapp/usuario/got_email/"+emailJustLoged , function( data ) {
         $("#userLogedNick").html(" "+data.nick);
         $("#nombreLoged").append(data.nombre);
-        $("#usuarioLoged").append(data.nick);
+        $("#nickLoged").append(data.nick);
         $("#correoLoged").append(data.email);
         $("#nivel").append(data.nivel);
         $("#experiencia").append(data.experiencia);
@@ -27,6 +27,11 @@ $(document).ready(function() {
         window.location.href="index.html";
         sessionStorage.clear();
     })
+
+    $("#admin_button").click(function () {
+        window.location.href="admin_usuarios.html";
+    })
+
 })
 
 function getUrlParameter(name) {
