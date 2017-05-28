@@ -1,4 +1,5 @@
 package Main;
+import Controller.EnviarMail;
 import DAO.*;
 import DAO.UsuarioDAO;
 import Modelo.*;
@@ -8,6 +9,7 @@ import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.SQLException;
@@ -55,5 +57,15 @@ public class App {
 
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
+
+
+
+        EnviarMail enviarMail = new EnviarMail();
+        try {
+            enviarMail.enviarMensaje("subject","contenido con tus datos ira aqui");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
     }
 }

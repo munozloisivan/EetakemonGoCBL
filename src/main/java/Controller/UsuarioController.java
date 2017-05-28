@@ -1,5 +1,6 @@
 package Controller;
 
+import javax.mail.MessagingException;
 import javax.ws.rs.Path;
 
 import Modelo.Captura;
@@ -139,6 +140,27 @@ public class UsuarioController {
         }
     }
 
+    @POST
+    @Path("/datos")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response recuperardatos(Usuario usuario){
+        String emailAEnviar = usuario.getEmail();
+        if (emailAEnviar != null){
+            EnviarMail enviarMail = new EnviarMail();
+            try {
+                enviarMail.enviarMensaje("Datos EetakemonGoCBL","estaestucontraseña");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            String yesResult = "Datos enviados.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else {
+            String noResult = "El email no existe.";
+            return Response.status(418).entity(noResult).build();
+        }
+
+    }
 
 
 

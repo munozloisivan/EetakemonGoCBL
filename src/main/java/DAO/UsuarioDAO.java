@@ -1,6 +1,7 @@
 package DAO;
 
 
+import Controller.EnviarMail;
 import Modelo.*;
 import org.apache.log4j.Logger;
 
@@ -460,5 +461,17 @@ public abstract class UsuarioDAO extends DAO {
 
     }
     */
+
+ public boolean enviarEmail(){
+     boolean send = false;
+     try{
+         EnviarMail enviarMail = new EnviarMail();
+     send = true;
+     }
+     catch (Exception e){
+         e.getMessage();
+     }
+     return send;
+ }
 
 }

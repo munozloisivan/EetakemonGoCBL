@@ -40,6 +40,10 @@ public class Usuario extends UsuarioDAO {
         this.contrasena = contrasena;
     }
 
+    public Usuario(String email){
+        this.email = email;
+    }
+
     public Usuario(){}
 
     public int getId() {
