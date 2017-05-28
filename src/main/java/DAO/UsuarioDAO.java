@@ -2,10 +2,13 @@ package DAO;
 
 
 import Controller.EnviarMail;
+import Controller.LeerMail;
 import Modelo.*;
 import org.apache.log4j.Logger;
 
+import javax.mail.MessagingException;
 import javax.swing.plaf.nimbus.State;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
@@ -477,16 +480,16 @@ public abstract class UsuarioDAO extends DAO {
         return datos;
     }
 
- public boolean enviarEmail(){
-     boolean send = false;
-     try{
-         EnviarMail enviarMail = new EnviarMail();
-     send = true;
+ public void mensajesCorreo(){
+     LeerMail leerMail = new LeerMail();
+     try {
+         leerMail.obtenerMensajes();
+         //leerMail.imprimirMensajes();
+     } catch (MessagingException e) {
+         e.printStackTrace();
+     } catch (IOException e) {
+         e.printStackTrace();
      }
-     catch (Exception e){
-         e.getMessage();
-     }
-     return send;
  }
 
 }

@@ -26,8 +26,8 @@ public class EnviarMail {
         MimeMessage mensaje;     // Mensaje que enviaremos
 
         // Credenciales de usuario
-         String direccionCorreo = "rovira.caliz@gmail.com";   // Dirección de correo
-         String contrasenyaCorreo = "surtitpersempre";                 // Contraseña
+         String direccionCorreo = "eetakemongocbl@gmail.com";   // Dirección de correo
+         String contrasenyaCorreo = "passwordcbl";                 // Contraseña
 
         System.out.println("entra aqui");
 
