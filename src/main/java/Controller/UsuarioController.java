@@ -143,12 +143,14 @@ public class UsuarioController {
     @POST
     @Path("/datos")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response recuperardatos(Usuario usuario){
-        String emailAEnviar = usuario.getEmail();
+    public Response recuperardatos(String email){
+        String emailAEnviar = email;
         if (emailAEnviar != null){
             EnviarMail enviarMail = new EnviarMail();
             try {
-                enviarMail.enviarMensaje("Datos EetakemonGoCBL","estaestucontraseña");
+                Usuario usuario = new Usuario();
+                String datosPersonales = usuario.datosRecuperados(email);
+                enviarMail.enviarMensaje("Datos EetakemonGoCBL",datosPersonales,email);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }

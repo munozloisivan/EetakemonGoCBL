@@ -60,12 +60,12 @@ public class App {
 
 
 
-        EnviarMail enviarMail = new EnviarMail();
+     /*   EnviarMail enviarMail = new EnviarMail();
         try {
             enviarMail.enviarMensaje("subject","contenido con tus datos ira aqui");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
+*/
     }
 }

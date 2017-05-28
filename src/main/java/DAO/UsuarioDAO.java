@@ -462,6 +462,21 @@ public abstract class UsuarioDAO extends DAO {
     }
     */
 
+    public String datosRecuperados(String email){
+        String datos = null;
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT contrasena FROM usuario where email ="+email+";");
+            resultSet.next();
+            datos = ("e-mail: "+email+" || contraseña: "+resultSet.getString("contrasena")+"\n Atentamente, \n El equipo de EtakeonGOCBL \n\n No dudes en ponerte en contacto con nosotros para cualquier duda!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("datosRecuperados: "+e.getMessage());
+        }
+        return datos;
+    }
+
  public boolean enviarEmail(){
      boolean send = false;
      try{

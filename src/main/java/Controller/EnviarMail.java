@@ -15,14 +15,10 @@ import java.util.Properties;
  */
 public class EnviarMail {
 
-
-
-
-
     // Correo al que enviaremos el mensaje
-    private static String destintatarioCorreo = "munozloisivan@gmail.com";
+    //private static String destintatarioCorreo = "munozloisivan@gmail.com";
 
-    public static void enviarMensaje(String subject, String content) throws MessagingException {
+    public static void enviarMensaje(String subject, String content, String destintatarioCorreo) throws MessagingException {
         // Propiedades del cliente de correo
         Session session;         // Sesion de correo
         Properties properties;   // Propiedades de la sesion
@@ -47,7 +43,6 @@ public class EnviarMail {
         session = Session.getDefaultInstance(properties, null);
         System.out.println("aqui tambien entra en la funcion ");
 
-
         // Configuramos los valores de nuestro mensaje
         mensaje = new MimeMessage(session);
         mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destintatarioCorreo));
@@ -69,15 +64,4 @@ public class EnviarMail {
     public EnviarMail() {
     }
 
-    public EnviarMail(String destintatarioCorreo ){
-        EnviarMail.destintatarioCorreo = destintatarioCorreo;
-    }
-
-    public static String getDestintatarioCorreo() {
-        return destintatarioCorreo;
-    }
-
-    public static void setDestintatarioCorreo(String destintatarioCorreo) {
-        EnviarMail.destintatarioCorreo = destintatarioCorreo;
-    }
 }
