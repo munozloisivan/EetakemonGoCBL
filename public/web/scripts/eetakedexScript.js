@@ -1,12 +1,15 @@
 $(document).ready(function() {
 
     $.getJSON("http://localhost:8080/myapp/eetakemon/get_all", function (json) {
-        var eetakedex_item;
+        var actual_id;
+        var actual_eetakemon;
+        var column;
         for (var i = 0; i < json.length; i++) {
-            eetakedex_item = $(".thumbnail");
-            eetakedex_item.attr('id',json[i].id);
-            eetakedex_item.html("<img src='Eetakemon_images/"+json[i].nombre+".png' alt='"+json[i].nombre+"' style='width:100%'>");
-            $(".thumbnail").append(eetakedex_item);
+            actual_id = json[i].id;
+            actual_eetakemon = json[i].nombre;
+            $("#eetakedex_generated").append("<div class='col-md-2' id='"+actual_id+"'>");
+            document.getElementById(actual_id).innerHTML = "<div class='thumbnail' id='"+actual_eetakemon+"' style='align-content: center'>" ;
+            document.getElementById(actual_eetakemon).innerHTML = "<img src='Eetakemon_images/"+actual_eetakemon+".png' alt='"+actual_eetakemon+"' style='width:100%'><div class='caption'><p>"+actual_eetakemon+"</p>";
         }
     })
 })
