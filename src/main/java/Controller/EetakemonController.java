@@ -37,7 +37,8 @@ public class EetakemonController {
         Etakemon etakemon = new Etakemon();
         return etakemon.getAllEtakemon();
     }
-
+    
+//Funcion para insertar Etakemon
     @POST
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -51,6 +52,7 @@ public class EetakemonController {
         }
     }
 
+//Funcion para eliminar Etakemon
     @POST
     @Path("/delete/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
