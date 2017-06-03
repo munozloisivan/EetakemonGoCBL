@@ -47,6 +47,8 @@ $(document).ready(function() {
                     },
                     404: function () {
                         alert("Error al iniciar sesión");
+                        document.getElementById("contrasena_login").value = "";
+                        $("#contrasena_login").css("border", "2px solid red");
                     }
                 }
             })
@@ -54,6 +56,8 @@ $(document).ready(function() {
     })
 })
 
+
+// Robustez del LOGIN
 function validEmail() {
     var inputEmail = document.getElementById("email_login");
 
@@ -92,6 +96,16 @@ function validateLogin() {
     }
 }
 
+function validNombreRegistro() {
+    var inputNombre = document.getElementById("nombre");
+
+    if(inputNombre.checkValidity()==false){
+        $("#nombre").css("border", "2px solid red");
+    }else $("#nombre").css("border", "2px solid lime");
+
+}
+
+// Robustez del REGISTRO
 function validateRegister() {
     var inputNombre = document.getElementById("nombre");
     var inputEmail = document.getElementById("email");
@@ -104,87 +118,48 @@ function validateRegister() {
         (inputUsuario.checkValidity()==false)|| (inputPass.checkValidity()==false)||
         (inputEmailConfirm.checkValidity()==false)||(inputPassConfirm.checkValidity()==false)) {
 
-        if (inputNombre.checkValidity() == false)
-            document.getElementById("nombre_error").innerHTML = inputNombre.validationMessage;
-        else document.getElementById("nombre_error").innerHTML = " ";
+        if (inputNombre.checkValidity() == false) {
+            $("#nombre").css("border", "2px solid red");
+            $("#nombre").attr("placeholder", inputNombre.validationMessage);
+        }   else $("#nombre").css("border", "2px solid lime");
 
-        if (inputEmail.checkValidity() == false)
-            document.getElementById("email_error").innerHTML = inputEmail.validationMessage;
-        else document.getElementById("email_error").innerHTML = " ";
+        if (inputEmail.checkValidity() == false) {
+            $("#email").css("border", "2px solid red");
+            $("#email").attr("placeholder", inputEmail.validationMessage);
+        }   else $("#email").css("border", "2px solid lime");
 
-        if (inputEmailConfirm.checkValidity() == false)
-            document.getElementById("emailConfirm_error").innerHTML = inputEmailConfirm.validationMessage;
-        else document.getElementById("emailConfirm_error").innerHTML = " ";
+        if (inputEmailConfirm.checkValidity() == false) {
+            $("#emailconfirm").css("border", "2px solid red");
+            $("#emailconfirm").attr("placeholder", inputEmailConfirm.validationMessage);
+        }   else $("#emailconfirm").css("border", "2px solid lime");
 
-        if (inputEmail.value!=inputEmailConfirm.value)
-            document.getElementById("emailConfirm_error").innerHTML = "Las direcciones de correo no coinciden";
-        else document.getElementById("emailConfirm_error").innerHTML = " ";
+        if (inputEmail.value!=inputEmailConfirm.value) {
+            $("#emailconfirm").css("border", "2px solid red");
+            $("#emailconfirm").attr("placeholder", "Las direcciones de correo electrónico no coinciden");
+        }
 
-        if (inputUsuario.checkValidity() == false)
-            document.getElementById("usuario_error").innerHTML = inputUsuario.validationMessage;
-        else document.getElementById("usuario_error").innerHTML = " ";
+        if (inputUsuario.checkValidity() == false) {
+            $("#usuario").css("border", "2px solid red");
+            $("#usuario").attr("placeholder", inputUsuario.validationMessage);
+        }   else $("#usuario").css("border", "2px solid lime");
 
-        if (inputPass.checkValidity() == false)
-            document.getElementById("contrasena_error").innerHTML = inputPass.validationMessage;
-        else document.getElementById("contrasena_error").innerHTML = " ";
+        if (inputPass.checkValidity() == false){
+            $("#contrasena").css("border", "2px solid red");
+            $("#contrasena").attr("placeholder", inputPass.validationMessage);
+        }   else $("#contrasena").css("border", "2px solid lime");
 
-        if (inputPassConfirm.checkValidity() == false)
-            document.getElementById("contrasenaConfirm_error").innerHTML = inputPassConfirm.validationMessage;
-        else document.getElementById("contrasenaConfirm_error").innerHTML = " ";
+        if (inputPassConfirm.checkValidity() == false){
+            $("#contrasenaconfirm").css("border", "2px solid red");
+            $("#contrasenaconfirm").attr("placeholder", inputPass.validationMessage);
+        }   else $("#contrasena").css("border", "2px solid lime");
 
-        if (inputPass.value!=inputPassConfirm.value)
-            document.getElementById("contrasenaConfirm_error").innerHTML = "Las contraseñas no coinciden";
-        else document.getElementById("contrasenaConfirm_error").innerHTML = " ";
+        if (inputPass.value!=inputPassConfirm.value) {
+            $("#contrasenaConfirm").css("border", "2px solid red");
+            $("#contrasenaConfirm").attr("placeholder", "Las contraseñas no coinciden");
+        }
     }
     else {
-        document.getElementById("nombre_error").innerHTML = " ";
-        document.getElementById("email_error").innerHTML = " ";
-        document.getElementById("emailConfirm_error").innerHTML = " ";
-        document.getElementById("usuario_error").innerHTML = " ";
-        document.getElementById("contrasena_error").innerHTML = " ";
-        document.getElementById("contrasenaConfirm_error").innerHTML = " ";
         return true;
     }
-
 }
-
-
-// ADMINISTRACION
-
-// etakemons
-
-$('#añadir_etakemon_button').click(function (e) {
-
-        var datosAñadirEtakemon = {
-            "nombre": $("#nombre").val(), "habilidad": $("#habilidad").val(),
-            "tipo": $("#tipo").val()
-        };
-
-        e.preventDefault();
-
-        $.ajax({
-            url: "http://localhost:8080/myapp/etakemon/new",
-            type: "POST",
-            data: JSON.stringify(datosAñadirEtakemon),
-            contentType: "application/json"
-        })
-})
-
-// logros
-$('#añadir_logro_button').click(function (e) {
-
-    var datosAñadirLogro = {
-        "nombre": $("#nombrelogro").val(), "descripcion": $("#descripcionlogro").val(),
-        "experiencia": $("#experiencialogro").val()
-    };
-
-    e.preventDefault();
-
-    $.ajax({
-        url: "http://localhost:8080/myapp/logros/new",
-        type: "POST",
-        data: JSON.stringify(datosAñadirLogro),
-        contentType: "application/json"
-    })
-})
 

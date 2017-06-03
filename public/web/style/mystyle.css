@@ -30,7 +30,7 @@ label{
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 20px; /* Place the button at the bottom of the page */
-    right: 30px; /* Place the button 30px from the right */
+    right: 20px; /* Place the button 30px from the right */
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
@@ -38,7 +38,7 @@ label{
     color: #000000; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 15px; /* Some padding */
-    border-radius: 30px; /* Rounded corners */
+    border-radius: 10px; /* Rounded corners */
 }
 
 #myBtn:hover {
@@ -52,9 +52,9 @@ label{
     transition: all 0.3s;
 }
 #descripcion_cont:hover {
-    -moz-transform: scale(1.055);
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
+    -moz-transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
 }
 
 
