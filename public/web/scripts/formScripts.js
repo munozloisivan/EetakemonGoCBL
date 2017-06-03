@@ -61,7 +61,7 @@ function validateLogin() {
 
         if(inputEmail.checkValidity()==false) {
             document.getElementById("email_error").innerHTML = inputEmail.validationMessage;
-            $("#email_login").css("border", "1px solid red");
+            $("#email_login").css("border", "2px solid red");
             $("#email_login").attr("placeholder", "Falta el email");
         }
         else document.getElementById("email_error").innerHTML = " ";

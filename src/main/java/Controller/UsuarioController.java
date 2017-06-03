@@ -60,7 +60,7 @@ public class UsuarioController {
     public Usuario getUsuariobyId(@PathParam("id") int id){
 
         Usuario finded = new Usuario();
-        finded.select(id);
+        finded = finded.selectbyID(id);
         return finded;
     }
 
@@ -141,6 +141,23 @@ public class UsuarioController {
     }
 
     @POST
+    @Path("/admin_edit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response editUserByAdmin(Usuario in) {
+        Usuario u = new Usuario();
+
+        if (u.select(in.getId())!=null){
+            u.updateUsuarioDataByAdmin(in.getId(),in.getNick(),in.getContrasena(),in.getEmail(),in.getNombre());
+            String yesResult = "Usuario editado.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else {
+            String noResult = "El id no existe.";
+            return Response.status(418).entity(noResult).build();
+        }
+    }
+
+    @POST
     @Path("/datos")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response recuperardatos(String email){
@@ -163,7 +180,4 @@ public class UsuarioController {
         }
 
     }
-
-
-
 }

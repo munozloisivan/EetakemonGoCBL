@@ -128,6 +128,31 @@ public abstract class UsuarioDAO extends DAO {
         return usuario;
     }
 
+    public Usuario selectbyID(int id) {
+        Usuario usuario = new Usuario();
+
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM Usuario WHERE id ='" + id + "';");
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
+            resultSet.next();
+
+            usuario.setId(resultSet.getInt("id"));
+            usuario.setNombre(resultSet.getString("nombre"));
+            usuario.setNick(resultSet.getString("nick"));
+            usuario.setEmail(resultSet.getString("email"));
+            usuario.setContrasena(resultSet.getString("contrasena"));
+            usuario.setNivel(resultSet.getInt("nivel"));
+            usuario.setExperiencia(resultSet.getInt("experiencia"));
+            usuario.setModified(resultSet.getInt("modified"));
+            usuario.setAdmin(resultSet.getInt("admin"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+        return usuario;
+    }
+
     //aplica solo a nick y password que se podran cambiar solo una vez
     public int selectModified(int id) {
         StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = " + id);
@@ -179,6 +204,25 @@ public abstract class UsuarioDAO extends DAO {
             logger.info("Ya se ha modificado previamente. NO se puede modificar");
             updated = false;
         }
+        return updated;
+    }
+
+    public boolean updateUsuarioDataByAdmin(int id, String nick, String password, String email, String nombre) {             //actualizado devuelve true     no actualizado devuelve false
+        boolean updated = false;
+
+            try {
+                StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                sb.append("nombre = '"+nombre+ "', email= '"+email+"', nick='" + nick + "', contrasena='" + password + "', modified=1 where id = " + id + ";");
+
+                PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
+                preparedStatement.execute();
+                logger.info("campos modificados por el administrador");
+                updated = true;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                logger.error(e.getMessage());
+            }
         return updated;
     }
 
@@ -324,6 +368,9 @@ public abstract class UsuarioDAO extends DAO {
                 capturaUsuario.setDefensa(rs.getInt("defensa"));
                 capturaUsuario.setEstado(rs.getInt("estado"));
                 capturaUsuario.setFecha(rs.getDate("fecha"));
+                capturaUsuario.setNombreetakemon(rs.getString("nombreetakemon"));
+                capturaUsuario.setHabilidadetakemon(rs.getString("habilidadetakemon"));
+                capturaUsuario.setTipoetakemon(rs.getInt("tipoetakemon"));
                 listaCapturaUsuario.add(capturaUsuario);
             }
         } catch (SQLException e) {
