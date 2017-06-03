@@ -54,25 +54,40 @@ $(document).ready(function() {
     })
 })
 
+function validEmail() {
+    var inputEmail = document.getElementById("email_login");
+
+    if(inputEmail.checkValidity()==false){
+        $("#email_login").css("border", "2px solid red");
+    }else $("#email_login").css("border", "2px solid lime");
+
+}
+
+function validPass() {
+    var inputPass = document.getElementById("contrasena_login");
+
+    if(inputPass.checkValidity()==false){
+        $("#contrasena_login").css("border", "2px solid red");
+    }else $("#contrasena_login").css("border", "2px solid lime");
+
+}
+
 function validateLogin() {
     var inputEmail = document.getElementById("email_login");
     var inputPass = document.getElementById("contrasena_login");
     if ((inputEmail.checkValidity() == false)||(inputPass.checkValidity() == false)) {
 
         if(inputEmail.checkValidity()==false) {
-            document.getElementById("email_error").innerHTML = inputEmail.validationMessage;
             $("#email_login").css("border", "2px solid red");
-            $("#email_login").attr("placeholder", "Falta el email");
-        }
-        else document.getElementById("email_error").innerHTML = " ";
+            $("#email_login").attr("placeholder", inputEmail.validationMessage);
+        }else $("#email_login").css("border", "2px solid lime");
 
-        if(inputPass.checkValidity()==false)
-            document.getElementById("contrasena_error").innerHTML = inputPass.validationMessage;
-        else document.getElementById("contrasena_error").innerHTML = " ";
+        if(inputPass.checkValidity()==false){
+            $("#contrasena_login").css("border", "2px solid red");
+            $("#contrasena_login").attr("placeholder", inputPass.validationMessage);
+        }else $("#contrasena_login").css("border", "2px solid lime");
     }
     else {
-        document.getElementById("email_error").innerHTML = " ";
-        document.getElementById("contrasena_error").innerHTML = " ";
         return true;
     }
 }

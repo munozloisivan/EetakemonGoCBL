@@ -31,13 +31,11 @@
     <form id="loginForm">
         <div class="form-group">
             <label for="email_login" class="control-label">Correo electrónico:</label>
-            <input type="email" class="form-control" id="email_login" placeholder="Introduce tu correo electrónico" required>
-            <div id="email_error" align="center"></div>
+            <input type="email" class="form-control" id="email_login" oninput="validEmail()" placeholder="Introduce tu correo electrónico" required>
         </div>
         <div class="form-group">
             <label for="contrasena_login" class="control-label">Contraseña:</label>
-            <input type="password" class="form-control" id="contrasena_login" placeholder="Introduce tu contraseña" required>
-            <div id="contrasena_error"></div>
+            <input type="password" class="form-control" id="contrasena_login" oninput="validPass()" placeholder="Introduce tu contraseña" required>
         </div>
         <br>
         <div class="form-group">
