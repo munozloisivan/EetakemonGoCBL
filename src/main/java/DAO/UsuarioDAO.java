@@ -3,8 +3,10 @@ package DAO;
 
 import Controller.EnviarMail;
 import Controller.LeerMail;
+import Controller.LogrosController;
 import Modelo.*;
 import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import javax.mail.MessagingException;
 import javax.swing.plaf.nimbus.State;
@@ -371,7 +373,6 @@ public abstract class UsuarioDAO extends DAO {
                 capturaUsuario.setNombreetakemon(rs.getString("nombreetakemon"));
                 capturaUsuario.setHabilidadetakemon(rs.getString("habilidadetakemon"));
                 capturaUsuario.setTipoetakemon(rs.getInt("tipoetakemon"));
-                capturaUsuario.setImagen(rs.getString("imagen"));
                 listaCapturaUsuario.add(capturaUsuario);
             }
         } catch (SQLException e) {
@@ -460,6 +461,39 @@ public abstract class UsuarioDAO extends DAO {
         }
 
         return listaBatallasGanadas;
+    }
+
+    public List<Logros> getLogrosUsuario(String email){
+        Usuario usuario = new Usuario(email);
+        Logros logros = new Logros();
+        Logros logrosadd = new Logros();
+        int idususario = usuario.select(email).getId();
+        List<Logros> logrosList = new ArrayList<Logros>();
+        List<Logros> logrosEnviar = new ArrayList<Logros>();
+        logrosList = logros.getAllLogros();
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * from logrosusuario WHERE idusuarios = " +idususario + ";");
+            while (resultSet.next()){
+                int idlogro = resultSet.getInt("idlogros");
+                for (int i = 0; i < logrosList.size(); i++){
+                    if (idlogro == logrosList.get(i).getId()){
+                        logrosadd.setNombre(logrosList.get(i).getNombre());
+                        logrosadd.setDescripcion(logrosList.get(i).getDescripcion());
+                        logrosadd.setId(logrosList.get(i).getId());
+                        logrosadd.setExperiencia(logrosList.get(i).getExperiencia());
+                        logrosEnviar.add(logrosadd);
+                    }
+                }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+        return logrosEnviar;
+
     }
 
     public List<Usuario> getUsersByNameAprroach(String aprox){

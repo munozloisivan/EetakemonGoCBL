@@ -11,9 +11,9 @@ public class Captura extends CapturaDAO{
 
     private int id, idusuariosss, idetakemon, idlocalizacion, nivel, experiencia, vida, ataque, defensa, estado, tipoetakemon;
     private Date fecha;
-    private String nombreetakemon, habilidadetakemon, imagen;
+    private String nombreetakemon, habilidadetakemon;
 
-    public Captura(int id, int idusuariosss, int idetakemon, int idlocalizacion, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, int tipoetakemon, Date fecha, String nombreetakemon, String habilidadetakemon, String imagen) {
+    public Captura(int id, int idusuariosss, int idetakemon, int idlocalizacion, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, int tipoetakemon, Date fecha, String nombreetakemon, String habilidadetakemon) {
         this.id = id;
         this.idusuariosss = idusuariosss;
         this.idetakemon = idetakemon;
@@ -28,7 +28,6 @@ public class Captura extends CapturaDAO{
         this.fecha = fecha;
         this.nombreetakemon = nombreetakemon;
         this.habilidadetakemon = habilidadetakemon;
-        this.imagen = imagen;
     }
 
     //para los SPAWNS de las capturas
@@ -168,13 +167,5 @@ public class Captura extends CapturaDAO{
 
     public void setHabilidadetakemon(String habilidadetakemon) {
         this.habilidadetakemon = habilidadetakemon;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 }

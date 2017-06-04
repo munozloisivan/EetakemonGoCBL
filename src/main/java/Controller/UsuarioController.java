@@ -4,12 +4,16 @@ import javax.mail.MessagingException;
 import javax.ws.rs.Path;
 
 import Modelo.Captura;
+import Modelo.Logros;
 import Modelo.Objetos;
 import Modelo.Usuario;
+import com.sun.media.jfxmedia.logging.Logger;
+import sun.rmi.runtime.Log;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
@@ -18,6 +22,8 @@ import java.util.List;
 /**
  * Created by Roberto on 20/05/2017.
  */
+
+
 @Path("/usuario")
 
 public class UsuarioController {
@@ -59,16 +65,36 @@ public class UsuarioController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCapturasUsuario(@PathParam("id") int idUsuario){
 
-
-        if (idUsuario >= 0){
-            Usuario usuario = new Usuario();
-            List<Captura> capturaList =  usuario.getCapturasUsuario(idUsuario);
-            return Response.status(200).entity(capturaList).build();
+        Usuario usuario = new Usuario();
+        if (usuario.getCapturasUsuario(idUsuario).size()>=1){
+            Usuario usuario2 = new Usuario();
+            List<Captura> capturaList =  usuario2.getCapturasUsuario(idUsuario);
+            for (int i = 0; i < capturaList.size(); i++){
+                System.out.println(capturaList.get(i).getNombreetakemon());
+            }
+            GenericEntity<List<Captura>> entity = new GenericEntity<List<Captura>>(capturaList) {};
+            return Response.status(201).entity(entity).build();
 
         }
         else
         {
-            String noResult = "No tiene captuas.";
+            String noResult = "No tiene capturas.";
+            return Response.status(404).entity(noResult).build();
+        }
+    }
+
+    @GET
+    @Path("/{email}/logros")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLogrosUsuario(@PathParam("email") String email ){
+        Usuario usuario = new Usuario();
+        if (email!=null){
+           List<Logros> logrosList = usuario.getLogrosUsuario(email);
+           GenericEntity<List<Logros>> entity = new GenericEntity<List<Logros>>(logrosList){};
+            return Response.status(201).entity(entity).build();
+        }
+        else {
+            String noResult = "Email incorrecto.";
             return Response.status(404).entity(noResult).build();
         }
     }
@@ -86,11 +112,17 @@ public class UsuarioController {
     @GET
     @Path("/got_email/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getUsuarioByEmail(@PathParam("email") String email){
+    public Response getUsuarioByEmail(@PathParam("email") String email){
 
+        if (email!=null){
         Usuario finded = new Usuario();
         finded = finded.select(email);
-        return finded;
+        return Response.status(201).entity(finded).build();
+        }
+        else {
+            String noResult = "Email incorrecto.";
+            return Response.status(404).entity(noResult).build();
+        }
     }
 
     @POST
