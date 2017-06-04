@@ -4,6 +4,7 @@
 $(document).ready(function() {
 
     $("#registrar_loader_div").hide();
+    $("#login_loader_div").hide();
 
     $("#registrar_button").click(function (e) {
 
@@ -44,6 +45,9 @@ $(document).ready(function() {
 
         if (validateLogin()) {
 
+            $("#login_loader_div").show();
+            $("#login_button").hide();
+
             $.ajax({
                 url: "http://localhost:8080/myapp/usuario/login",
                 type: "POST",
@@ -52,11 +56,15 @@ $(document).ready(function() {
                 statusCode: {
                     201: function (result) {
                         window.location.href="userLoged.html?email="+result.email;
+                        $("#login_loader_div").hide();
+                        $("#login_button").show();
                     },
                     404: function () {
                         alert("Error al iniciar sesión");
                         document.getElementById("contrasena_login").value = "";
                         $("#contrasena_login").css("border", "2px solid red");
+                        $("#login_loader_div").hide();
+                        $("#login_button").show();
                     }
                 }
             })
