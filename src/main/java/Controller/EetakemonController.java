@@ -37,7 +37,7 @@ public class EetakemonController {
         Etakemon etakemon = new Etakemon();
         return etakemon.getAllEtakemon();
     }
-    
+
 //Funcion para insertar Etakemon
     @POST
     @Path("/new")
