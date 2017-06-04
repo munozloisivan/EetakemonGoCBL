@@ -10,6 +10,7 @@ $(document).ready(function() {
             document.getElementById(actual_id).innerHTML = "<div class='thumbnail' id='"+actual_eetakemon+"' style='align-content: center'>" ;
             document.getElementById(actual_eetakemon).innerHTML = "<img src='"+json[i].imagen+"' alt='"+actual_eetakemon+"' style='width:100%'><div class='caption'><p>"+actual_eetakemon+"</p>";
         }
+
     })
 })
 
