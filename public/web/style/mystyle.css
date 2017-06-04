@@ -44,18 +44,7 @@ label{
 #myBtn:hover {
     background-color: #ff9300;
 }
-#descripcion_cont {
-    max-width: 100%;
 
-    -moz-transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
-#descripcion_cont:hover {
-    -moz-transform: scale(1.03);
-    -webkit-transform: scale(1.03);
-    transform: scale(1.03);
-}
 .loader {
     border: 10px solid rgba(0, 0, 0, 0);
     border-top: 10px solid #fff000;
@@ -82,6 +71,54 @@ label{
     color: #000000;
     border-color: black;
 }
-textarea {
-    resize: none;
+#espacio{
+    background: transparent;
 }
+/*footer*/
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.demo {
+    margin: 0 auto;
+    padding-top: 64px;
+    max-width: 640px;
+    width: 94%;
+}
+
+.demo h1 {
+    margin-top: 0;
+}
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    clear: both;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
+/*footer*/
