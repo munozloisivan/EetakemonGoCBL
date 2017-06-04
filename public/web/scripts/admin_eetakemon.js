@@ -6,8 +6,8 @@ $(document).ready(function() {
             tr = $('<tr/>');
             tr.append("<td>" + json[i].nombre + "</td>");
             tr.append("<td>" + json[i].habilidad + "</td>");
-            tr.append("<td>" + json[i].tipo + "</td>");
-            tr.append("<td>" + json[i].id+ "</td>");
+            tr.append("<td>" + json[i].descripcion + "</td>");
+            tr.append("<td>" + json[i].tipo+ "</td>");
             tr.append("<td><button type='button' onclick='settingsEetakemon(this.id)' id='settings' class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-wrench'></span></td>");
             $('table').append(tr);
             $("#delete").attr('id',json[i].id);
