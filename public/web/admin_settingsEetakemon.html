@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
-    <script src="scripts/admin_settingsUsuario.js"></script>
+    <script src="scripts/admin_settingsEetakemon.js"></script>
     <script src="scripts/sweetalert.min.js"></script>
 </head>
 <body>
@@ -21,13 +21,13 @@
 </div>
 
 <ul class="nav nav-tabs nav-justified" id="navdefault">
-    <li class="active"><a><h4 class="naveg"><span class="glyphicon glyphicon-wrench"></span><strong> Ajustes de Usuarios</strong></h4></a></li>
-    <li><a href="admin_usuarios.html"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span><strong> Atrás</strong></h4></a></li>
+    <li class="active"><a><h4 class="naveg"><span class="glyphicon glyphicon-wrench"></span><strong> Ajustes de Eetakedex</strong></h4></a></li>
+    <li><a href="admin_eetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span><strong> Atrás</strong></h4></a></li>
 </ul>
 <br>
 
 <div class="alert alert-danger col-md-10 col-md-offset-1" align="center">
-    <strong>¡Atención!</strong> Estas editando los datos privados de un <strong>usuario</strong>, respeta su <strong>privacidad</strong>.
+    <strong>¡Atención!</strong> Estas editando el contenido de la <strong>Eetakedex</strong>, esto puede alterar la experiencia de <strong>juego</strong>.
 </div>
 
 <div class="container-fluid col-md-6 col-md-offset-1" id="settings_form_cont">
@@ -36,22 +36,18 @@
         <div class="form-group">
             <h4 id="nombreSettings"><strong>Nombre: </strong></h4>
             <input type="text" class="form-control" oninput="validNombreUpdate()" id="nombre" placeholder="Nuevo nombre" required>
-            <div id="nombre_error"></div>
         </div>
         <div class="form-group">
-            <h4 id="correoSettings"><strong>Correo electrónico: </strong></h4>
-            <input type="email" class="form-control" oninput="validEmailUpdate()" id="email" placeholder="Nuevo correo electrónico" required>
-            <div id="email_error"></div>
+            <h4 id="habilidadSettings"><strong>Habilidad: </strong></h4>
+            <input type="text" class="form-control" oninput="validEmailUpdate()" id="habilidad" placeholder="Nueva habilidad" required>
         </div>
         <div class="form-group">
-            <h4 id="nickSetting"><strong>Nombre de usuario: </strong></h4>
-            <input type="text" class="form-control" oninput="validUsuarioUpdate()" minlength="4" id="usuario" placeholder="Nuevo nombre de usuario" required>
-            <div id="usuario_error"></div>
+            <h4 id="descripcionSetting"><strong>Descripción: </strong></h4>
+            <textarea class="form-control" rows="4" id="descripcion" required></textarea>
         </div>
         <div class="form-group">
-            <h4 id="contrasenaSettings"><strong>Contraseña: </strong></h4>
-            <input type="text" class="form-control" oninput="validPassUpdate()" minlength="7" id="contrasena" placeholder="Nueva contraseña" required>
-            <div id="contrasena_error"></div>
+            <h4 id="tipoSettings"><strong>Tipo: </strong></h4>
+            <input type="number" min="1" max="3" class="form-control" oninput="validPassUpdate()" id="tipo" placeholder="Nuevo tipo" required>
         </div>
         <br>
         <div class="form-group">

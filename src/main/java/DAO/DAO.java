@@ -176,6 +176,8 @@ public abstract class DAO{
                 etakemon.setNombre(rs.getString("nombre"));
                 etakemon.setHabilidad(rs.getString("habilidad"));
                 etakemon.setTipo(rs.getInt("tipo"));
+                etakemon.setDescripcion(rs.getString("decripcion"));
+                etakemon.setImagen(rs.getString("imagen"));
 
                 return etakemon;
             }

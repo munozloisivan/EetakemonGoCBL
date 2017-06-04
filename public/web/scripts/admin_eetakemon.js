@@ -10,7 +10,7 @@ $(document).ready(function() {
             tr.append("<td>" + json[i].tipo+ "</td>");
             tr.append("<td><button type='button' onclick='settingsEetakemon(this.id)' id='settings' class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-wrench'></span></td>");
             $('table').append(tr);
-            $("#delete").attr('id',json[i].id);
+            $("#settings").attr('id',json[i].id);
         }
     })
 })
@@ -39,5 +39,5 @@ function reloadUserLoged(){
 
 function settingsEetakemon(id) {
     var settingsID = document.getElementById(id).id;
-    window.location.href="admin_settingsUsuario.html?id="+settingsID;
+    window.location.href="admin_settingsEetakemon.html?id="+settingsID;
 }

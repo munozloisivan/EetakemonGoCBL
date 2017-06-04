@@ -5,10 +5,10 @@ $(document).ready(function() {
     idSettingsUsuario = getUrlParameter('id');
 
     $.get("http://localhost:8080/myapp/usuario/got_id/" + idSettingsUsuario, function (data) {
-        $("#nombreSettings").append(data.nombre);
-        $("#nickSetting").append(data.nick);
-        $("#correoSettings").append(data.email);
-        $("#contrasenaSettings").append(data.contrasena);
+        $("#nombre").val(data.nombre);
+        $("#usuario").val(data.nick);
+        $("#email").val(data.email);
+        $("#contrasena").val(data.contrasena);
     })
 
     $("#settings_button").click(function (e) {
