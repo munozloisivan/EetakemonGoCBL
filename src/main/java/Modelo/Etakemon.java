@@ -66,4 +66,20 @@ public class Etakemon extends EtakemonDAO{
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

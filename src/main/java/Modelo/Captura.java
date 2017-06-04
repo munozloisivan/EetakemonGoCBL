@@ -169,4 +169,12 @@ public class Captura extends CapturaDAO{
     public void setHabilidadetakemon(String habilidadetakemon) {
         this.habilidadetakemon = habilidadetakemon;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }
