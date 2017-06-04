@@ -29,7 +29,12 @@ $(document).ready(function() {
                         $("#registrar_loader_div").hide();
                     },
                     400: function () {
-                        alert("Ha ocurrido un error durante el registro, es posible que el email ya esté en uso.");
+                        swal({
+                            title: "¡Vaya!",
+                            text: "¡Parece ser el correo electrónico ya se ha utilizado!",
+                            type: "error",
+                            confirmButtonText: "Vale"
+                        });
                         $("#registrar_button_div").show();
                         $("#registrar_loader_div").hide();
                     }
@@ -60,7 +65,12 @@ $(document).ready(function() {
                         $("#login_button").show();
                     },
                     404: function () {
-                        alert("Error al iniciar sesión");
+                        swal({
+                            title: "¡Vaya!",
+                            text: "¡Parece ser que ha habido un error al iniciar sesión!",
+                            type: "error",
+                            confirmButtonText: "Pruebo de nuevo"
+                        });
                         document.getElementById("contrasena_login").value = "";
                         $("#contrasena_login").css("border", "2px solid red");
                         $("#login_loader_div").hide();

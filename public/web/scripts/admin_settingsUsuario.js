@@ -20,29 +20,68 @@ $(document).ready(function() {
         e.preventDefault();
 
         if (validateUpdate()) {
-            $.ajax({
-                url: "http://localhost:8080/myapp/usuario/admin_edit",
-                type: "POST",
-                data: JSON.stringify(datosEdit),
-                contentType: "application/json",
-                statusCode: {
-                    201: function () {
-                        window.location.href="admin_usuarios.html"
-                    },
-                    418: function () {
-                        alert("Ha ocurrido un error durante la actualización de los datos.");
+            swal({
+                    title: "¿Estas seguro?",
+                    text: "Actualizar los datos de un usuario puede afectar a su jugabilidad.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "¡Actualízalo!",
+                    cancelButtonText: "Atrás",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "http://localhost:8080/myapp/usuario/admin_edit",
+                            type: "POST",
+                            data: JSON.stringify(datosEdit),
+                            contentType: "application/json",
+                            statusCode: {
+                                201: function () {
+                                    window.location.href="admin_usuarios.html"
+                                },
+                                418: function () {
+                                    swal({
+                                        title: "¡Vaya!",
+                                        text: "¡Ha ocurrido un error durane la actualización de los datos!",
+                                        type: "error",
+                                        confirmButtonText: "Vale"
+                                    });
+                                }
+                            }
+                        })
+                    } else {
+                        swal("Cancelado", "¡Se ha cancelado el proceso de actualización!", "error");
                     }
-                }
-            })
+                });
         }
     })
 
     $("#delete_button").click(function (e) {
 
-        $.get( "http://localhost:8080/myapp/usuario/delete/"+idSettingsUsuario , function() {
-            alert("Usuario eliminado");
-            window.location.href="admin_usuarios.html"
-        })
+        swal({
+                title: "¿Estas seguro?",
+                text: "Eliminar un usuario es una acción irreversible.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "¡Bórralo!",
+                cancelButtonText: "Atrás",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    $.get( "http://localhost:8080/myapp/usuario/delete/"+idSettingsUsuario , function() {
+                        window.location.href="admin_usuarios.html"
+                    })
+                } else {
+                    swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
+                }
+            });
+
 
     })
 })
