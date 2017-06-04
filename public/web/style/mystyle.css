@@ -5,9 +5,12 @@ div.container-fluid {
     border-radius: 25px;
     background-color: rgba(29, 108, 50, 0.85);
 }
-div.container-fluid:hover{
-
+.well{
+    border-radius: 25px;
+    background-color: rgba(255, 240, 0, 0.75);
+    border-color: rgba(29, 108, 50, 1);
 }
+
 p{
     color: #000000;
 }
@@ -74,10 +77,27 @@ label{
     color: #000000;
     border-color: black;
 }
+.btn-primary:focus{
+    background-color: #FF9300;
+    color: #000000;
+    border-color: black;
+}
+.btn-primary:active{
+    background-color: #FF9300;
+    color: #000000;
+    border-color: black;
+}
+
 #espacio{
     background: transparent;
 }
 #espacio2{
+    background: transparent;
+}
+#espacio3{
+    background: transparent;
+}
+#espacio4{
     background: transparent;
 }
 /*footer*/
