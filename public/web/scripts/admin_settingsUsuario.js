@@ -26,7 +26,7 @@ $(document).ready(function() {
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "¡Actualízalo!",
+                    confirmButtonText: "Actualizar",
                     cancelButtonText: "Atrás",
                     closeOnConfirm: false,
                     closeOnCancel: false
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
-                confirmButtonText: "¡Bórralo!",
+                confirmButtonText: "Borrar",
                 cancelButtonText: "Atrás",
                 closeOnConfirm: false,
                 closeOnCancel: false
