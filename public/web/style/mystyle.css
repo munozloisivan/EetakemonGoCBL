@@ -8,6 +8,9 @@ div.container-fluid {
 div.container-fluid:hover{
 
 }
+p{
+    color: #000000;
+}
 h4{
      color: black;
 }
@@ -120,5 +123,31 @@ body {
     z-index: 10;
     height: 3em;
     margin-top: -3em;
+}
+.three-columns {
+
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+
+    -webkit-column-gap: 120px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 60px; /* Firefox */
+    column-gap: 60px;
+
+    -webkit-column-gap: 4rem; /* Chrome, Safari, Opera */
+    -moz-column-gap: 4rem; /* Firefox */
+    column-gap: 4rem;
+
+    -webkit-column-rule: 5px solid rgb(75, 180, 149); /* Chrome, Safari, Opera */
+    -moz-column-rule: 5px solid rgb(75, 180, 149); /* Firefox */
+    column-rule: 5px solid rgb(75, 180, 149);
+
+    -webkit-column-rule: 0.5rem solid rgb(75, 180, 149); /* Chrome, Safari, Opera */
+    -moz-column-rule: 0.5rem solid rgb(75, 180, 149); /* Firefox */
+    column-rule: 0.5rem solid rgb(75, 180, 149);
+
+    margin: 30px;
+    margin: 2rem;
+
 }
 /*footer*/
