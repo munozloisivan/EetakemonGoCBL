@@ -32,6 +32,8 @@ public abstract class EtakemonDAO extends DAO{
                 etakemon.setNombre(rs.getString("nombre"));
                 etakemon.setHabilidad(rs.getString("habilidad"));
                 etakemon.setTipo(rs.getInt("tipo"));
+                etakemon.setImagen(rs.getString("imagen"));
+                etakemon.setDescripcion(rs.getString("descripcion"));
                 listaEtakemon.add(etakemon);
             }
         }

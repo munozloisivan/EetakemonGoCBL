@@ -371,6 +371,7 @@ public abstract class UsuarioDAO extends DAO {
                 capturaUsuario.setNombreetakemon(rs.getString("nombreetakemon"));
                 capturaUsuario.setHabilidadetakemon(rs.getString("habilidadetakemon"));
                 capturaUsuario.setTipoetakemon(rs.getInt("tipoetakemon"));
+                capturaUsuario.setImagen(rs.getString("imagen"));
                 listaCapturaUsuario.add(capturaUsuario);
             }
         } catch (SQLException e) {

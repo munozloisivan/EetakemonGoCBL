@@ -70,14 +70,15 @@ label{
     100% { transform: rotate(360deg); }
 }
 
-#registrar_button{
+.btn-primary{
     color: #000000;
     background-color: #fff000;
     font-weight: bold;
     border-color: black;
 }
 
-#registrar_button:hover{
+.btn-primary:hover{
     background-color: #FF9300;
+    color: #000000;
+    border-color: black;
 }
-
