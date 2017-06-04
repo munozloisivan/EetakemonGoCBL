@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
     <title>Eetakemon GO</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
@@ -16,20 +14,19 @@
     <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
     <script src="scripts/admin_settingsEetakemon.js"></script>
     <script src="scripts/sweetalert.min.js"></script>
-
 </head>
 <body>
 
 <div class="page-header" align="center" style>
     <img class="img-responsive" src="images/Eetakemon-GO.png" alt="Eetakemon-Go-Logo">
 </div>
-
 <ul class="nav nav-tabs nav-justified" id="navdefault">
-    <li class="active"><a><h4 class="naveg"><span class="glyphicon glyphicon-wrench"></span><strong> Ajustes de Eetakedex</strong></h4></a></li>
-    <li><a href="admin_eetakemon.html"><h4 class="naveg"><span class="glyphicon glyphicon-share-alt"></span><strong> Atrás</strong></h4></a></li>
+    <li class="active"><a href="index.html"><h4 class="naveg"><span class="glyphicon glyphicon-home"></span><strong> Inicio</strong></h4></a></li>
+    <li><a href="eetakedex.html"><h4 class="naveg"><span class="glyphicon glyphicon glyphicon-th-list"></span><strong> Eetakedex</strong></h4></a></li>
+    <li><a href="registro.html"><h4 class="naveg"><span class="glyphicon glyphicon-user"></span><strong> Registrarse</strong></h4></a></li>
+    <li><a href="login.html"><h4 class="naveg"><span class="glyphicon glyphicon-log-in"></span><strong> Iniciar sesión</strong></h4></a></li>
 </ul>
 <br>
-
 
 <div class="container-fluid col-md-6 col-md-offset-1" id="settings_form_cont">
     <br>
@@ -38,38 +35,21 @@
             <h4 id="nombreSettings"><strong>Nombre: </strong></h4>
             <input type="text" class="form-control" oninput="validNombreUpdate()" id="Correo electronico" placeholder="Nuevo nombre" required>
         </div>
-
         <div class="form-group">
             <h4 id="habilidadSettings"><strong>Asunto: </strong></h4>
             <input type="text" class="form-control" oninput="validEmailUpdate()" id="Asunto" placeholder="Nueva habilidad" required>
         </div>
-
         <div class="form-group">
             <h4 id="descripcionSetting"><strong>Descripción: </strong></h4>
             <textarea class="form-control" rows="4" id="descripcion" required></textarea>
         </div>
         <br>
-
         <div class="form-group">
             <button type="submit" id="settings_button" class="btn btn-warning btn-block btn-md">Aplicar cambios</button>
         </div>
-
         <br>
     </form>
-
-</div>
-
-<div class="container-fluid col-md-3 col-md-offset-1" id="delete_form_cont">
-    <br>
-
-
-    <br>
 </div>
 </body>
 </html>
-
-
-
-
-
 
