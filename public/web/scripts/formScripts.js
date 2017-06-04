@@ -3,6 +3,8 @@
  */
 $(document).ready(function() {
 
+    $("#registrar_loader_div").hide();
+
     $("#registrar_button").click(function (e) {
 
         var datosRegistro = {
@@ -12,6 +14,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         if (validateRegister()) {
+            $("#registrar_button_div").hide();
+            $("#registrar_loader_div").show();
             $.ajax({
                 url: "http://localhost:8080/myapp/usuario/new",
                 type: "POST",
@@ -20,9 +24,13 @@ $(document).ready(function() {
                 statusCode: {
                     201: function (result) {
                         window.location.href="registrado.html?email="+result.email;
+                        $("#registrar_button_div").show();
+                        $("#registrar_loader_div").hide();
                     },
                     400: function () {
                         alert("Ha ocurrido un error durante el registro, es posible que el email ya esté en uso.");
+                        $("#registrar_button_div").show();
+                        $("#registrar_loader_div").hide();
                     }
                 }
             })
@@ -96,16 +104,59 @@ function validateLogin() {
     }
 }
 
+// Robustez del REGISTRO
 function validNombreRegistro() {
     var inputNombre = document.getElementById("nombre");
 
     if(inputNombre.checkValidity()==false){
         $("#nombre").css("border", "2px solid red");
     }else $("#nombre").css("border", "2px solid lime");
-
 }
 
-// Robustez del REGISTRO
+function validEmailRegistro() {
+    var inputEmail = document.getElementById("email");
+
+    if(inputEmail.checkValidity()==false){
+        $("#email").css("border", "2px solid red");
+    }else $("#email").css("border", "2px solid lime");
+}
+
+function validEmailConfirmRegistro() {
+    var inputEmailConfirm = document.getElementById("emailConfirm");
+    var inputEmail = document.getElementById("email");
+
+    if((inputEmailConfirm.checkValidity()==false)||(inputEmail.value!=inputEmailConfirm.value)){
+        $("#emailConfirm").css("border", "2px solid red");
+    }else $("#emailConfirm").css("border", "2px solid lime");
+}
+
+function validUsuarioRegistro() {
+    var inputNick = document.getElementById("usuario");
+
+    if(inputNick.checkValidity()==false){
+        $("#usuario").css("border", "2px solid red");
+    }else $("#usuario").css("border", "2px solid lime");
+}
+
+function validPassRegistro() {
+    var inputPass = document.getElementById("contrasena");
+
+    if(inputPass.checkValidity()==false){
+        $("#contrasena").css("border", "2px solid red");
+    }else $("#contrasena").css("border", "2px solid lime");
+}
+
+function validPassConfirmRegistro() {
+    var inputPassConfirm = document.getElementById("contrasenaConfirm");
+    var inputPass = document.getElementById("contrasena");
+
+    if((inputPassConfirm.checkValidity()==false)||(inputPass.value!=inputPassConfirm.value)){
+        $("#contrasenaConfirm").css("border", "2px solid red");
+    }else $("#contrasenaConfirm").css("border", "2px solid lime");
+}
+
+
+
 function validateRegister() {
     var inputNombre = document.getElementById("nombre");
     var inputEmail = document.getElementById("email");
