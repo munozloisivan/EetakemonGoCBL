@@ -59,8 +59,9 @@ public class App {
         // **********************************************************************************************
 
 
-        Usuario usuario = new Usuario();
-        usuario.mensajesCorreo();
+      //  Usuario usuario = new Usuario();
+     //   System.out.println(usuario.getCapturasUsuario(7).size());
+      //  usuario.mensajesCorreo();
 
      /*   EnviarMail enviarMail = new EnviarMail();
         try {

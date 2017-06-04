@@ -45,13 +45,32 @@ public class UsuarioController {
         return lista.getObjetosUsuario(idUsuario);
     }
 
+//    @GET
+//    @Path("/{id}/get_capturas")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Captura> getCapturasUsuario(@PathParam("id") int idUsuario){
+//
+//        Usuario lista = new Usuario();
+//        return lista.getCapturasUsuario(idUsuario);
+//    }
+
     @GET
     @Path("/{id}/get_capturas")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Captura> getCapturasUsuario(@PathParam("id") int idUsuario){
+    public Response getCapturasUsuario(@PathParam("id") int idUsuario){
 
-        Usuario lista = new Usuario();
-        return lista.getCapturasUsuario(idUsuario);
+
+        if (idUsuario >= 0){
+            Usuario usuario = new Usuario();
+            List<Captura> capturaList =  usuario.getCapturasUsuario(idUsuario);
+            return Response.status(200).entity(capturaList).build();
+
+        }
+        else
+        {
+            String noResult = "No tiene captuas.";
+            return Response.status(404).entity(noResult).build();
+        }
     }
 
     @GET
