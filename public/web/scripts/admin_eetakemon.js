@@ -6,11 +6,11 @@ $(document).ready(function() {
             tr = $('<tr/>');
             tr.append("<td>" + json[i].nombre + "</td>");
             tr.append("<td>" + json[i].habilidad + "</td>");
-            tr.append("<td>" + json[i].tipo + "</td>");
-            tr.append("<td>" + json[i].id+ "</td>");
-            tr.append("<td><button type='button' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
+            tr.append("<td>" + json[i].descripcion + "</td>");
+            tr.append("<td>" + json[i].tipo+ "</td>");
+            tr.append("<td><button type='button' onclick='settingsEetakemon(this.id)' id='settings' class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-wrench'></span></td>");
             $('table').append(tr);
-            $("#delete").attr('id',json[i].id);
+            $("#settings").attr('id',json[i].id);
         }
     })
 })
@@ -37,3 +37,7 @@ function reloadUserLoged(){
     window.location.href="userLoged.html?email="+sessionStorage.emailLoged;
 }
 
+function settingsEetakemon(id) {
+    var settingsID = document.getElementById(id).id;
+    window.location.href="admin_settingsEetakemon.html?id="+settingsID;
+}

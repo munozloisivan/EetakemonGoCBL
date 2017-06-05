@@ -7,9 +7,11 @@
     <link rel="shortcut icon" href="images/ico_pokeball.png" type="image/png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="style/sweetalert.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="scripts/formScripts.js"></script>
+    <script src="scripts/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -40,6 +42,9 @@
         <br>
         <div class="form-group">
             <button type="submit" id="login_button" class="btn btn-primary btn-block btn-md">Iniciar sesión</button>
+        </div>
+        <div class="form-group" id="login_loader_div" align="center">
+            <div class="loader" id="loader_login"></div>
         </div>
         <br>
     </form>

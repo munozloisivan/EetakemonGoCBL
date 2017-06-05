@@ -25,7 +25,7 @@ public class EetakemonController {
     @Produces(MediaType.APPLICATION_JSON)
     public Etakemon getEtakemonbyId(@PathParam("id") int id){
         Etakemon etakemon = new Etakemon();
-        etakemon.select(id);
+        etakemon = (Etakemon) etakemon.select(id);
         return etakemon;
     }
 
@@ -37,7 +37,7 @@ public class EetakemonController {
         Etakemon etakemon = new Etakemon();
         return etakemon.getAllEtakemon();
     }
-    
+
 //Funcion para insertar Etakemon
     @POST
     @Path("/new")
