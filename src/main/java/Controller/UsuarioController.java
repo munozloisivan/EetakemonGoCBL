@@ -74,7 +74,6 @@ public class UsuarioController {
             }
             GenericEntity<List<Captura>> entity = new GenericEntity<List<Captura>>(capturaList) {};
             return Response.status(201).entity(entity).build();
-
         }
         else
         {
