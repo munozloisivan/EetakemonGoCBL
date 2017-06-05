@@ -1,6 +1,7 @@
 package Controller;
 
 import Modelo.Etakemon;
+import Modelo.Usuario;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
@@ -25,7 +26,7 @@ public class EetakemonController {
     @Produces(MediaType.APPLICATION_JSON)
     public Etakemon getEtakemonbyId(@PathParam("id") int id){
         Etakemon etakemon = new Etakemon();
-        etakemon = (Etakemon) etakemon.select(id);
+        etakemon = etakemon.selectbyID(id);
         return etakemon;
     }
 
@@ -38,35 +39,53 @@ public class EetakemonController {
         return etakemon.getAllEtakemon();
     }
 
-//Funcion para insertar Etakemon
     @POST
-    @Path("/new")
+    @Path("/admin_edit")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean createEtakemonInJSON(Etakemon etakemon){
+    public Response editEetakemonByAdmin(Etakemon in) {
+        Etakemon u = new Etakemon();
 
-        if (etakemon.insert()){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-//Funcion para eliminar Etakemon
-    @POST
-    @Path("/delete/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteEtakemonInJSON(@PathParam("id") int id) {
-        Etakemon etakemon = new Etakemon();
-
-        if (etakemon.select(id)!=null){
-            etakemon.delete(id);
-            String yesResult = "Etakemon eliminado.";
+        if (u.selectbyID(in.getId())!=null){
+            u.updateEetakemonDataByAdmin(in.getId(),in.getNombre(),in.getHabilidad(),in.getDescripcion(),in.getImagen(),in.getTipo());
+            String yesResult = "Usuario editado.";
             return Response.status(201).entity(yesResult).build();
         }
         else {
             String noResult = "El id no existe.";
             return Response.status(418).entity(noResult).build();
+        }
+    }
+
+//Funcion para insertar Etakemon
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createEetakemonInJSON(Etakemon etakemon) {
+
+        if (etakemon.insert(etakemon)) {
+            String yesResult = "Eetakemon insertado.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else{
+            String noResult = "Error no existe.";
+            return Response.status(400).entity(noResult).build();
+        }
+    }
+
+//Funcion para eliminar Etakemon
+    @GET
+    @Path("/delete/{id}")
+    public Response deleteEetakemonInJSON(@PathParam("id") int id) {
+        Etakemon u = new Etakemon();
+
+        if (u.selectbyID(id)!=null){
+            u.delete(id);
+            String yesResult = "Eetakemon eliminado.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else {
+            String noResult = "El id no existe.";
+            return Response.status(404).entity(noResult).build();
         }
     }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>Eetakemon GO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,21 +39,25 @@
             <input type="text" class="form-control" oninput="validNombreUpdate()" id="nombre" placeholder="Nuevo nombre" required>
             <div id="nombre_error"></div>
         </div>
+
         <div class="form-group">
             <h4 id="correoSettings"><strong>Correo electrónico: </strong></h4>
             <input type="email" class="form-control" oninput="validEmailUpdate()" id="email" placeholder="Nuevo correo electrónico" required>
             <div id="email_error"></div>
         </div>
+
         <div class="form-group">
             <h4 id="nickSetting"><strong>Nombre de usuario: </strong></h4>
             <input type="text" class="form-control" oninput="validUsuarioUpdate()" minlength="4" id="usuario" placeholder="Nuevo nombre de usuario" required>
             <div id="usuario_error"></div>
         </div>
+
         <div class="form-group">
             <h4 id="contrasenaSettings"><strong>Contraseña: </strong></h4>
             <input type="text" class="form-control" oninput="validPassUpdate()" minlength="7" id="contrasena" placeholder="Nueva contraseña" required>
             <div id="contrasena_error"></div>
         </div>
+
         <br>
         <div class="form-group">
             <button type="submit" id="settings_button" class="btn btn-warning btn-block btn-md">Aplicar cambios</button>
@@ -70,7 +75,17 @@
         <button type="submit" id="delete_button" class="btn btn-danger btn-block btn-md">Eliminar usuario</button>
     </div>
     <br>
-</div>
 
+</div>
+<div class="container-fluid col-md-10 col-md-offset-1" id="espacio3">
+    <br>
+</div>
+<div class="container-fluid col-md-10 col-md-offset-1" id="espacio4">
+    <br>
+</div>
+<div class="footer ">
+    <ul>&copy; Proyecto elaborado por Roberto Arranz, Daniel Martínez e Iván Muñoz para la asignatura de DSA - <a href="http://eetac.upc.edu">UPC Castelldefels</a>.</ul>
+
+</div>
 </body>
 </html>
