@@ -1,21 +1,9 @@
-var idSettingsEetakemon;
-
 $(document).ready(function() {
 
-    idSettingsEetakemon = getUrlParameter('id');
+    $("#add_button").click(function (e) {
 
-    $.get("http://localhost:8080/myapp/eetakemon/got_id/" + idSettingsEetakemon, function (data) {
-        $("#nombre").val(data.nombre);
-        $("#habilidad").val(data.habilidad);
-        $("#descripcion").val(data.descripcion);
-        $("#tipo").val(data.tipo);
-        $("#imagen").val(data.imagen);
-    })
-
-    $("#settings_button").click(function (e) {
-
-        var datosEdit = {
-            "id": idSettingsEetakemon,"nombre": $("#nombre").val(), "habilidad": $("#habilidad").val(),
+        var datosAdd = {
+            "nombre": $("#nombre").val(), "habilidad": $("#habilidad").val(),
             "descripcion": $("#descripcion").val(), "imagen": $("#imagen").val(), "tipo": $("#tipo").val()
         };
         e.preventDefault();
@@ -23,11 +11,11 @@ $(document).ready(function() {
         if (validateUpdate()) {
             swal({
                     title: "¿Estas seguro?",
-                    text: "Actualizar los datos de un eetakemon puede afectar a la jugabilidad.",
+                    text: "Añadir un eetakemon puede afectar a la jugabilidad.",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Actualizar",
+                    confirmButtonText: "Añadir",
                     cancelButtonText: "Atrás",
                     closeOnConfirm: false,
                     closeOnCancel: false
@@ -35,15 +23,15 @@ $(document).ready(function() {
                 function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "http://localhost:8080/myapp/eetakemon/admin_edit",
+                            url: "http://localhost:8080/myapp/eetakemon/new",
                             type: "POST",
-                            data: JSON.stringify(datosEdit),
+                            data: JSON.stringify(datosAdd),
                             contentType: "application/json",
                             statusCode: {
                                 201: function () {
                                     window.location.href="admin_eetakemon.html"
                                 },
-                                418: function () {
+                                400: function () {
                                     swal({
                                         title: "¡Vaya!",
                                         text: "¡Ha ocurrido un error durane la actualización de los datos!",
@@ -59,41 +47,7 @@ $(document).ready(function() {
                 });
         }
     })
-
-    $("#delete_button").click(function (e) {
-
-        swal({
-                title: "¿Estas seguro?",
-                text: "Eliminar un Eetakemon es una acción irreversible.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Borrar",
-                cancelButtonText: "Atrás",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    $.get( "http://localhost:8080/myapp/eetakemon/delete/"+idSettingsEetakemon , function() {
-                        window.location.href="admin_eetakemon.html"
-                    })
-                } else {
-                    swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
-                }
-            });
-    })
 })
-
-function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}/**
- * Created by Roberto on 04/06/2017.
- */
-
 
 function validNombreUpdate() {
     var inputNombre = document.getElementById("nombre");
@@ -135,7 +89,7 @@ function validTipoUpdate() {
     }else $("#tipo").css("border", "2px solid lime");
 }
 
-// Robustez del Update
+// Robustez del ADD
 function validateUpdate() {
     var inputNombre = document.getElementById("nombre");
     var inputHab = document.getElementById("habilidad");
@@ -174,4 +128,10 @@ function validateUpdate() {
     else {
         return true;
     }
+}
+
+function previewImagen() {
+
+    document.getElementById("preview").append = "<img src='"+$('#imagen').val()+"' style='width:100%'>";
+
 }

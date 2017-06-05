@@ -22,7 +22,7 @@ $(document).ready(function() {
         if (validateUpdate()) {
             swal({
                     title: "¿Estas seguro?",
-                    text: "Actualizar los datos de un usuario puede afectar a su jugabilidad.",
+                    text: "Actualizar los datos de un usuario puede afectar a su experiencia de juego.",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
@@ -81,8 +81,6 @@ $(document).ready(function() {
                     swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
                 }
             });
-
-
     })
 })
 
