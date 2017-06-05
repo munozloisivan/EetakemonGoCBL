@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <h4 id="imagenSetting"><strong>URL de la imagen: </strong></h4>
-            <textarea type="url" class="form-control" rows="3" oninput="validImagenUpdate(),previewImagen()" id="imagen" required></textarea>
+            <textarea type="url" class="form-control" rows="3" oninput="validImagenUpdate(); previewImagen();" id="imagen" required></textarea>
         </div>
         <div class="form-group">
             <h4 id="descripcionSetting"><strong>Descripción: </strong></h4>
@@ -63,9 +63,11 @@
 
 <div class="container-fluid col-md-3 col-md-offset-1" id="delete_form_cont">
     <br>
-    <div class="alert alert-info" align="center" id="preview">
+    <div class="alert alert-info" align="center">
         ¿Es esta tu <strong>imagen?</strong>
     </div>
+    <img src="" style="width: 300px; height: 300px;" id="preview">
+    <br>
     <br>
 </div>
 

@@ -132,6 +132,6 @@ function validateUpdate() {
 
 function previewImagen() {
 
-    document.getElementById("preview").append = "<img src='"+$('#imagen').val()+"' style='width:100%'>";
-
+    var imgpreview = $("#imagen").val();
+    $("#preview").attr('src', imgpreview);
 }
