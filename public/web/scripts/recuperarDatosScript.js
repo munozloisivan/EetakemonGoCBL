@@ -5,7 +5,7 @@
 $(document).ready(function() {
 
 
-    $('#enviar_button').on('click', function(evento){
+    $('#enviar_button').click(function (evento){
         evento.preventDefault();
 
         var email = $('#correo').val();
