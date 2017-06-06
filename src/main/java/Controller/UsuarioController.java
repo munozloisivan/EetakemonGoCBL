@@ -67,7 +67,7 @@ public class UsuarioController {
     public Response getCapturasUsuario(@PathParam("id") int idUsuario){
 
         Usuario usuario = new Usuario();
-        if (usuario.getCapturasUsuario(idUsuario).size()>=1){
+        if (idUsuario != 0){
             Usuario usuario2 = new Usuario();
             List<Captura> capturaList =  usuario2.getCapturasUsuario(idUsuario);
             for (int i = 0; i < capturaList.size(); i++){
