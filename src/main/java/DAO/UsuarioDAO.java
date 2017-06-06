@@ -373,6 +373,7 @@ public abstract class UsuarioDAO extends DAO {
                 capturaUsuario.setNombreetakemon(rs.getString("nombreetakemon"));
                 capturaUsuario.setHabilidadetakemon(rs.getString("habilidadetakemon"));
                 capturaUsuario.setTipoetakemon(rs.getInt("tipoetakemon"));
+                capturaUsuario.setImagen(rs.getString("imagen"));
                 listaCapturaUsuario.add(capturaUsuario);
             }
         } catch (SQLException e) {
@@ -404,11 +405,15 @@ public abstract class UsuarioDAO extends DAO {
         return listaCapturaUsuarioToRevive;
     }
 
-    public List<Objetos> getObjetosUsuario(int id) {
+
+    public List<Objetos> getObjetosUsuario(String email) {
+        Usuario u = new Usuario();
+        int idusuario = u.select(email).getId();
+
         List<Objetos> objetosList = new ArrayList<Objetos>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT idobjeto from objetosusuario WHERE idusuario =" + id + ";");
+            ResultSet resultSet = stmt.executeQuery("SELECT idobjeto from objetosusuario WHERE idusuario =" + idusuario + ";");
             while (resultSet.next()) {
                 Objetos objetos = new Objetos();
                 objetos.setId(resultSet.getInt("idobjeto"));
@@ -421,6 +426,110 @@ public abstract class UsuarioDAO extends DAO {
         }
         return objetosList;
     }
+//    public List<Objetos> getObjetosUsuario(String email) {
+//
+//        Usuario u = new Usuario();
+//        int idusuario = u.select(email).getId();
+//
+//        Objetos objetos = new Objetos();
+//        List<Objetos> objetosList1 = objetos.getAllObjects();
+//
+//        List<Objetos> objetosList = new ArrayList<Objetos>();
+//        try {
+//            Statement stmt = con.createStatement();
+//            ResultSet resultSet = stmt.executeQuery("SELECT idobjeto from objetosusuario WHERE idusuario =" + idusuario + ";");
+//            while (resultSet.next()) {
+//                Objetos objetos2 = new Objetos();
+//                if (resultSet.getInt("idobjeto") == 1){
+//
+//                }
+//                else if (resultSet.getInt("idobjeto") ==2){
+//
+//                }
+//                else if (resultSet.getInt("idobjeto") ==3){
+//                    objetos.setNombre("etakeball");
+//                    objetos.setDescripcion("úsala para atrapar a los etakemons salvajes");
+//                    objetosList.add(objetos);
+//                }
+//                else if (resultSet.getInt("idobjeto") ==4){
+//                    objetos.setNombre("revivir");
+//                    objetos.setDescripcion(" trae de vuelta a tu etakemon");
+//                    objetosList.add(objetos);
+//                }
+//                else if (resultSet.getInt("idobjeto") ==5){
+//                    objetos.setNombre("pocion1");
+//                    objetos.setDescripcion("cura a tu etakemon");
+//                    objetosList.add(objetos);
+//                }
+//                else if (resultSet.getInt("idobjeto") ==6){
+//                    objetos.setNombre("pocion2");
+//                    objetos.setDescripcion(" cura media vida a tu etakemon");
+//                    objetosList.add(objetos);
+//                }
+//                else if (resultSet.getInt("idobjeto") ==7){
+//                    objetos.setNombre("pocion3");
+//                    objetos.setDescripcion("cura al maximo a tu etakemon");
+//                    objetosList.add(objetos);
+//                }
+//
+//            }
+//
+//
+//
+////            int count1=0, count2=0, count3=0, count4=0, count5=0, count6=0, count7=0;
+////
+////            for (int i = 0; i < objetosList.size(); i++){
+////                if (objetosList.get(i).getId() == 1){
+////                    count1++;
+////                }
+////                else if (objetosList.get(i).getId() == 2){
+////                    count2++;
+////                }
+////                else if (objetosList.get(i).getId() == 3){
+////                    count3++;
+////                }
+////                else if (objetosList.get(i).getId() == 4){
+////                    count4++;
+////                }
+////                else if (objetosList.get(i).getId() == 5){
+////                    count5++;
+////                }
+////                else if (objetosList.get(i).getId() == 6){
+////                    count6++;
+////                }
+////                else if (objetosList.get(i).getId() == 7){
+////                    count7++;
+////                }
+////            }
+////
+////                if (count1 >= 0){
+////
+////                }
+////                if (count2 >= 0){
+////
+////                }
+////                if (count3 >= 0){
+////
+////                }
+////                if (count4 >= 0){
+////
+////                }
+////                if (count5 >= 0){
+////
+////                }
+////                if (count6 >= 0){
+////
+////                }
+////                if (count7 >= 0){}
+//
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            logger.error("getObjetosUsuario: "+e.getMessage());
+//        }
+//        return objetosList;
+//    }
 
     public List<Logros> getLogrosUsuario(int id) {
         List<Logros> logrosList = new ArrayList<Logros>();

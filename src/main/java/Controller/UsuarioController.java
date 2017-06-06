@@ -7,6 +7,7 @@ import Modelo.Captura;
 import Modelo.Logros;
 import Modelo.Objetos;
 import Modelo.Usuario;
+import com.sun.media.jfxmedia.Media;
 import com.sun.media.jfxmedia.logging.Logger;
 import sun.rmi.runtime.Log;
 
@@ -42,14 +43,14 @@ public class UsuarioController {
         return lista.getAllUsers();
     }
 
-    @GET
-    @Path("/{id}/get_objetos")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Objetos> getObjetosUsuario(@PathParam("id") int idUsuario){
-
-        Usuario lista = new Usuario();
-        return lista.getObjetosUsuario(idUsuario);
-    }
+//    @GET
+//    @Path("/{id}/get_objetos")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Objetos> getObjetosUsuario(@PathParam("id") int idUsuario){
+//
+//        Usuario lista = new Usuario();
+//        return lista.getObjetosUsuario(idUsuario);
+//    }
 
 //    @GET
 //    @Path("/{id}/get_capturas")
@@ -66,7 +67,7 @@ public class UsuarioController {
     public Response getCapturasUsuario(@PathParam("id") int idUsuario){
 
         Usuario usuario = new Usuario();
-        if (usuario.getCapturasUsuario(idUsuario).size()>=1){
+        if (idUsuario != 0){
             Usuario usuario2 = new Usuario();
             List<Captura> capturaList =  usuario2.getCapturasUsuario(idUsuario);
             for (int i = 0; i < capturaList.size(); i++){
@@ -122,6 +123,24 @@ public class UsuarioController {
             String noResult = "Email incorrecto.";
             return Response.status(404).entity(noResult).build();
         }
+    }
+
+    @GET
+    @Path("/{email}/objetos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getObjetosUsuario(@PathParam("email") String email){
+        if (email!=null){
+            Usuario usuario = new Usuario();
+
+            List<Objetos> objList = usuario.getObjetosUsuario(email);
+            GenericEntity<List<Objetos>> entity = new GenericEntity<List<Objetos>>(objList){};
+            return Response.status(201).entity(entity).build();
+        }
+        else {
+            String noResult = "Email incorrecto.";
+            return Response.status(404).entity(noResult).build();
+        }
+
     }
 
     @POST
