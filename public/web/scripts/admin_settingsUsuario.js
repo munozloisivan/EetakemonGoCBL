@@ -11,6 +11,20 @@ $(document).ready(function() {
         $("#contrasena").val(data.contrasena);
     })
 
+    $.getJSON("http://localhost:8080/myapp/usuario/"+ idSettingsUsuario+"/get_capturas", function (json) {
+        var tr;
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + json[i].nombreetakemon + "</td>");
+            tr.append("<td><img class='img-responsive' src='"+json[i].imagen+"' alt='"+json[i].nombreetakemon+"' style='width: 50px;height: 50px;' align='center'></td>");
+            tr.append("<td>" + json[i].habilidadetakemon + "</td>");
+            tr.append("<td>" + json[i].nivel + "</td>");
+            tr.append("<td>" + json[i].fecha+ "</td>");
+            tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
+            $('table').append(tr);
+        }
+    })
+
     $("#settings_button").click(function (e) {
 
         var datosEdit = {

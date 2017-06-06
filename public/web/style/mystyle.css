@@ -68,6 +68,14 @@ label{
     height: 50px;
     animation: spin 1.5s linear infinite;
 }
+#loader_eetakedex{
+    border: 10px solid rgba(0, 0, 0, 0);
+    border-top: 10px solid #fff000;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1.5s linear infinite;
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
