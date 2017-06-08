@@ -231,7 +231,15 @@ public class UsuarioController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response recuperardatos(String email){
         String emailAEnviar = email;
-        if (emailAEnviar != null){
+        Usuario prueba = new Usuario();
+        Boolean finded = false;
+        for (int i=0; i< prueba.getAllUsers().size(); i++){
+            if (emailAEnviar.equals(prueba.getAllUsers().get(i).getEmail())){
+                finded = true;
+            }
+        }
+
+        if (finded){
             EnviarMail enviarMail = new EnviarMail();
             try {
                 Usuario usuario = new Usuario();

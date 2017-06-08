@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="scripts/formScripts.js"></script>
+    <script src="scripts/recuperarDatosScript.js"></script>
     <script src="scripts/sweetalert.min.js"></script>
 </head>
 
@@ -39,6 +40,8 @@
             <label for="contrasena_login" class="control-label">Contraseña:</label>
             <input type="password" class="form-control" id="contrasena_login" oninput="validPass()" placeholder="Introduce tu contraseña" required>
         </div>
+        <br>
+        <a id="recuperar_pass"><p align="center"><strong>¡He olvidado mi contraseña!</strong></p></a>
         <br>
         <div class="form-group">
             <button type="submit" id="login_button" class="btn btn-info btn-block btn-md">Iniciar sesión</button>

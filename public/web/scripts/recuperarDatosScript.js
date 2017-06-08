@@ -4,50 +4,65 @@
 
 $(document).ready(function() {
 
+    $("#recuperar_pass").click(function () {
+        swal({
+            title: "¿Has olvidado tu contraseña?",
+            text: "Escribe tu correo para que podamos enviarte la contraseña",
+            type: "input",
+            animation: "slide-from-top",
+            inputPlaceholder: "Dirección de correo electrónico",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Envíar"
+        }, function(inputValue){
+            if (inputValue === false) return false;
 
-    $('#enviar_button').click(function (evento){
-        evento.preventDefault();
-
-        var email = $('#correo').val();
-        var url = 'http://localhost:8080/myapp/usuario/datos';
-        // http://localhost:8080/myapp/usuario/login
-        var datos = {
-            "email": email
-        };
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            //data: datos,
-            data: JSON.stringify(email),
-            contentType: "application/json",
-            statusCode: {
-
-                201: function (result) {
-                    swal({
-                        title: "¡Revisa tu bandeja de entrada!",
-                        text: "¡Ya le hemos enviado su contraseña con el correo con el que se registro!",
-                        type: "success",
-                        confirmButtonText: "Aceptar"
-                    });
-
-                    // redirigimos a otra página
-                    window.location.href = 'index.html';
-                },
-
-                418: function () {
-
-                    swal({
-                        title: "¡Vaya!",
-                        text: "¡Parece que no se ha encontrado el correo!",
-                        type: "error",
-                        confirmButtonText: "Pruebo de nuevo"
-                    });
-                }
+            if (inputValue === "") {
+                swal.showInputError("Tienes que escribir algo");
+                return false
             }
 
-        });
+            $.ajax({
+                url: 'http://localhost:8080/myapp/usuario/datos',
+                type: "POST",
+                data: JSON.stringify(inputValue),
+                contentType: "application/json",
+                statusCode: {
 
+                    201: function () {
+                        swal({
+                            title: "¡Revisa tu bandeja de entrada!",
+                            text: "Has recibido un correo con tu contraseña",
+                            type: "success",
+                            confirmButtonText: "Vale"
+                        });
+                    },
+
+                    418: function () {
+
+                        swal({
+                            title: "¡Vaya!",
+                            text: "¡Parece que el correo no esta registrado!",
+                            type: "error",
+                            confirmButtonText: "Vale"
+                        });
+                    }
+                }
+
+            });
+        });
     });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
