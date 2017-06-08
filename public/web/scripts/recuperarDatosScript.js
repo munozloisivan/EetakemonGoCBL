@@ -13,7 +13,8 @@ $(document).ready(function() {
             inputPlaceholder: "Dirección de correo electrónico",
             showCancelButton: true,
             closeOnConfirm: false,
-            confirmButtonText: "Envíar"
+            confirmButtonText: "Envíar",
+            cancelButtonText: "Atrás"
         }, function(inputValue){
             if (inputValue === false) return false;
 
