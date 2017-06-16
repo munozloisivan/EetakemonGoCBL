@@ -21,7 +21,7 @@ import java.util.Calendar;
  */
 public class App {
 
-    //public static final String BASE_URI = "http://localhost:8080/myapp";
+   // public static final String BASE_URI = "http://localhost:8080/myapp";
     public static final String BASE_URI = "http://147.83.7.155:8080/myapp";
 
     public static HttpServer startServer() {
@@ -36,7 +36,7 @@ public class App {
 
                                 //      NO BORRAR
         //****************************************************************************************************
-        BasicConfigurator.configure();    //es para el logger
+     //   BasicConfigurator.configure();    //es para el logger
 
         //     java.util.Date utilDate = new java.util.Date();
         //     java.sql.Date sq = new java.sql.Date(utilDate.getTime());
@@ -58,19 +58,5 @@ public class App {
 
                                 //^^^^^^^ NO BORRAR ^^^^^
         // **********************************************************************************************
-
-
-       Usuario usuario = new Usuario();
-       usuario.getCapturasUsuario(7);
-     //System.out.println(usuario.getCapturasUsuario(7).size());
-      //  usuario.mensajesCorreo();
-
-     /*   EnviarMail enviarMail = new EnviarMail();
-        try {
-            enviarMail.enviarMensaje("subject","contenido con tus datos ira aqui");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-*/
     }
 }
