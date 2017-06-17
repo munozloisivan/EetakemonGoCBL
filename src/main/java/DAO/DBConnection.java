@@ -26,12 +26,10 @@ public class DBConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
            Properties info = new Properties();
-           info.setProperty("user", "eetacea0");
-           //info.setProperty("password", "mysql");
+           info.setProperty("user", "ea0");
            info.setProperty("useSSL", "false");
            info.setProperty("serverTimezone", "UTC");
             con = DriverManager.getConnection(url, info);
-         //   con = DriverManager.getConnection("jdbc:mysql://localhost:3306/juego", "ea0",null);
             logger.info("Conexión BBDD creada \n");
         }
         catch (Exception e){
