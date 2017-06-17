@@ -21,12 +21,12 @@ public class DBConnection {
     public DBConnection(){
         Connection con = null;
         try{
-            String host = "eetacea0", database = "juego";
+            String host = "localhost", database = "juego";
             int port = 3306;
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
            Properties info = new Properties();
-           info.setProperty("user", "ea0");
+           info.setProperty("user", "eetacea0");
            //info.setProperty("password", "mysql");
            info.setProperty("useSSL", "false");
            info.setProperty("serverTimezone", "UTC");
