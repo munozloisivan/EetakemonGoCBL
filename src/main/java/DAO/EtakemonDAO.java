@@ -20,7 +20,7 @@ public abstract class EtakemonDAO extends DAO{
 
     public boolean insert(Etakemon etakemon){
         boolean added = false;
-        StringBuffer stringBuffer = new StringBuffer("INSERT into Etakemon (");
+        StringBuffer stringBuffer = new StringBuffer("INSERT into etakemon (");
         Field[] atributes = this.getClass().getDeclaredFields();
         int i =0;
         for (Field f : atributes){
@@ -61,7 +61,7 @@ public abstract class EtakemonDAO extends DAO{
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Etakemon");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM etakemon");
             while (rs.next()) {
                 Etakemon etakemon = new Etakemon();
                 etakemon.setId(rs.getInt("id"));
@@ -84,7 +84,7 @@ public abstract class EtakemonDAO extends DAO{
     public Etakemon selectbyID(int id) {
         Etakemon etakemon = new Etakemon();
 
-        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM Etakemon WHERE id ='" + id + "';");
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM etakemon WHERE id ='" + id + "';");
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
@@ -108,7 +108,7 @@ public abstract class EtakemonDAO extends DAO{
         boolean updated = false;
 
         try {
-            StringBuffer sb = new StringBuffer("UPDATE Etakemon SET ");
+            StringBuffer sb = new StringBuffer("UPDATE etakemon SET ");
             sb.append("nombre = '"+nombre+ "', habilidad= '"+habilidad+"', descripcion='" + descripcion + "', imagen='" + imagen + "', tipo="+tipo+" where id = " + id + ";");
 
             PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -128,7 +128,7 @@ public abstract class EtakemonDAO extends DAO{
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Etakemon WHERE tipo ="+tipo+";");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM etakemon WHERE tipo ="+tipo+";");
             while(resultSet.next()){
                 Etakemon etakemon = new Etakemon();
                 etakemon.setId(resultSet.getInt("id"));
@@ -158,7 +158,7 @@ public abstract class EtakemonDAO extends DAO{
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT tipo FROM Etakemon WHERE id ="+id+";");
+            ResultSet rs = stmt.executeQuery("SELECT tipo FROM etakemon WHERE id ="+id+";");
             while (rs.next()) {
                 tipo = rs.getInt("tipo");
             }

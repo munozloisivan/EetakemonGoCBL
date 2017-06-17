@@ -132,7 +132,7 @@ public abstract class CapturaDAO extends DAO {
 
         //y finalmente la insertamos
 
-        StringBuffer stringBuffer = new StringBuffer("INSERT into Captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha) VALUES (");
+        StringBuffer stringBuffer = new StringBuffer("INSERT into captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha) VALUES (");
         stringBuffer.append(idusuario+",");
         stringBuffer.append(captura.getIdetakemon()+",");
         stringBuffer.append(captura.getIdlocalizacion()+",");
@@ -168,7 +168,7 @@ public abstract class CapturaDAO extends DAO {
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Captura");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM captura");
             while (rs.next()) {
                 Captura captura = new Captura();
                 captura.setId(rs.getInt("id"));
