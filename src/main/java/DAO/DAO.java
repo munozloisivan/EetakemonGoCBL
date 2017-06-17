@@ -64,7 +64,7 @@ public abstract class DAO{
     public boolean insert(){
         boolean insertado = false;
         StringBuffer sb = new StringBuffer("INSERT INTO ");
-        sb.append(this.getClass().getSimpleName()+ " ("); //Usuario
+        sb.append(this.getClass().getSimpleName().toLowerCase()+ " ("); //Usuario
         Field[] atributes = this.getClass().getDeclaredFields();
 
         int i =0;
@@ -112,7 +112,7 @@ public abstract class DAO{
 
         sb.append(" FROM ");
 
-        sb.append(this.getClass().getSimpleName());
+        sb.append(this.getClass().getSimpleName().toLowerCase());
 
         sb.append(" WHERE id = "+id+";");
 
@@ -231,7 +231,7 @@ public abstract class DAO{
     public boolean delete(int id){
         boolean del = false;
         StringBuffer sb = new StringBuffer("DELETE FROM ");
-        sb.append(this.getClass().getSimpleName());
+        sb.append(this.getClass().getSimpleName().toLowerCase());
         sb.append(" WHERE id = " + id);
         logger.info("DELETE query: "+sb.toString());
 

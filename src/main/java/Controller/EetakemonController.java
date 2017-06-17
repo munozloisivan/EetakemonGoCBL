@@ -1,8 +1,6 @@
 package Controller;
 
 import Modelo.Etakemon;
-import Modelo.Usuario;
-
 import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

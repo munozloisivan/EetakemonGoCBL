@@ -25,7 +25,7 @@ public abstract class LocalizacionDAO extends DAO {
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Localizacion");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM localizacion");
             while (rs.next()) {
                 Localizacion localizacion = new Localizacion();
                 localizacion.setId(rs.getInt("id"));

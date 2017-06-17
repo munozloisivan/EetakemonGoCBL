@@ -24,7 +24,7 @@ public abstract class CofreDAO extends DAO {
         List<Cofre> cofreList = new ArrayList<Cofre>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet resultset = stmt.executeQuery("SELECT * FROM Cofre");
+            ResultSet resultset = stmt.executeQuery("SELECT * FROM cofre");
             while (resultset.next()){
                 Cofre cofre = new Cofre();
                 cofre.setId(resultset.getInt("id"));

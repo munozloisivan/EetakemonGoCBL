@@ -29,7 +29,7 @@ public abstract class UsuarioDAO extends DAO {
     //registro
     public boolean insert(Usuario usuario){
         boolean registrado = false;
-        StringBuffer stringBuffer = new StringBuffer("INSERT into Usuario (");
+        StringBuffer stringBuffer = new StringBuffer("INSERT into usuario (");
         Field[] atributes = this.getClass().getDeclaredFields();
         int i =0;
         for (Field f : atributes){
@@ -108,7 +108,7 @@ public abstract class UsuarioDAO extends DAO {
     public Usuario select(String email) {
         Usuario usuario = new Usuario();
 
-        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM Usuario WHERE email ='" + email + "';");
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM usuario WHERE email ='" + email + "';");
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
@@ -133,7 +133,7 @@ public abstract class UsuarioDAO extends DAO {
     public Usuario selectbyID(int id) {
         Usuario usuario = new Usuario();
 
-        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM Usuario WHERE id ='" + id + "';");
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM usuario WHERE id ='" + id + "';");
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
@@ -157,7 +157,7 @@ public abstract class UsuarioDAO extends DAO {
 
     //aplica solo a nick y password que se podran cambiar solo una vez
     public int selectModified(int id) {
-        StringBuffer sb = new StringBuffer("SELECT modified from Usuario where id = " + id);
+        StringBuffer sb = new StringBuffer("SELECT modified from usuario where id = " + id);
         int res = 2;
         int comparador = 2;
         try {
@@ -190,7 +190,7 @@ public abstract class UsuarioDAO extends DAO {
         selectModified(id);
         if (selectModified(id) == 0) {           //si es 0 no se ha modificado previamente y se puede actualizar
             try {
-                StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                StringBuffer sb = new StringBuffer("UPDATE usuario SET ");
                 sb.append("nick='" + nick + "', contrasena='" + password + "', modified=1 where id = " + id + ";");
 
                 PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -213,7 +213,7 @@ public abstract class UsuarioDAO extends DAO {
         boolean updated = false;
 
             try {
-                StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                StringBuffer sb = new StringBuffer("UPDATE usuario SET ");
                 sb.append("nombre = '"+nombre+ "', email= '"+email+"', nick='" + nick + "', contrasena='" + password + "', modified=1 where id = " + id + ";");
 
                 PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -243,7 +243,7 @@ public abstract class UsuarioDAO extends DAO {
             }
 
                 try {
-                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    StringBuffer sb = new StringBuffer("UPDATE usuario SET ");
                     sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
 
                     PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -264,7 +264,7 @@ public abstract class UsuarioDAO extends DAO {
                 experienciaActual = experienciaActual - experienciaToNextLevel;
             }
                 try {
-                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    StringBuffer sb = new StringBuffer("UPDATE usuario SET ");
                     sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
 
                     PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -285,7 +285,7 @@ public abstract class UsuarioDAO extends DAO {
                 experienciaActual = experienciaActual - experienciaToNextLevel;
             }
                 try {
-                    StringBuffer sb = new StringBuffer("UPDATE Usuario SET ");
+                    StringBuffer sb = new StringBuffer("UPDATE usuario SET ");
                     sb.append("nivel=" + nivelActual + ",experiencia=" + experienciaActual + " where id = " + id + ";");
 
                     PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
@@ -357,7 +357,7 @@ public abstract class UsuarioDAO extends DAO {
         List<Captura> listaCapturaUsuario = new ArrayList<Captura>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Captura WHERE captura.idusuariosss = " + id);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM captura WHERE captura.idusuariosss = " + id);
             while (rs.next()) {
                 Captura capturaUsuario = new Captura();
                 capturaUsuario.setId(rs.getInt("id"));
@@ -389,7 +389,7 @@ public abstract class UsuarioDAO extends DAO {
         List<Captura> listaCapturaUsuarioToRevive = new ArrayList<Captura>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM Captura WHERE captura.idusuariosss = " + id + " and estado = 0");
+            ResultSet resultSet = stmt.executeQuery("SELECT id, idetakemon FROM captura WHERE captura.idusuariosss = " + id + " and estado = 0");
             while (resultSet.next()) {
                 Captura capturaToRevive = new Captura();
                 capturaToRevive.setId(resultSet.getInt("id"));
@@ -554,7 +554,7 @@ public abstract class UsuarioDAO extends DAO {
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * from Batalla WHERE batalla.idcaptura = " + idcaptura + " and batalla.resultado = 1");
+            ResultSet resultSet = stmt.executeQuery("SELECT * from batalla WHERE batalla.idcaptura = " + idcaptura + " and batalla.resultado = 1");
             while (resultSet.next()) {
                 Batalla batallaGanada = new Batalla();
                 batallaGanada.setId(resultSet.getInt("id"));

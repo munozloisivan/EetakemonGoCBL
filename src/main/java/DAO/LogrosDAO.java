@@ -23,7 +23,7 @@ public abstract class LogrosDAO extends DAO {
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Logros");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM logros");
             while (rs.next()) {
                 Logros logros = new Logros();
                 logros.setId(rs.getInt("id"));

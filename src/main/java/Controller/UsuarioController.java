@@ -7,13 +7,8 @@ import Modelo.Captura;
 import Modelo.Logros;
 import Modelo.Objetos;
 import Modelo.Usuario;
-import com.sun.media.jfxmedia.Media;
-import com.sun.media.jfxmedia.logging.Logger;
-import sun.rmi.runtime.Log;
-
 import javax.inject.Singleton;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
