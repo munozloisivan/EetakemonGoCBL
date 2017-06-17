@@ -1,19 +1,11 @@
 package Main;
-import Controller.EnviarMail;
-import DAO.*;
-import DAO.UsuarioDAO;
-import Modelo.*;
-import org.apache.log4j.BasicConfigurator;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-
-import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Calendar;
 
 /**
