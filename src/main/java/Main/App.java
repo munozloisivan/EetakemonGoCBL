@@ -14,8 +14,8 @@ import java.util.Calendar;
  */
 public class App {
 
-   // public static final String BASE_URI = "http://localhost:8080/myapp";
-    public static final String BASE_URI = "http://147.83.7.155:8080/myapp";
+  // public static final String BASE_URI = "http://localhost:8080/myapp";
+  public static final String BASE_URI = "http://147.83.7.155:8080/myapp";
 
     public static HttpServer startServer() {
         //Crea un recurso que escanea peticiones
