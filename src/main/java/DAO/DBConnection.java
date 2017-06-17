@@ -21,7 +21,7 @@ public class DBConnection {
     public DBConnection(){
         Connection con = null;
         try{
-            String host = "localhost", database = "juego";
+            String host = "eetacea0", database = "juego";
             int port = 3306;
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
