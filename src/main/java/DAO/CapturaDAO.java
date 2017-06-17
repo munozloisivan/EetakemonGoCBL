@@ -34,9 +34,13 @@ public abstract class CapturaDAO extends DAO {
         Localizacion localizacion = new Localizacion();
 
         for (int i=0; i<20;i++) {
-            int idetakemon = etakemon.getRandomEtakemon();
+            etakemon = etakemon.getRandomEtakemon();
+            int idetakemon = etakemon.getId();
+            String nombreetakemon = etakemon.getNombre();
+            String imagenetakemon = etakemon.getImagen();
+            String habilidadetakemon = etakemon.getHabilidad();
             int idlocalizacion = localizacion.getRandomLocalizacion();
-            captura = new Captura(idetakemon,idlocalizacion);
+            captura = new Captura(idetakemon,idlocalizacion, nombreetakemon, habilidadetakemon, imagenetakemon);
             capturaList.add(captura);
         }
         return capturaList;

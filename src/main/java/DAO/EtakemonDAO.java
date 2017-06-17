@@ -147,9 +147,16 @@ public abstract class EtakemonDAO extends DAO{
 
 
     //generador aleatorio de Etakemons para generar capturas
-    public int getRandomEtakemon(){
+    public int getRandomIDEtakemon(){
         int numEtakemon = (int) Math.floor(Math.random()*((getAllEtakemon().size())-1+1)+1);
         return  numEtakemon;
+    }
+
+    public Etakemon getRandomEtakemon(){
+        Etakemon random = new Etakemon();
+        random = random.selectbyID(getRandomIDEtakemon());
+
+        return random;
     }
 
     public int getTipoParaCaptura(int id){
