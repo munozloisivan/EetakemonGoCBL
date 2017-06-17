@@ -24,13 +24,14 @@ public class DBConnection {
             String host = "localhost", database = "juego";
             int port = 3306;
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
-            Properties info = new Properties();
-            info.setProperty("user", "ea0");
+            //String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+          //  Properties info = new Properties();
+          //  info.setProperty("user", "ea0");
             //info.setProperty("password", "mysql");
-            info.setProperty("useSSL", "false");
-            info.setProperty("serverTimezone", "UTC");
-            con = DriverManager.getConnection(url, info);
+           // info.setProperty("useSSL", "false");
+           // info.setProperty("serverTimezone", "UTC");
+           // con = DriverManager.getConnection(url, info);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/juego", "ea0","");
             logger.info("Conexión BBDD creada \n");
         }
         catch (Exception e){
