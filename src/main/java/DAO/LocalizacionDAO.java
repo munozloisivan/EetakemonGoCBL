@@ -45,7 +45,7 @@ public abstract class LocalizacionDAO extends DAO {
     public Localizacion selectbyID(int id) {
         Localizacion localizacion = new Localizacion();
 
-        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM etakemon WHERE id ='" + id + "';");
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM localizacion WHERE id ='" + id + "';");
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
