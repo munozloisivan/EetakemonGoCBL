@@ -11,6 +11,7 @@ public class Etakemon extends EtakemonDAO{
     private String nombre, habilidad, imagen, descripcion;
     private int tipo;
 
+
     public Etakemon(String nombre, String habilidad, String imagen, String descripcion, int tipo) {
         this.nombre = nombre;
         this.habilidad = habilidad;

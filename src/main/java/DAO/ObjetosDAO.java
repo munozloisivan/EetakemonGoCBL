@@ -24,7 +24,7 @@ public abstract class ObjetosDAO extends DAO {
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Objetos");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM objetos");
             while (rs.next()) {
                 Objetos ob = new Objetos();
                 ob.setId(rs.getInt("id"));

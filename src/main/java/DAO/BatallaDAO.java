@@ -26,7 +26,7 @@ public abstract class BatallaDAO extends DAO{
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Batalla");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM batalla");
             while(rs.next()){
                 Batalla batalla = new Batalla();
                 batalla.setId(rs.getInt("id"));
@@ -48,7 +48,7 @@ public abstract class BatallaDAO extends DAO{
         List<Batalla> batallaList = new ArrayList<Batalla>();
         try {
             Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Batalla WHERE resultado="+result+";");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM batalla WHERE resultado="+result+";");
             while (resultSet.next()){
                 Batalla batalla = new Batalla();
                 batalla.setId(resultSet.getInt("id"));

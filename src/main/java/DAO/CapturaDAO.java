@@ -34,9 +34,13 @@ public abstract class CapturaDAO extends DAO {
         Localizacion localizacion = new Localizacion();
 
         for (int i=0; i<20;i++) {
-            int idetakemon = etakemon.getRandomEtakemon();
+            etakemon = etakemon.getRandomEtakemon();
+            int idetakemon = etakemon.getId();
+            String nombreetakemon = etakemon.getNombre();
+            String imagenetakemon = etakemon.getImagen();
+            String habilidadetakemon = etakemon.getHabilidad();
             int idlocalizacion = localizacion.getRandomLocalizacion();
-            captura = new Captura(idetakemon,idlocalizacion);
+            captura = new Captura(idetakemon,idlocalizacion, nombreetakemon, habilidadetakemon, imagenetakemon);
             capturaList.add(captura);
         }
         return capturaList;
@@ -132,7 +136,7 @@ public abstract class CapturaDAO extends DAO {
 
         //y finalmente la insertamos
 
-        StringBuffer stringBuffer = new StringBuffer("INSERT into Captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha) VALUES (");
+        StringBuffer stringBuffer = new StringBuffer("INSERT into captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha) VALUES (");
         stringBuffer.append(idusuario+",");
         stringBuffer.append(captura.getIdetakemon()+",");
         stringBuffer.append(captura.getIdlocalizacion()+",");
@@ -168,7 +172,7 @@ public abstract class CapturaDAO extends DAO {
         try {
             Statement stmt = null;
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Captura");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM captura");
             while (rs.next()) {
                 Captura captura = new Captura();
                 captura.setId(rs.getInt("id"));
