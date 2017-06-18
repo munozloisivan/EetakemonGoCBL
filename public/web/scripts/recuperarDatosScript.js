@@ -24,7 +24,7 @@ $(document).ready(function() {
             }
 
             $.ajax({
-                url: '/myapp/usuario/datos',
+                url: "/myapp/usuario/datos",
                 type: "POST",
                 data: JSON.stringify(inputValue),
                 contentType: "application/json",
