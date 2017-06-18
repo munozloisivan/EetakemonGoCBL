@@ -63,7 +63,7 @@ public abstract class LocalizacionDAO extends DAO {
         return localizacion;
     }
 
-    public int getRandomIDLocation(){
+    public int getRandomidLocation(){
         int whichLocalizacion = (int) Math.floor(Math.random()*((getAllLocalizaciones().size())-1+1)+1);
         return whichLocalizacion;
     }
@@ -71,7 +71,7 @@ public abstract class LocalizacionDAO extends DAO {
     //generador aleatorio de Localizaciones para generar capturas
     public Localizacion getRandomLocalizacion(){
         Localizacion loca = new Localizacion();
-        loca = loca.selectbyID(getRandomIDLocation());
+        loca = loca.selectbyID(getRandomidLocation());
 
         return loca;
     }
