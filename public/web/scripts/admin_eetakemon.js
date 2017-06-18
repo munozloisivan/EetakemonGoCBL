@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $.getJSON("http://localhost:8080/myapp/eetakemon/get_all", function (json) {
+    $.getJSON("/myapp/eetakemon/get_all", function (json) {
         var tr;
         for (var i = 0; i < json.length; i++) {
             tr = $('<tr/>');

@@ -18,7 +18,7 @@ $(document).ready(function() {
             $("#registrar_button_div").hide();
             $("#registrar_loader_div").show();
             $.ajax({
-                url: "http://localhost:8080/myapp/usuario/new",
+                url: "/myapp/usuario/new",
                 type: "POST",
                 data: JSON.stringify(datosRegistro),
                 contentType: "application/json",
@@ -54,7 +54,7 @@ $(document).ready(function() {
             $("#login_button").hide();
 
             $.ajax({
-                url: "http://localhost:8080/myapp/usuario/login",
+                url: "/myapp/usuario/login",
                 type: "POST",
                 data: JSON.stringify(datosLogin),
                 contentType: "application/json",

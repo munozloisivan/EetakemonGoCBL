@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     emailJustLoged = getUrlParameter('email');
 
-    $.get( "http://localhost:8080/myapp/usuario/got_email/"+emailJustLoged , function( data ) {
+    $.get( "/myapp/usuario/got_email/"+emailJustLoged , function( data ) {
         $("#userLogedNick").html(" "+data.nick);
         $("#nombreLoged").append(data.nombre);
         $("#nickLoged").append(data.nick);

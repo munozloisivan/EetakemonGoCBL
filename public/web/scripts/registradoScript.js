@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     userRegistred = getUrlParameter('email');
 
-    $.get( "http://localhost:8080/myapp/usuario/got_email/"+userRegistred , function( data ) {
+    $.get( "/myapp/usuario/got_email/"+userRegistred , function( data ) {
         $("#nombreRegistrado").append(data.nombre);
         $("#usuarioRegistrado").append(data.nick);
         $("#correoRegistrado").append(data.email);

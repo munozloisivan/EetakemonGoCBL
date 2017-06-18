@@ -23,7 +23,7 @@ $(document).ready(function() {
                 function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "http://localhost:8080/myapp/eetakemon/new",
+                            url: "/myapp/eetakemon/new",
                             type: "POST",
                             data: JSON.stringify(datosAdd),
                             contentType: "application/json",

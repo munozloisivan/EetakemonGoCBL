@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     idSettingsEetakemon = getUrlParameter('id');
 
-    $.get("http://localhost:8080/myapp/eetakemon/got_id/" + idSettingsEetakemon, function (data) {
+    $.get("/myapp/eetakemon/got_id/" + idSettingsEetakemon, function (data) {
         $("#nombre").val(data.nombre);
         $("#habilidad").val(data.habilidad);
         $("#descripcion").val(data.descripcion);
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "http://localhost:8080/myapp/eetakemon/admin_edit",
+                            url: "/myapp/eetakemon/admin_edit",
                             type: "POST",
                             data: JSON.stringify(datosEdit),
                             contentType: "application/json",
@@ -75,7 +75,7 @@ $(document).ready(function() {
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    $.get( "http://localhost:8080/myapp/eetakemon/delete/"+idSettingsEetakemon , function() {
+                    $.get( "/myapp/eetakemon/delete/"+idSettingsEetakemon , function() {
                         window.location.href="admin_eetakemon.html"
                     })
                 } else {

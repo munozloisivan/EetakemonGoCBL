@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     idSettingsUsuario = getUrlParameter('id');
 
-    $.get("http://localhost:8080/myapp/usuario/got_id/" + idSettingsUsuario, function (data) {
+    $.get("/myapp/usuario/got_id/" + idSettingsUsuario, function (data) {
         $("#nombre").val(data.nombre);
         $("#usuario").val(data.nick);
         $("#email").val(data.email);
@@ -48,7 +48,7 @@ $(document).ready(function() {
                 function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "http://localhost:8080/myapp/usuario/admin_edit",
+                            url: "/myapp/usuario/admin_edit",
                             type: "POST",
                             data: JSON.stringify(datosEdit),
                             contentType: "application/json",
@@ -88,7 +88,7 @@ $(document).ready(function() {
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    $.get( "http://localhost:8080/myapp/usuario/delete/"+idSettingsUsuario , function() {
+                    $.get( "/myapp/usuario/delete/"+idSettingsUsuario , function() {
                         window.location.href="admin_usuarios.html"
                     })
                 } else {
