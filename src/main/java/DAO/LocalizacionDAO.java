@@ -42,10 +42,37 @@ public abstract class LocalizacionDAO extends DAO {
         return listaLocalizaciones;
     }
 
+    public Localizacion selectbyID(int id) {
+        Localizacion localizacion = new Localizacion();
 
-    //generador aleatorio de Localizaciones para generar capturas
-    public int getRandomLocalizacion(){
+        StringBuffer stringBuffer = new StringBuffer("SELECT * FROM etakemon WHERE id ='" + id + "';");
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(stringBuffer.toString());
+            resultSet.next();
+
+            localizacion.setId(resultSet.getInt("id"));
+            localizacion.setNombre(resultSet.getString("nombre"));
+            localizacion.setLatitud(resultSet.getDouble("latitud"));
+            localizacion.setLongitud(resultSet.getDouble("longitud"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+        return localizacion;
+    }
+
+    public int getRandomIDLocation(){
         int whichLocalizacion = (int) Math.floor(Math.random()*((getAllLocalizaciones().size())-1+1)+1);
         return whichLocalizacion;
+    }
+
+    //generador aleatorio de Localizaciones para generar capturas
+    public Localizacion getRandomLocalizacion(){
+        Localizacion loca = new Localizacion();
+        loca = loca.selectbyID(getRandomIDLocation());
+
+        return loca;
     }
 }
