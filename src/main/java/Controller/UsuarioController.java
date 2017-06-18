@@ -233,7 +233,6 @@ public class UsuarioController {
                 finded = true;
             }
         }
-
         if (finded){
             EnviarMail enviarMail = new EnviarMail();
             try {

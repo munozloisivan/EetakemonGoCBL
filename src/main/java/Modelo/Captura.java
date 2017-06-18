@@ -36,6 +36,10 @@ public class Captura extends CapturaDAO{
     public Captura(int idetakemon, int idlocalizacion, String nombreetakemon, String habilidadetakemon, String imagen){
         this.idetakemon = idetakemon;
         this.idlocalizacion = idlocalizacion;
+        this.nombreetakemon = nombreetakemon;
+        this.habilidadetakemon = habilidadetakemon;
+        this.imagen = imagen;
+
     }
 
     public Captura(int idetakemon, int idlocalizacion, String imagen) {
