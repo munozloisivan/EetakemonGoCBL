@@ -98,6 +98,10 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
+function reloadUserLoged(){
+    window.location.href="userLoged.html?email="+sessionStorage.emailLoged;
+}
+
 //Robustez del UPDATE
 function validUsuarioUpdate() {
     var inputNick = document.getElementById("usuario");
