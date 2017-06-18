@@ -49,10 +49,12 @@ public class CapturaController {
     public Response setCapturaToUsuario(@PathParam("iduser") int iduser, Captura captura) throws SQLException
     {
         if (captura.insertarCaptura(captura,iduser)) {
-            return Response.status(201).entity("insertado").build();
+            String yesResult = "Capturado!";
+            return Response.status(201).entity(yesResult).build();
         }
         else {
-            return Response.status(404).entity("error insertar captura").build();
+            String noResult = "Error insertando captura.";
+            return Response.status(404).entity(noResult).build();
         }
     }
 }
