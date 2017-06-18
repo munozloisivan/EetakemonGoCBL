@@ -193,8 +193,8 @@ public class UsuarioController {
     public Response editUser(Usuario in) {
         Usuario u = new Usuario();
 
-        if (u.select(in.getId())!=null){
-            u.updateUsuarioData(in.getId(),in.getEmail(),in.getContrasena());
+        if (u.selectbyID(in.getId())!=null){
+            u.updateUsuarioData(in.getId(),in.getNick(),in.getContrasena());
             String yesResult = "Usuario editado.";
             return Response.status(201).entity(yesResult).build();
         }
