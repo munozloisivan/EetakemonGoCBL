@@ -33,6 +33,9 @@ $(document).ready(function() {
     $("#admin_button").click(function () {
         window.location.href="admin_usuarios.html";
     })
+    $("#ajustes_button").click(function () {
+        window.location.href="edit_user.html";
+    })
 
 })
 
