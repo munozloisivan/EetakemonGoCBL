@@ -2,7 +2,10 @@
  * Created by Dani on 06/06/2017.
  */
 
+
+
 $(document).ready(function() {
+
 
     $("#recuperar_pass").click(function () {
         swal({
@@ -24,7 +27,7 @@ $(document).ready(function() {
             }
 
             $.ajax({
-                url: "/myapp/usuario/datos",
+                url: "/myapp/usuario/"+inputValue+"/datos",
                 type: "POST",
                 data: JSON.stringify(inputValue),
                 contentType: "application/json",

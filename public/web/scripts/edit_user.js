@@ -10,7 +10,6 @@ $(document).ready(function() {
     $.get("/myapp/usuario/got_id/" + id_edit_user, function (data) {
         $("#usuario").val(data.nick);
         $("#contrasena").val(data.contrasena);
-
     })
 
 
@@ -44,7 +43,9 @@ $(document).ready(function() {
                             contentType: "application/json",
                             statusCode: {
                                 201: function () {
-                                    window.location.href="userLoged.html"
+                                    swal("Actualizado", "¡Tus datos se han actualizado correctamente! Tendrás que volver a iniciar sesión", "success");
+                                    sessionStorage.clear();
+                                    window.location.href="login.html";
                                 },
                                 418: function () {
                                     swal({
@@ -79,7 +80,9 @@ $(document).ready(function() {
             function(isConfirm) {
                 if (isConfirm) {
                     $.get( "/myapp/usuario/delete/"+id_edit_user , function() {
-                        window.location.href="userLoged.html"
+                        swal("¡Hasta pronto!", "Tu cuenta ha sido eliminada correctamente, volverás a la página de inicio", "success");
+                        sessionStorage.clear();
+                        window.location.href="index.html";
                     })
                 } else {
                     swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
@@ -88,12 +91,18 @@ $(document).ready(function() {
     })
 })
 
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
 
+function reloadUserLoged(){
+    window.location.href="userLoged.html?email="+sessionStorage.emailLoged;
+}
 
 //Robustez del UPDATE
-
-
-
 function validUsuarioUpdate() {
     var inputNick = document.getElementById("usuario");
 
@@ -116,8 +125,6 @@ function validateUpdate() {
     var inputPass = document.getElementById("contrasena");
 
     if ((inputUsuario.checkValidity()==false)|| (inputPass.checkValidity()==false)){
-
-
 
         if (inputUsuario.checkValidity() == false) {
             $("#usuario").css("border", "2px solid red");
