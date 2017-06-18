@@ -72,7 +72,7 @@ public abstract class CapturaDAO extends DAO {
         //recoger los datos del etakemon en cuestion y analizarlos
         //para definir atributos en funcion de su TIPO
 
-        Etakemon etakemon = new Etakemon();
+//        Etakemon etakemon = new Etakemon();
         //si tipo devuelve 0 es que no existe, no se ha encontrado
 
         tipoX = captura.getTipoetakemon();
@@ -158,7 +158,7 @@ public abstract class CapturaDAO extends DAO {
         stringBuffer.append(captura.getImagen()+",");
         stringBuffer.append(captura.getLatcaptura()+",");
         stringBuffer.append(captura.getLoncaptura()+");");
-        
+
             try {
                 PreparedStatement preparedStatement = con.prepareStatement(stringBuffer.toString());
                 System.out.println(stringBuffer.toString());

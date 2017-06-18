@@ -47,8 +47,7 @@ public class CapturaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response setCapturaToUsuario(@PathParam("iduser") int iduser, Captura captura)
     {
-        Captura nuevaCaptura = new Captura();
-        if (nuevaCaptura.insertarCaptura(captura,iduser))
+        if (captura.insertarCaptura(captura,iduser))
         return Response.status(201).entity("insertado").build();
 
         else {
