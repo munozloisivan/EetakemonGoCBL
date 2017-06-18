@@ -33,6 +33,8 @@ public class Captura extends CapturaDAO{
         this.imagen = imagen;
     }
 
+
+
     //para los SPAWNS de las capturas
     public Captura(int idetakemon, int idlocalizacion, String nombreetakemon, String habilidadetakemon, String imagen, double latcaptura, double loncaptura){
         this.idetakemon = idetakemon;
@@ -190,5 +192,21 @@ public class Captura extends CapturaDAO{
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public double getLatcaptura() {
+        return latcaptura;
+    }
+
+    public void setLatcaptura(double latcaptura) {
+        this.latcaptura = latcaptura;
+    }
+
+    public double getLoncaptura() {
+        return loncaptura;
+    }
+
+    public void setLoncaptura(double loncaptura) {
+        this.loncaptura = loncaptura;
     }
 }
