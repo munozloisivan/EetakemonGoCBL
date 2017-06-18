@@ -48,7 +48,11 @@ public class CapturaController {
     public Response setCapturaToUsuario(@PathParam("iduser") int iduser, Captura captura)
     {
         Captura nuevaCaptura = new Captura();
-        nuevaCaptura.insertarCaptura(captura,iduser);
-        return Response.status(201).entity(nuevaCaptura).build();
+        if (nuevaCaptura.insertarCaptura(captura,iduser))
+        return Response.status(201).entity("insertado").build();
+
+        else {
+            return Response.status(404).entity("error insertar captura").build();
+        }
     }
 }
