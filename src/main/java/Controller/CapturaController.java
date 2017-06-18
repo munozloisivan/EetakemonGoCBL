@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +46,11 @@ public class CapturaController {
     @POST
     @Path("/{iduser}/capture")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response setCapturaToUsuario(@PathParam("iduser") int iduser, Captura captura)
+    public Response setCapturaToUsuario(@PathParam("iduser") int iduser, Captura captura) throws SQLException
     {
-        if (captura.insertarCaptura(captura,iduser))
-        return Response.status(201).entity("insertado").build();
-
+        if (captura.insertarCaptura(captura,iduser)) {
+            return Response.status(201).entity("insertado").build();
+        }
         else {
             return Response.status(404).entity("error insertar captura").build();
         }
