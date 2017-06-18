@@ -222,9 +222,9 @@ public class UsuarioController {
     }
 
     @POST
-    @Path("/datos")
+    @Path("{email}/datos")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response recuperardatos(String email){
+    public Response recuperardatos(@PathParam("email") String email){
         String emailAEnviar = email;
         Usuario prueba = new Usuario();
         Boolean finded = false;
