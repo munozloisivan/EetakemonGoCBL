@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $.get("http://localhost:8080/myapp/eetakemon/get_all", function (json) {
+    $.get("/myapp/eetakemon/get_all", function (json) {
         $("#eetakedex_generated").hide();
     })
         .done(function(json) {
