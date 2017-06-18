@@ -151,11 +151,11 @@ public abstract class CapturaDAO extends DAO {
         stringBuffer.append(ataque+",");
         stringBuffer.append(defensa+",");
         stringBuffer.append(estado+",");
-        stringBuffer.append("'"+fecha+"',");
-        stringBuffer.append(captura.getNombreetakemon()+",");
-        stringBuffer.append(captura.getHabilidadetakemon()+",");
-        stringBuffer.append(captura.getTipoetakemon()+",");
-        stringBuffer.append(captura.getImagen()+",");
+        stringBuffer.append("'"+fecha+"','");
+        stringBuffer.append(captura.getNombreetakemon()+"','");
+        stringBuffer.append(captura.getHabilidadetakemon()+"',");
+        stringBuffer.append(captura.getTipoetakemon()+",'");
+        stringBuffer.append(captura.getImagen()+"',");
         stringBuffer.append(captura.getLatcaptura()+",");
         stringBuffer.append(captura.getLoncaptura()+");");
 
