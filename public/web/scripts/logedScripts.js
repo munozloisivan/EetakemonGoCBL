@@ -34,7 +34,7 @@ $(document).ready(function() {
         window.location.href="admin_usuarios.html";
     })
     $("#ajustes_button").click(function () {
-        window.location.href="edit_user.html";
+        window.location.href="edit_user.html?id="+sessionStorage.idLoged;
     })
 
 })

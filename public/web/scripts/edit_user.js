@@ -10,7 +10,6 @@ $(document).ready(function() {
     $.get("/myapp/usuario/got_id/" + id_edit_user, function (data) {
         $("#usuario").val(data.nick);
         $("#contrasena").val(data.contrasena);
-
     })
 
 
@@ -79,7 +78,9 @@ $(document).ready(function() {
             function(isConfirm) {
                 if (isConfirm) {
                     $.get( "/myapp/usuario/delete/"+id_edit_user , function() {
-                        window.location.href="userLoged.html"
+                        swal("¡Hasta pronto!", "Tu cuenta ha sido eliminada correctamente, volverás a la página de inicio", "success");
+                        sessionStorage.clear();
+                        window.location.href="index.html";
                     })
                 } else {
                     swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
@@ -91,9 +92,6 @@ $(document).ready(function() {
 
 
 //Robustez del UPDATE
-
-
-
 function validUsuarioUpdate() {
     var inputNick = document.getElementById("usuario");
 
@@ -116,8 +114,6 @@ function validateUpdate() {
     var inputPass = document.getElementById("contrasena");
 
     if ((inputUsuario.checkValidity()==false)|| (inputPass.checkValidity()==false)){
-
-
 
         if (inputUsuario.checkValidity() == false) {
             $("#usuario").css("border", "2px solid red");
