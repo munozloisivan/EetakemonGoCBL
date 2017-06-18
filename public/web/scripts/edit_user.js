@@ -43,7 +43,9 @@ $(document).ready(function() {
                             contentType: "application/json",
                             statusCode: {
                                 201: function () {
-                                    window.location.href="userLoged.html"
+                                    swal("Actualizado", "¡Tus datos se han actualizado correctamente! Tendrás que volver a iniciar sesión", "success");
+                                    sessionStorage.clear();
+                                    window.location.href="login.html";
                                 },
                                 418: function () {
                                     swal({
