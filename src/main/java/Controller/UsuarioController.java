@@ -221,6 +221,8 @@ public class UsuarioController {
         }
     }
 
+
+
     @POST
     @Path("/datos")
     @Consumes(MediaType.APPLICATION_JSON)

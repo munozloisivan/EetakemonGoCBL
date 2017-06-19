@@ -5,6 +5,7 @@ import Modelo.Captura;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -23,6 +24,22 @@ public class CapturaController {
     @Singleton
     public CapturaController(){
 
+    }
+
+    @GET
+    @Path("/delete/{id}")
+    public Response deleteCaptura(@PathParam("id") int id) {
+        Captura c = new Captura();
+
+        if (c.select(id)!=null){
+            c.delete(id);
+            String yesResult = "Captura eliminado.";
+            return Response.status(201).entity(yesResult).build();
+        }
+        else {
+            String noResult = "El id no existe.";
+            return Response.status(404).entity(noResult).build();
+        }
     }
 
     @GET

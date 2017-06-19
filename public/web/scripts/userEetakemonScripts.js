@@ -11,8 +11,9 @@ $(document).ready(function() {
             tr.append("<td>" + json[i].habilidadetakemon + "</td>");
             tr.append("<td>" + json[i].nivel + "</td>");
             tr.append("<td>" + json[i].fecha+ "</td>");
-            tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
+            tr.append("<td><button type='delete' onclick='deleteThisCaptura(this.id)' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
             $('table').append(tr);
+            $("#delete").attr('id',json[i].id);
         }
     })
 })
@@ -33,6 +34,31 @@ function filterEetakemonUsuario() {
             }
         }
     }
+}
+
+function deleteThisCaptura(id) {
+
+    swal({
+            title: "¿Estas seguro?",
+            text: "Eliminar una Captura es una acción irreversible.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Borrar",
+            cancelButtonText: "Atrás",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                $.get( "/myapp/captura/delete/"+id , function() {
+                    window.location.href="userEetakemon.html"
+                })
+            } else {
+                swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
+            }
+        });
+
 }
 
 function reloadUserLoged(){

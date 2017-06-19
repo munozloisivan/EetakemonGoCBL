@@ -385,6 +385,7 @@ public abstract class UsuarioDAO extends DAO {
     }
 
 
+
     public List<Captura> getCapturasUsuarioToRevive(int id) {
         List<Captura> listaCapturaUsuarioToRevive = new ArrayList<Captura>();
         try {
