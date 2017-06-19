@@ -72,9 +72,11 @@ public abstract class CapturaDAO extends DAO {
         //recoger los datos del etakemon en cuestion y analizarlos
         //para definir atributos en funcion de su TIPO
 
-        Etakemon etakemon = new Etakemon();
+//        Etakemon etakemon = new Etakemon();
         //si tipo devuelve 0 es que no existe, no se ha encontrado
-        tipoX = etakemon.getTipoParaCaptura(captura.getIdetakemon());
+
+        tipoX = captura.getTipoetakemon();
+        // tipoX = etakemon.getTipoParaCaptura(captura.getIdetakemon());
 
         if (nivelXUsuario<=5){
             experiencia = 100;
@@ -139,7 +141,7 @@ public abstract class CapturaDAO extends DAO {
 
         //y finalmente la insertamos
 
-        StringBuffer stringBuffer = new StringBuffer("INSERT into captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha) VALUES (");
+        StringBuffer stringBuffer = new StringBuffer("INSERT into captura (idusuariosss,idetakemon,idlocalizacion,nivel,experiencia,vida,ataque,defensa,estado,fecha,nombreetakemon,habilidadetakemon,tipoetakemon,imagen,latcaptura,loncaptura) VALUES (");
         stringBuffer.append(idusuario+",");
         stringBuffer.append(captura.getIdetakemon()+",");
         stringBuffer.append(captura.getIdlocalizacion()+",");
@@ -149,7 +151,13 @@ public abstract class CapturaDAO extends DAO {
         stringBuffer.append(ataque+",");
         stringBuffer.append(defensa+",");
         stringBuffer.append(estado+",");
-        stringBuffer.append("'"+fecha+"');");
+        stringBuffer.append("'"+fecha+"','");
+        stringBuffer.append(captura.getNombreetakemon()+"','");
+        stringBuffer.append(captura.getHabilidadetakemon()+"',");
+        stringBuffer.append(captura.getTipoetakemon()+",'");
+        stringBuffer.append(captura.getImagen()+"',");
+        stringBuffer.append(captura.getLatcaptura()+",");
+        stringBuffer.append(captura.getLoncaptura()+");");
 
             try {
                 PreparedStatement preparedStatement = con.prepareStatement(stringBuffer.toString());
