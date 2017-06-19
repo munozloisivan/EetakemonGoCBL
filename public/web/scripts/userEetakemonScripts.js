@@ -40,7 +40,7 @@ function deleteThisCaptura(id) {
 
     swal({
         title: "¿Estas seguro?",
-        text: "Eliminar un Eetakemon es una acción irreversible.",
+        text: "Eliminar una Captura es una acción irreversible.",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -48,9 +48,17 @@ function deleteThisCaptura(id) {
         cancelButtonText: "Atrás",
         closeOnConfirm: false,
         closeOnCancel: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.get( "/myapp/captura/delete/"+id , function() {
+                window.location.href="userEetakemon.html"
+            })
+        } else {
+            swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
+        }
     }
-
-    )
+    );
 
 }
 
