@@ -38,28 +38,10 @@ function filterEetakemonUsuario() {
 
 function deleteThisCaptura(id) {
 
-    swal({
-        title: "¿Estas seguro?",
-        text: "Eliminar una Captura es una acción irreversible.",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Borrar",
-        cancelButtonText: "Atrás",
-        closeOnConfirm: false,
-        closeOnCancel: false
-    },
-    function(isConfirm) {
-        if (isConfirm) {
-            $.get( "/myapp/captura/delete/"+id , function() {
-                window.location.href="userEetakemon.html"
-            })
-        } else {
-            swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
-        }
-    }
-    );
-
+    $.get( "/myapp/captura/delete/"+id , function() {
+        alert("Eetakemon eliminado")
+        window.location.href="userEetakemon.html"
+    });
 }
 
 function reloadUserLoged(){
