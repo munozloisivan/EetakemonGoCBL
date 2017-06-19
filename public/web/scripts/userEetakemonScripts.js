@@ -52,7 +52,6 @@ function deleteThisCaptura(id) {
         function(isConfirm) {
             if (isConfirm) {
                 $.get( "/myapp/captura/delete/"+id , function() {
-                    window.location.href="userEetakemon.html"
                 })
             } else {
                 swal("Cancelado", "¡Se ha cancelado el proceso de eliminación!", "error");
