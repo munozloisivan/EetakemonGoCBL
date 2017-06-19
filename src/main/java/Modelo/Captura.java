@@ -47,7 +47,7 @@ public class Captura extends CapturaDAO{
 
     }
 
-    public Captura(int idusuariosss, int idetakemon, int idlocalizacion, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, int tipoetakemon, Date fecha, String nombreetakemon, String habilidadetakemon, String imagen) {
+    public Captura(int idusuariosss, int idetakemon, int idlocalizacion, int nivel, int experiencia, int vida, int ataque, int defensa, int estado, int tipoetakemon, Date fecha, String nombreetakemon, String habilidadetakemon, String imagen, double latcaptura, double loncaptura) {
         this.idusuariosss = idusuariosss;
         this.idetakemon = idetakemon;
         this.idlocalizacion = idlocalizacion;
@@ -62,6 +62,8 @@ public class Captura extends CapturaDAO{
         this.nombreetakemon = nombreetakemon;
         this.habilidadetakemon = habilidadetakemon;
         this.imagen = imagen;
+        this.latcaptura = latcaptura;
+        this.loncaptura = loncaptura;
     }
 
     public Captura(int idusuariosss, int idetakemon, int idlocalizacion, int estado, Date fecha){

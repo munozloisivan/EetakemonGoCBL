@@ -62,7 +62,6 @@ public class CapturaController {
 
     }
 
-
     @POST
     @Path("/{iduser}/capture")
     @Produces(MediaType.APPLICATION_JSON)
