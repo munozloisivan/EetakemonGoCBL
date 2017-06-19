@@ -2,14 +2,13 @@ $(document).ready(function() {
 
     $("#userLogedNick").html(" "+sessionStorage.nickLoged);
 
-    $.getJSON("/myapp/usuario/"+sessionStorage.idLoged+"/get_objetos", function (json) {
+    $.getJSON("/myapp/usuario/"+sessionStorage.emailLoged+"/objetos", function (json) {
         var tr;
         for (var i = 0; i < json.length; i++) {
             tr = $('<tr/>');
             tr.append("<td>" + json[i].nombre + "</td>");
             tr.append("<td>" + json[i].descripcion+ "</td>");
             tr.append("<td>" + json[i].id + "</td>");
-            tr.append("<td><button type='delete' id='delete' class='btn btn-danger btn-xs'>X</button></td>");
             $('table').append(tr);
         }
     })
@@ -32,7 +31,6 @@ function filterObjetosUsuario() {
         }
     }
 }
-
 function reloadUserLoged(){
     window.location.href="userLoged.html?email="+sessionStorage.emailLoged;
 }
